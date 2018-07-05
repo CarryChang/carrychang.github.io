@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,数据分析," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;经过数据探索与数据预处理，得到了可以直接建模的数据。根据挖掘目标和数据形式可以建立分类与预测、聚类分析、关联规则、时序模式和离群点识别等模型。">
+<meta name="keywords" content="python,数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据分析（四）——挖掘建模">
+<meta property="og:url" content="https://gofisher.github.io/2018/06/27/挖掘建模/index.html">
+<meta property="og:site_name" content="Yu&#39;s-Blog">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;经过数据探索与数据预处理，得到了可以直接建模的数据。根据挖掘目标和数据形式可以建立分类与预测、聚类分析、关联规则、时序模式和离群点识别等模型。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/分类与预测.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/监督学习的框架图.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/分类步骤.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/回归步骤.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/常用的分类与预测算法.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/回归分析.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/主要回归模型.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/决策树算法分类.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/神经元模型.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/激活函数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/人工神经网络算法.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/kappa值.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/混淆矩阵图片.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/ROC曲线.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/聚类分析.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/聚类分析原理.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/闵可夫斯基距离.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/p值变化.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/相似度.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/时序模式.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/离群点检测.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/离群点类型.png">
+<meta property="og:updated_time" content="2018-07-04T13:14:10.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python数据分析（四）——挖掘建模">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;经过数据探索与数据预处理，得到了可以直接建模的数据。根据挖掘目标和数据形式可以建立分类与预测、聚类分析、关联规则、时序模式和离群点识别等模型。">
+<meta name="twitter:image" content="https://gofisher.github.io/2018/06/27/挖掘建模/images/分类与预测.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gofisher.github.io/2018/06/27/挖掘建模/"/>
+
+
+
+
+
+<script src="https://neveryu.github.io/js/src/pace.min.js"></script>
+
+
+  <title>Python数据分析（四）——挖掘建模 | Yu's-Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1682bd44752aaf16cf4a535a8ee72de9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yu's-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">余心所善，九死未悔！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gofisher.github.io/2018/06/27/挖掘建模/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YuJianZhe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yu's-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python数据分析（四）——挖掘建模</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-27T18:32:06+08:00">
+                2018-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; 更新于
+              <time itemprop="dateUpdated" datetime="2018-07-04T21:14:10+08:00" content="2018-07-04">
+                2018-07-04
+              </time>
+            </span>
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/27/挖掘建模/" class="leancloud_visitors" data-flag-title="Python数据分析（四）——挖掘建模">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  8,810字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  33 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经过数据探索与数据预处理，得到了可以直接建模的数据。根据挖掘目标和数据形式可以建立<strong>分类与预测、聚类分析、关联规则、时序模式和离群点识别</strong>等模型。<br><a id="more"></a></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=461525011&auto=1&height=66"></iframe>
+
+<h1 id="分类与预测"><a href="#分类与预测" class="headerlink" title="分类与预测 "></a>分类与预测 <i class="fa fa-balance-scale" aria-hidden="true"></i></h1><p><img src="images/分类与预测.png" alt=""></p>
+<p>分类和预测是预测问题的两种主要类型：</p>
+<ul>
+<li><strong>分类主要是预测分类标号（离散属性）</strong>；</li>
+<li><strong>预测主要是建立连续值函数模型，预测给定自变量对应因变量的值</strong>。<br><strong><center>监督学习的框架图</center></strong><br><img src="images/监督学习的框架图.png" alt=""></li>
+</ul>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><ul>
+<li><strong>分类</strong>是构造一个分类模型，<strong>输入样本的属性值，输出对应的类别</strong>，将每个样本<strong>映射到预先定义好的类别</strong>。<br><center>垃圾邮件的过滤</center><br><img src="images/分类步骤.png" alt=""></li>
+</ul>
+<blockquote>
+<p> After the system has been trained to identify emails, when new emails strike your inbox, it’ll automatically be classified as spam or not spam.Classification problems, requires items to be divided into different categories, based on past data. In a way, we’re solving a yes/no problem. Whether something meets its required standards, or whether it’s broken or not and so on.</p>
+</blockquote>
+<p>训练一个识别垃圾邮件的系统,当系统接受到新邮件，将会自动的对新邮件进行是否是垃圾邮件的分类。分类问题是基于过去的数据，将事物划分成不同的类别，总而言之，有点类似“是”或“不是”的问题。或者某件事物是符合标准的还是不符合标准的等等。</p>
+<ul>
+<li><strong>预测</strong>是指<strong>建立两种或两种以上变量间相互依赖的函数模型</strong>，然后进行预测或控制<br><center>天气的预测</center><br><img src="images/回归步骤.png" alt=""></li>
+</ul>
+<blockquote>
+<p>Now with regression problem, the system attempts to predict a value for an input based on past data. You see, unlike classification, we’re predicting a value based on past data, rather than classifying them into different categories. Say you wanted to predict whether it would rain, and if it does, how much rain you would get.</p>
+</blockquote>
+<p>对于回归问题，系统基于过去的数据输入，期望预测出一个值。不同于分类，我们基于数据预测的值，而不是将其划分成不同的类别。想预测是否会下雨,如果会下雨,将会得到多少雨量。</p>
+<ul>
+<li><strong>两者的区别</strong></li>
+</ul>
+<p><strong>:fa-quora:上Waleed Kadous给出的答案：</strong></p>
+<blockquote>
+<p><strong>The key difference is that the output.</strong><br><strong>For classification is one of a discrete set</strong> (e.g. “what type of fruit is this?” or “what medical condition is the person suffering from?”)<br><strong>For regression the output is a continuous number</strong> (e.g. “what’s the expected amount the stock market will go up or down today?” or “how carcinogenic is this compound?”).<br>A special case of regression is when the output is not just any number, but a number between 0 and 1 where 0 means “this is not going to happen” to 1 being “this will definitely happen”.<br>Some learning algorithms are targeted at one, others at the other. Many of them have the same core algorithm, but with minor modifications – e.g. decision trees can be easily modified to support regression instead.</p>
+</blockquote>
+<p><strong>Andrew Ng的Machine Learning课程给出两者的解释:</strong></p>
+<blockquote>
+<p>Supervised learning problems are categorized into “regression” and “classification” problems. <strong>In a regression problem</strong>, we are trying to predict results within <strong>a continuous output</strong>, meaning that we are trying to map input variables to some continuous function. <strong>In a classification problem</strong>, we are instead trying to predict results in <strong>adiscrete output</strong>. In other words, we are trying to map input variables into discrete categories.</p>
+</blockquote>
+<p>总结一下：<strong>分类模型和回归模型本质一样，分类模型可将回归模型的输出离散化，回归模型也可将分类模型的输出连续化</strong>。</p>
+<h2 id="常用的分类和预测算法"><a href="#常用的分类和预测算法" class="headerlink" title="常用的分类和预测算法"></a>常用的分类和预测算法</h2><p><img src="images/常用的分类与预测算法.png" alt=""></p>
+<h2 id="回归分析"><a href="#回归分析" class="headerlink" title="回归分析"></a>回归分析</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回归分析是通过建立模型来研究变量之间相互关系的密切程度、结构状态及进行模型预测的一种有效工具，在工商管理、经济、社会、医学和生物学等领域应用十分广泛。从19世纪初高斯提出最小二乘估计起，回归分析的历史已有200多年。从经典的回归分析方法到近代的回归分析方法，安装研究方法划分，回归分析研究的范围大致如下。<br><strong><center>回归模型</center></strong><br><img src="images/回归分析.png" alt=""></p>
+<p><strong><center>主要回归模型</center></strong><br><img src="images/主要回归模型.png" alt=""></p>
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;决策树方法在分类、预测、规则提取等领域有着广泛的应用。<strong>决策树是一种树状结构，它的每一个叶节点对应着一个分类，非叶节点对应着在某个属性上的划分，根据样本在该属性上的不同取值将其划分成若干个子集</strong>。对于非纯的叶节点，多数类的标号给出到达这个节点的样本所属的类。构造决策树的核心问题是在<strong>每一步如何选择适当的属性对样本做拆分</strong>。对于一个分类问题，从已知标记的训练样本中学习并构造出决策树是一个自上而下，分而治之的过程。<br><img src="images/决策树算法分类.png" alt=""></p>
+<h2 id="人工神经网络"><a href="#人工神经网络" class="headerlink" title="人工神经网络"></a>人工神经网络</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人工神经网络（ANN）,是模拟生物神经网络进行信息处理的一种数学模型。它以大脑的生理研究成果为基础，其目的在于模拟大脑的某些机理与机制，实现一些特定的功能。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>人工神经紊乱的学习也成为训练</strong>，指的是神经网络在受到外部环境的刺激下调整神经网络的参数，是神经网络以一种新的方式对外部环境做出反应的一个过程。在分类与预测中，人工神经网络主要使用有指导的学习方式，即给定的训练样本，调整人工神经网络的参数使网络输出接近于已知的样本标记或其它形式的因变量。<br><strong><center>神经元模型</center></strong><br><img src="images/神经元模型.jpg" alt=""></p>
+<p><strong><center>激活函数：就是将权值结果转化成分类结果</center></strong><br><img src="images/激活函数.png" alt=""></p>
+<p><strong><center>常见神经网络</center></strong><br><img src="images/人工神经网络算法.png" alt=""></p>
+<h2 id="算法评价"><a href="#算法评价" class="headerlink" title="算法评价"></a>算法评价</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分类与预测模型对训练集进行预测而得出的准确率并不能很好地反映预测模型未来的泛化能力，为了有效判断一个预测模型的性能表示，需要一组咩有参予预测模型建立的数据集，并在该数据集上评价预测模型准确率，这组独立的数据集叫作<strong>测试集</strong>。</p>
+<h3 id="回归指标"><a href="#回归指标" class="headerlink" title="回归指标"></a>回归指标</h3><ul>
+<li><strong>绝对误差和相对误差</strong><br>设$Y$表示实际值，$\bar{Y}$表示预测值，则称$E$为<strong>绝对误差</strong>（Absolute Error），计算公式如下：<br>$$E=Y-\bar{Y}$$<br>$e$为<strong>相对误差</strong>（Relative Error），计算公式如下<br>$$e=\frac{Y-\bar{Y}}{Y}*100\%$$<br>这是一种直观的误差表示方法。</li>
+<li><strong>平均绝对误差</strong>（MeanAbsoluter，MAE）定义如下：<br>$$MAE=\frac{1}{n}\sum_{i=1}^{n}|E_{i}|=\sum_{i=1}^{n}|Y_{i}-\bar Y_{i}|$$<br>式中的各项含义如下：<ul>
+<li>$MAE:$平均绝对误差。</li>
+<li>$E_{i}:$第i个实际值与预测值的绝对误差。</li>
+<li>$Y_{i}:$第i个实际值。</li>
+<li>$\bar Y_{i}:$第i个预测值。<br><strong>由于误差有正负，为了避免正负相抵销</strong>，故取误差的绝对值进行综合并取其平均数，这是误差分析的综合指标之一。</li>
+</ul>
+</li>
+<li><strong>均方误差</strong>（Mean Squared Error，MSE）定义如下：<br>$$MSE=\frac{1}{n}\sum_{i=1}^{n}E_{i}^{2}=\frac{1}{n}\sum_{i=1}^{n}(Y_{i}-\bar Y_{i})^{2}$$<br>在上式中，$MSE$表示均方差，其他符号同前。<br>均方误差是预测误差平方之和的平均数，它<strong>避免了正负误差不能相加</strong>的问题。由于对误差$E$进行了平方，<strong>加强了数值大的误差在指标</strong>中的作用，从而<strong>提高了这个指标的灵敏度</strong>，是一大优点。均方误差是误差分析的综合指标之一。</li>
+<li><strong>均方根误差</strong>（Root Mean Squared Error，RMSE）定义如下。<br>$$RMSE=\sqrt{\frac{1}{n}\sum_{i=1}^{2}E_{i}^2}=\sqrt{\frac{1}{n}\sum_{i=1}^{n}(Y_{i}-\bar Y_{i})^2}$$<br>上式中，$RMSE$表示均方根误差，其他符合同前。<br>这是<strong>均分误差的平方根</strong>，代表了<strong>预测值的离散程度</strong>，也称为<strong>标准误差</strong>，最佳拟合情况为$RMSE$=0。均方根误差也是误差分析的综合指标之一。</li>
+<li><strong>平均绝对百分误差</strong>（平均绝对百分误差Mean Absolute Percentage Error，MAPE）定义如下：<br>$$MAPE=\frac{1}{n}\sum_{i=1}^{n}|\frac{E_{i}}{Y_{i}}|=\frac{1}{n}\sum_{i=1}^{n}|\frac{Y_{i}-\bar Y{i}}{Y_{i}}|$$<br>上式中，$MAPE$表示平均绝对百分误差。一般认为$MAPE$小于10时，预测精度较高。<h3 id="分类指标"><a href="#分类指标" class="headerlink" title="分类指标"></a>分类指标</h3></li>
+<li><p><strong>Kappa统计</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Kappa统计是比较两个或多个观测者对同一事物，或观测者对同一事物的两次或多次观测结果是否一致</strong>，以由于机遇造成的一致性和实际观测的一致性之间的差别大小作为评价基础的统计指标。<strong>Kappa统计量和加权统计量不仅可以用于无序和有序分类变量资料的一致性、重现性检验，而且能给出一个反映一致性大小的“量”值</strong>。</p>
+<ul>
+<li><p><strong>不带加权的Kappa值</strong><br><img src="images/kappa值.png" alt=""></p>
+<p>$$Kappa=\frac{P_{0}-P_{e}}{1-P_{e}},P_{0}=\frac{a+d}{n},P_{e}=\frac{(a+b)(a+c)+(c+d)(b+d)}{n^2}$$</p>
+</li>
+</ul>
+</li>
+<li><strong>PRF值</strong><ul>
+<li><strong>Accuracy(精度)</strong>：预测正确的比例，$$Accuracy=\frac{TP+TN}{P+N}$$</li>
+<li><strong>TP rate(真正率)-ROC的Y轴</strong>：$$TPR=\frac{TP}{P}$$</li>
+<li><strong>FP rate(假正率)-ROC的X轴</strong>：$$FPR=\frac{FP}{N}$$</li>
+<li><strong>Precision(准确率)：预测值是Positive的集合中，真正是Positive的比例</strong>:$$Precision=\frac{TP}{TP+FN}$$</li>
+<li><strong>Recall(召回率)：观测值为Positive的集合中，被正确判定为Positive的比例</strong>:$$recall=\frac{TP}{P}$$</li>
+<li><strong>F值</strong>：融合准确度和召回率，$$F-measure=\frac{1}{\frac{1}{precision}+\frac{1}{recall}}$$<br><img src="images/混淆矩阵图片.jpg" alt=""></li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上图这些都属于静态的指标，<strong>当正负样本不平衡时它会存在着严重的问题</strong>。极端情况下比如正负样本比例为1:99（这在有些领域并不少见），那么一个基 准分类器只要把所有样本都判为负，它就拥有了99%的精确度，但这时的评价指标是不具有参考价值的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;另外就是，<strong>现代分类器很多都不是简单地给出一个0或1的分类判定，而是给出一个分类的倾向程度，比如贝叶斯分类器输出的分类概率</strong>。对于这些分类器，当你取不同阈值，就可以得到不同的分类结果及分类器评价指标，依此人们又发明出来ROC曲线以及AUC（曲线包围面积）指标来衡量分类器的总体可信度。</p>
+<ul>
+<li><strong>ROC曲线</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;受试者工作特征（Receiver Operating Chatacteristic，ROC）曲线是一种非常有效的模型评价方法，可为选定临界值给出定量提示。将<strong>灵敏度（Sensitivity）设在纵轴，特异性（Specificity）设在横轴</strong>，就可得出ROC曲线图。该<strong>曲线下的积分面积（Area）大小与每种方法优劣密切相关，反映分类器正确分类的统计概率，其值越接近1说明算法效果越好</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在一个二分类模型中，对于所得到的连续结果，<strong>假设已确定一个阀值</strong>，比如说 0.6，大于这个值的实例划归为正类，小于这个值则划到负类中。如果减小阀值，减到0.5，固然能识别出更多的正类，也就是提高了识别出的正例占所有正例的比类，即TPR,但同时也将更多的负实例当作了正实例，即提高了FPR。为了形象化这一变化，在此引入ROC，ROC曲线可以用于评价一个分类器。</li>
+</ul>
+<p><img src="images/ROC曲线.jpg" alt=""></p>
+<p>（a）中可以看出，在理想情况下，TPR应该接近1，FPR应该接近0。ROC曲线上的每一个点对应于一个threshold，对于一个分类器，每个threshold下会有一个TPR和FPR。比如Threshold最大时，TP=FP=0，对应于原点；Threshold最小时，TN=FN=0，对应于右上角的点(1,1)<br>（b）中显示，随着阈值$\theta$增加，TP和FP都减小，TPR和FPR也减小，ROC点向左下移动。</p>
+<h2 id="Python分类预测模型的特点"><a href="#Python分类预测模型的特点" class="headerlink" title="Python分类预测模型的特点"></a>Python分类预测模型的特点</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">模型</th>
+<th style="text-align:left">模型特点</th>
+<th>位于</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">逻辑回归</td>
+<td style="text-align:left">比较基础的线性分类模型，很多时候是简单有效的选择</td>
+<td>sklearn.linear_model</td>
+</tr>
+<tr>
+<td style="text-align:left">决策树</td>
+<td style="text-align:left">强大的模型，可以用来回归、预测、分类等，而更具选取不同的核函数。模型可以是线性/非线性的</td>
+<td>sklearn.svm</td>
+</tr>
+<tr>
+<td style="text-align:left">决策树</td>
+<td style="text-align:left">基于“分类讨论、逐步细化”思想的分类模型，模型直观，易解释。</td>
+<td>sklearn.tree</td>
+</tr>
+<tr>
+<td style="text-align:left">随机森林</td>
+<td style="text-align:left">思想跟决策树类似，精度通常比决策树要高，缺点是由于其随机性，丧尸了决策树的可解释性。</td>
+<td>sklearn.ensemble</td>
+</tr>
+<tr>
+<td style="text-align:left">朴素贝叶斯</td>
+<td style="text-align:left">基于概率思想的简单有效的分类模型，能够给出容易理解的概率解释</td>
+<td>sklearn.naive_bayes</td>
+</tr>
+<tr>
+<td style="text-align:left">神经网络</td>
+<td style="text-align:left">具有强大的拟合能力，可以用于拟合、分类等，它有很多增强版本，如递归神经网络、卷积神经网络、自编码器等，这些是深度学习的模型基础</td>
+<td>Keras</td>
+</tr>
+</tbody>
+</table>
+<h1 id="聚类分析"><a href="#聚类分析" class="headerlink" title="聚类分析"></a>聚类分析<i class="fa fa-cubes" aria-hidden="true"></i></h1><p><strong><center>聚类分析框架</center></strong><br><img src="images/聚类分析.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;与分类不同，聚类分析是在没有给定划分类别的情况下，根据数据相似度进行样本分组的一种方法。与分类模型需要使用有类别标记样本构成的训练数据不同，聚类模型可建立在无类别标记的数据上，是一种非监督的学习算法。<strong>聚类的输入是一组未被标记的样本，聚类根据数据自身的距离或相似度将其划分为若干组，划分的原则是组内距离最小化而组间距离最大化</strong>。<br><strong><center>聚类分析原理</center></strong><br><img src="images/聚类分析原理.png" alt=""></p>
+<h2 id="距离或相似度度量"><a href="#距离或相似度度量" class="headerlink" title="距离或相似度度量"></a>距离或相似度度量</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;根据数据特性的不同，可以采用不同的度量方法。一般而言，定义一个距离函数 $d(x,y)$, 需要满足下面几个准则：</p>
+<ul>
+<li>$d(x,x) = 0$ ，到自己的距离为0</li>
+<li>$d(x,y) &gt;= 0$ ，距离非负</li>
+<li>$d(x,y) = d(y,x)$ ，对称性:如果A到B距离是 a，那么B到A的距离也应该是a</li>
+<li>$d(x,k)+ d(k,y) &gt;= d(x,y)$ ，三角形法则：(两边之和大于第三边)</li>
+</ul>
+<h3 id="闵可夫斯基距离（连续属性）"><a href="#闵可夫斯基距离（连续属性）" class="headerlink" title="闵可夫斯基距离（连续属性）"></a>闵可夫斯基距离（连续属性）</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;闵可夫斯基距离（Minkowski distance）是衡量数值点之间距离的一种非常常见的方法，假设数值点 $P$ 和 $Q$ 坐标如下：<br>$$P=(x_{1},x_{1},…,x_{n}) and Q=(y_{1},y_{1},…,y_{n})$$<br>那么，闵可夫斯基距离定义为：<br>$$d(P,Q)=(\sum_{i=1}^{n}|x_{i}-y_{i}|^p)^\frac{1}{n}$$</p>
+<ul>
+<li><strong>当p=1，是曼哈顿距离（Manhattan distance）</strong>。</li>
+<li><strong>当p=2，是欧几里得距离（Euclidean distance）</strong>。<br>假设在曼哈顿街区乘坐出租车从 $P $点到$ Q $点，白色表示高楼大厦，灰色表示街道：<br><img src="images/闵可夫斯基距离.jpg" alt=""></li>
+</ul>
+<p><strong>绿色的斜线表示欧几里得距离，在现实中是不可能的。其他三条折线表示了曼哈顿距离，这三条折线的长度是相等的。</strong><br>当$p$趋近于无穷大时，闵可夫斯基距离转化成切比雪夫距离（Chebyshev distance）：<br>$$\lim_{p\rightarrow \infty}(\sum_{i=1}^{n}|x_{i}-y_{i}|^p)^\frac{1}{p}=\overset{n}{\underset{i=1}{max}}|x_{i}-y_{i}|$$<br>我们知道平面上到原点欧几里得距离（p = 2）为 1 的点所组成的形状是一个圆，当 p 取其他数值的时候呢？<br><img src="images/p值变化.jpg" alt=""></p>
+<p><strong>注意：当$ p &lt; 1$ 时，闵可夫斯基距离不再符合三角形法则，举个例子：当 $p &lt; 1$, (0,0) 到 (1,1) 的距离等于 $(1+1)^{1/p} &gt; 2$, 而 (0,1) 到这两个点的距离都是1，因此不能取值小于1的p值作为距离度量。</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>闵可夫斯基距离比较直观，但是它与数据的分布无关，具有一定的局限性</strong>，如果 $x $方向的幅值远远大于 $y $方向的值，这个距离公式就会过度放大 $x $维度的作用。所以，在<strong>计算距离之前，我们可能还需要对数据进行 z-transform 处理，即减去均值，除以标准差</strong>：<br>$$(x_{1}-y_{1})\rightarrow(\frac{x_{1}-\mu_{x}}{\sigma_{x}},\frac{y_{1}-\mu_{y}}{\sigma_{y}})$$</p>
+<ul>
+<li>$\mu$：该维度上的均值。</li>
+<li>$\sigma$：该维度上的标准差。</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可以看到，上述处理开始体现数据的统计特性了。<strong>这种方法在假设数据各个维度不相关的情况下利用数据分布的特性计算出不同的距离</strong>。如果维度相互之间数据相关（例如：身高较高的信息很有可能会带来体重较重的信息，因为两者是有关联的，此距离就失效。</p>
+<h3 id="向量内积（离散向量化属性）"><a href="#向量内积（离散向量化属性）" class="headerlink" title="向量内积（离散向量化属性）"></a>向量内积（离散向量化属性）</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量内积是线性代数里最为常见的计算，实际上它还是一种有效并且直观的相似性测量手段。向量内积的定义如下：$$Inner(x,y)=&lt;x,y&gt;=\sum_{i}x_{i}y_{i}$$向量内积的结果是没有界限的，一种解决办法是除以长度之后再求内积，这就是应用十分广泛的余弦相似度（Cosine similarity）：$$CosSim(x,y)=\frac{\sum_{i}x_{i}y_{i}}{\sqrt{\sum_{i}x_{i}^2}\sqrt{\sum_{i}y_{i}^2}}=\frac{&lt;x,y&gt;}{||x||||y||}$$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;余弦相似度与向量的幅值无关，只与向量的方向相关.<strong>需要注意一点的是，余弦相似度受到向量的平移影响，上式如果将 x 平移到 x+1, 余弦值就会改变</strong>。怎样才能实现平移不变性？这就是下面要说的皮尔逊相关系数（Pearson correlation），有时候也直接叫相关系数:<br>$$Corr(x,y)=\frac{\sum_{i}(x_{i}-\bar x)(y_{i}-\bar y)}{\sqrt{\sum_{i}(x_{i}-\bar x)^2}\sqrt{\sum_{i}(y_{i}-\bar y)^2}}=CosSim(x-\bar x)(y-\bar y)$$&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;皮尔逊相关系数具有平移不变性和尺度不变性，计算出了两个向量（维度）的相关性。不过，一般我们在谈论相关系数的时候，将 x 与 y 对应位置的两个数值看作一个样本点，<strong>皮尔逊系数用来表示这些样本点分布的相关性</strong>。<br><img src="images/相似度.jpg" alt=""></p>
+<h3 id="常用的聚类分析算法"><a href="#常用的聚类分析算法" class="headerlink" title="常用的聚类分析算法"></a>常用的聚类分析算法</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">算法名称</th>
+<th style="text-align:left">算法描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">K-Means</td>
+<td style="text-align:left">K-均值聚类也称为快速聚类法，在最小化误差函数的基础上将数据划分为预定的类数K。该算法原理简单并便于处理大量数据。</td>
+</tr>
+<tr>
+<td style="text-align:left">K-中心点</td>
+<td style="text-align:left">K-均值算法对孤立点的敏感性，K-中心点算法不采用簇中对象的平均值作为簇中心，而选用簇中离平均值最佳的对象作为簇中心。</td>
+</tr>
+<tr>
+<td style="text-align:left">系统聚类</td>
+<td style="text-align:left">系统聚类也称为层次聚类，分类的单位由高到低呈树形结构，且所处的位置越低，其所包含的对象就越少，但这些对象间的共同特征越多。该聚类方法只适合在小数据量的时候使用，数据量大的时候速度会非常慢。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="聚类分析算法评价"><a href="#聚类分析算法评价" class="headerlink" title="聚类分析算法评价"></a>聚类分析算法评价</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;聚类分析仅根据样本数据本身将样本分组。<strong>其目标是组内的对象相互之间是相似的（相关的），而不同组中的对象时不同的（不相关的）。组内的相似性越大，组间差别越大，聚类效果就越好</strong>。</p>
+<h3 id="purity评价法"><a href="#purity评价法" class="headerlink" title="purity评价法"></a>purity评价法</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purity方法是极为简单的一种聚类评价方法，只需计算正确聚类占总数的比例。<br>$$purity(X,Y)=\frac{1}{n}\sum_{k}max|x_{k}\bigcap y_{k}|$$其中，$x=(x_{1},x_{2},…,x_{k})$是聚类的集合。$x_{k}$表示第$k$个聚类的集合。$y=(y_{1},y_{2},…,y_{k})$表示需要被聚类的集合，$y_{i}$表示第$i$个聚类对象。$n$表示被聚类集合对象的总数。</p>
+<h3 id="RI评价法"><a href="#RI评价法" class="headerlink" title="RI评价法"></a>RI评价法</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际上，这是一种用排列组合原理来对聚类进行评价的手段，RI评价公式如下：$$RI=\frac{R+W}{R+M+D+W}$$其中，</p>
+<ul>
+<li>R是指被聚在一类的两个对象被正确的分类。</li>
+<li>W是指不应该被聚在一类的两个对象被正确分开。</li>
+<li>M指不应该放在一类的对象被错误的放在了一类。</li>
+<li>D值不应该分开的对象被错误的分开。</li>
+</ul>
+<h3 id="F值评价法"><a href="#F值评价法" class="headerlink" title="F值评价法"></a>F值评价法</h3><p>这是基于RI方法衍生出的一个方法，F评价公式如下：<br>$$F_{\alpha}=\frac{(1+\alpha^{2})pr}{\alpha^2p+r}$$<br>其中，$p=\frac{R}{R+M},r=\frac{R}{R+D}$<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际上$RI$方法就是把准确率$p$和召回率$r$看得同等重要，事实上，有时候我们可能需要某一特性更多一点，这时候就适合使用$F$值方法。</p>
+<h2 id="Python主要聚类分析算法"><a href="#Python主要聚类分析算法" class="headerlink" title="Python主要聚类分析算法"></a>Python主要聚类分析算法</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">对象名</th>
+<th style="text-align:left">函数功能</th>
+<th>所属工具箱</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">KMeans</td>
+<td style="text-align:left">K均值</td>
+<td>sklearn.cluster</td>
+</tr>
+<tr>
+<td style="text-align:left">AffinityPropagation</td>
+<td style="text-align:left">吸引力传播聚类，2007提出，几乎优于所有其他方法，不需要指定聚类数，但运行效率较低</td>
+<td>sklearn.cluster</td>
+</tr>
+<tr>
+<td style="text-align:left">MeanShift</td>
+<td style="text-align:left">均值漂移聚类算法</td>
+<td>Clustering</td>
+</tr>
+<tr>
+<td style="text-align:left">Spectral</td>
+<td style="text-align:left">谱聚类，具有效果比均值好，速度比K均值快等特点</td>
+<td>sklearn.cluster</td>
+</tr>
+<tr>
+<td style="text-align:left">AgglomeartiveClustering</td>
+<td style="text-align:left">层次聚类，给出一棵聚类层次树</td>
+<td>sklearn.cluster</td>
+</tr>
+<tr>
+<td style="text-align:left">DBSCAN</td>
+<td style="text-align:left">具有噪声的基于密度的聚类方法</td>
+<td>sklearn.cluster</td>
+</tr>
+<tr>
+<td style="text-align:left">BIRCH</td>
+<td style="text-align:left">综合的层次聚类算法，可处理大规模数据的聚类</td>
+<td>sklearn.cluster</td>
+</tr>
+</tbody>
+</table>
+<h1 id="关联规则"><a href="#关联规则" class="headerlink" title="关联规则 "></a>关联规则 <i class="fa fa-shopping-cart" aria-hidden="true"></i></h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>关联规则分析也称购物篮分析，最早是为了发现超市销售数据库中不同的商品之间的关联关系</strong>。例如，一个超市的经理想要更多地了解顾客的购物习惯，比如“哪组商品可能会在一次购物中同时购买？”或者“某顾客购买了个人电脑，那该顾客三个月后购买数码相机的购率有多大？”<strong>他可能会发现如果购买了面包的顾客同时非常有可能会购买牛奶，这就导出了一条关联规则“面包=&gt;牛奶”，其中面包称为规则的前项，而牛奶称为后项。通过对面包降低售价进行促销，而适当提高牛奶的售价，关联销售的牛奶就有可能增加超市整体的利润</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关联规则分析是数据挖掘中最活跃的研究方法之一，目的是在一个数据集中找出各项之间的关联关系，而这种关系并没有在数据中直接表示出来。</p>
+<h2 id="常用关联规则算法"><a href="#常用关联规则算法" class="headerlink" title="常用关联规则算法"></a>常用关联规则算法</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">算法名称</th>
+<th style="text-align:left">算法描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Apriori</td>
+<td style="text-align:left">关联规则最常用也是最经典的挖掘频繁项集的算法，其核心思想是通过连接产生候选项及其支持度然后通过剪枝生成频繁项集。</td>
+</tr>
+<tr>
+<td style="text-align:left">FP-Tree</td>
+<td style="text-align:left">针对Apriori算法的固有的多次扫描事物数据集的缺陷，提出的不产生候选频繁项集的方法。Apriori和FP-Tree都是寻找频繁项集的算法。</td>
+</tr>
+<tr>
+<td style="text-align:left">Eclat算法</td>
+<td style="text-align:left">Eclat算法是一种深度优先算法，采用垂直数据表示形式，在概念格理论的基础上利用基于前缀的等价关系将搜索空间划分为较小的子空间。</td>
+</tr>
+<tr>
+<td style="text-align:left">灰色关联法</td>
+<td style="text-align:left">分析和确定各因素之间的影响程度或是若干个因素（子序列）对主因素（母序列）的贡献度而进行的一种分析方法。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="关联规则和频繁项集"><a href="#关联规则和频繁项集" class="headerlink" title="关联规则和频繁项集"></a>关联规则和频繁项集</h2><ul>
+<li><strong>关联规则的一般形式</strong><br>项集A、B同时发生的概率称为关联规则的支持度（也称相对支持度）$$Support(A=&gt;B)=P(A\bigcup B)$$项集A发现，则项集B发现的概率为关联规则的置信度。<br>$$Confidence(A=&gt;B)=P(B|A)$$</li>
+<li><strong>最小支持度和最小置信度</strong><br><strong>最小支持度</strong>是用户或专家定义的衡量支持度的一个阈值，<strong>表示项目集在统计意义上的最低重要性</strong>；<br><strong>最小置信度</strong>是用户或专家定义衡量置信度的一个阈值，<strong>表示关联规则的最低可靠性</strong>。<br>同时满足最小支持度阈值和最小置信度阈值的规则称为<strong>强规则</strong>。</li>
+<li><strong>项集</strong><br>项集是项的集合。包含$k$个项的项集称为$k$项集，如集合{牛奶，麦片，糖}是一个3项集。项集出现频率是所有包含项集的事物计数，又称作绝对支持度或支持度计数。如果项集I的相对支持度满足预定义的最小支持度阈值，则I是频繁项集。频繁$k$项集通常记作$k$。</li>
+<li><strong>支持度计数</strong><br>项集A的支持度计数是事物数据集中包含项集A的事物个数，简称为项集的频率或计数。<br>已知项集的支持度计数，则规则A=&gt;B的支持度和置信度很容易从所有事物计数、项集A和项集$A\bigcup B$的支持度计数推出。$$Support(A=&gt;B)=\frac{Support-count(A\bigcap B)}{Total-count(A)}$$$$Confidence(A=&gt;B)=P(A|B)=\frac{Support-count(A\bigcap B)}{Support-count(A)}$$<br>也就是说，一旦得到所有事物个数，A,B和$A\bigcap B$的支持度计数，就可以导出对应的关联规则A=&gt;B和B=&gt;A，并可以检查该规则是否是强规则。</li>
+</ul>
+<h1 id="时序模式"><a href="#时序模式" class="headerlink" title="时序模式 "></a>时序模式 <i class="fa fa-clock-o" aria-hidden="true"></i></h1><p><img src="images/时序模式.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;常用按时间顺序排列的一组随机变量$X_{1},X_{2},…,X_{t}$来表示一个随机时间的时间序列，简记为$X_{t}$：用$x_{1},x_{2},…,x_{n}$或${x_{t},t=1,2,…,n}$表示该随机序列的$n$个有序观察值，称之为序列长度为$n$的观察值序列。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>时间训练分析的目的就是给定一个已被观测了的时间序列，预测该序列的未来值</strong>。</p>
+<h2 id="常用时间序列模型"><a href="#常用时间序列模型" class="headerlink" title="常用时间序列模型"></a>常用时间序列模型</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">模型名称</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">平滑法</td>
+<td style="text-align:left">平滑法常用于趋势分析和预测，利用修匀技术，削弱短期随机波动对序列的影响，是序列平滑化。根据所用平滑技术的不同，可具体分为移动平均和指数平滑化。</td>
+</tr>
+<tr>
+<td style="text-align:left">趋势拟合法</td>
+<td style="text-align:left">趋势拟合法把时间作为自变量，相应的序列观察值作为因变量，建立回归模型。根据序列的特征，可具体分为线性拟合和曲线拟合。</td>
+</tr>
+<tr>
+<td style="text-align:left">组合模型</td>
+<td style="text-align:left">时间序列的变化主要受到长期趋势（$T$）、季节变动（$S$）、周期变动（$C$）和不规则变动（$\varepsilon$）这4个因素的影响。根据序列的特点，可以构建加法模型和乘法模型加法模型：$$x_{t}=T_{t}+S_{t}+C_{t}+\varepsilon_{t}$$乘法模型：$$x_{t}=T_{t}\times S_{t}\times C_{t}\times \varepsilon_{t}$$</td>
+</tr>
+<tr>
+<td style="text-align:left">AR模型</td>
+<td style="text-align:left">$$x_{t}=\phi_{0}+\phi_{1}x_{t-1}+\phi_{2}x_{t-2}+…+\phi_{p}x_{t-p}+\varepsilon_{t}$$以前p期的序列值$x_{t-1},x_{t-2},…,x_{t-p}$为自变量、随机变量$X_{t}$的取值$x_{t}$为因变量建立线性回归模型</td>
+</tr>
+<tr>
+<td style="text-align:left">MA模型</td>
+<td style="text-align:left">$$x_{t}=\mu+\varepsilon_{t}-\theta_{1}\varepsilon_{t-1}-\theta_{2}\varepsilon_{t-2}-…-\theta_{q}\varepsilon_{t-q}$$随机变量$X_{t}$的取值$x_{t}$与以前各期的序列值无关，建立$x_{t}$与前$q$期的随机扰动$\varepsilon_{t-1},\varepsilon_{t-2},…,\varepsilon_{t-q}$</td>
+</tr>
+<tr>
+<td style="text-align:left">ARMA模型</td>
+<td style="text-align:left">$$x_{t}=\phi_{0}+\phi_{1}x_{t-1}+\phi_{2}x_{t-2}+…+\phi_{p}x_{t-p}+\varepsilon_{t}-\theta_{1}\varepsilon_{t-1}-\theta_{2}\varepsilon_{t-2}-…-\theta_{q}\varepsilon_{t-q}$$随机变量$X_{t}$的取值$x_{t}$不仅与以前$p$期的序列值有关，还与前$q$期的随机扰动有关</td>
+</tr>
+<tr>
+<td style="text-align:left">ARIMA模型</td>
+<td style="text-align:left">许多非平稳序列差分后会显示出平稳序列的性质，称这个非平稳序列为差分平稳序列。对差分平稳序列可以使用ARIMA模型进行拟合</td>
+</tr>
+<tr>
+<td style="text-align:left">ARCH模型</td>
+<td style="text-align:left">ARCH模型能够准确地模拟时间序列变量的波动性的变化，适用于序列具有异方差性并且异方差函数短期自相关</td>
+</tr>
+<tr>
+<td style="text-align:left">GARCH模型及其衍生模型</td>
+<td style="text-align:left">GARCH模型称为广义ARCH模型，是ARCH模型的拓展。相比于ARCH模型，GARCH模型及其衍生模型更能反映实际序列中长期记忆性、信息的非对称性等性质。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="时间序列的预处理"><a href="#时间序列的预处理" class="headerlink" title="时间序列的预处理"></a>时间序列的预处理</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>拿到一个观测值序列后，首先对它的纯随机性和平稳性进行检验，这两个重要的检验称为序列的预处理</strong>。根据检验的结果可以将序列氛围不同的类型，对不同类型的序列会采用不同分析方法。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于<strong>纯随机序列，又称为白噪声序列，序列的各项之间没有任何相关关系，序列在进行完全无序的随机波动，可终止对该序列的分析</strong>。白噪声序列是没有信息可以提取的平稳序列。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于<strong>非平稳非白噪声序列</strong>，<strong>它的均值和方差是常数</strong>，现已有一套非常成熟的平稳序列的建模方法。通常是建立一个线性模型来拟合该序列的发展，借此提取该序列的有用信息。<strong>ARMA模型时最常用的平稳序列拟合模型</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于<strong>非平稳序列，由于它的均值和方差不稳定，处理方法一般是将其转变为平稳序列</strong>，这样就可以应用有关平稳序列差分运算后具有平稳性，则该序列为差分平稳序列，可以使用ARIMA模型进行分析。</p>
+<h3 id="平稳性检验"><a href="#平稳性检验" class="headerlink" title="平稳性检验"></a>平稳性检验</h3><ul>
+<li><p><strong>平稳时间序列的定义</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于随机变量$X$,可以计算其均值（数学期望）$\mu$、方差$\sigma^{2}$；对于两个随机变量X和Y，可以计算$X,Y$的协方差$$cov(X,Y)=E[(X-\mu_{X})(Y-\mu_{Y})]$$ 和相关系数 $$\rho (X,Y)=\frac{cov(X,Y)}{\sigma ^{X}\sigma ^{Y}}$$,它们度量了两个不同事件之间的相互影响程度。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于时间序列${X_{t},t\in T}$,任意时刻的序列值$X_{t}$都是一个随机变量，每一个随机变量，每一个随机变量都会有均值和方差，记$X_{t}$的均值为$\mu_{t}$，方差为$\sigma_{t}$;任取$t,s\in T$,定义序列${X_{t}}$的自协方差函数$$\gamma(t,s)=E[(X_{t}-\mu_{t})(Y_{s}-\mu_{s})]$$和自相关系数$$\rho(t,s)=\frac{cov(X_{t},Y_{t})}{\sigma_{t}\sigma_{s}}$$<strong>之所以称它们为自协方差函数和自相关函数，是因为他们衡量的是同一个事件在两个不同时期（时刻t和s）之间的相关程度，形象地讲就是度量自己过去的行为对自己现在的影响</strong>。</p>
+</li>
+<li><p><strong>平稳性的检验</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对序列的平稳性的检验有两种方法，</p>
+<ul>
+<li>一种是根据时序图和自相关图的特征作出判断的图检验，该方法操作简单、应用广泛，缺点是带有主观性；</li>
+<li>另一种是构造检验统计量进行检验的方法，目前最常用的方法是单位根检验。</li>
+</ul>
+</li>
+</ul>
+<h3 id="纯随机性检验"><a href="#纯随机性检验" class="headerlink" title="纯随机性检验"></a>纯随机性检验</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果一个序列是纯随机序列，那么它的序列值之间应该没有任何关系，即满足$\gamma(k)=0,k\neq0$这是一种理论上才会出现的假想状态，实际上纯随机序列的样本自相关系数不会绝对为零，但是很接近零，并在零附近随机波动。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>纯随机性检验也称白噪声检验，一般是构造检验统计量来检验序列的纯随机性，常用的检验统计量$Q$统计量、$LB$统计量</strong>，由于样本个延迟期数的自相关系数可以计算得到检验统计量，然后计算出对应的$p$的值，如果$p$的值显著大于显著性水平$\alpha$,则表示该序列不能拒绝纯随机的原假设，可以停止对该序列的分析。</p>
+<h2 id="Python主要时序模式算法"><a href="#Python主要时序模式算法" class="headerlink" title="Python主要时序模式算法"></a>Python主要时序模式算法</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">函数名</th>
+<th style="text-align:left">函数功能</th>
+<th style="text-align:left">所属工具箱</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">acf()</td>
+<td style="text-align:left">计算自相关系数</td>
+<td style="text-align:left">statsmodels.tsa.stattools</td>
+</tr>
+<tr>
+<td style="text-align:left">plot_acf()</td>
+<td style="text-align:left">画自相关系数图</td>
+<td style="text-align:left">statsmodels.graphics.tsaplots</td>
+</tr>
+<tr>
+<td style="text-align:left">pacf()</td>
+<td style="text-align:left">画偏相关系数图</td>
+<td style="text-align:left">statsmodels.graphics.tsaplots</td>
+</tr>
+<tr>
+<td style="text-align:left">adfuller()</td>
+<td style="text-align:left">对观测值序列进行单位根检验</td>
+<td style="text-align:left">statsmodels.tsa.stattools</td>
+</tr>
+<tr>
+<td style="text-align:left">diff()</td>
+<td style="text-align:left">对观测值序列进行差分计算</td>
+<td style="text-align:left">Pandas对象自带的方法</td>
+</tr>
+<tr>
+<td style="text-align:left">ARIMA()</td>
+<td style="text-align:left">创建一个ARIMA时序模型</td>
+<td style="text-align:left">statsmodels.tsa.arima_model</td>
+</tr>
+<tr>
+<td style="text-align:left">summary()</td>
+<td style="text-align:left">ARIMA模型对象报告</td>
+<td style="text-align:left">ARIMA模型对象自带方法</td>
+</tr>
+<tr>
+<td style="text-align:left">aic/bic/hqic()</td>
+<td style="text-align:left">计算ARIMA模型的AIC/BIC/HQIC指标值</td>
+<td style="text-align:left">ARIMA模型对象自带方法</td>
+</tr>
+<tr>
+<td style="text-align:left">forecast()</td>
+<td style="text-align:left">应用构建的时序模型进行预测</td>
+<td style="text-align:left">ARIMA模型对象自带方法</td>
+</tr>
+<tr>
+<td style="text-align:left">acor_ljungbox()</td>
+<td style="text-align:left">Ljung-Box检验，检验是否是白噪声</td>
+<td style="text-align:left">statsmodels.stats.diagnoostic</td>
+</tr>
+</tbody>
+</table>
+<h1 id="离群点检测"><a href="#离群点检测" class="headerlink" title="离群点检测 "></a>离群点检测 <i class="fa fa-braille" aria-hidden="true"></i></h1><p><img src="images/离群点检测.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;离群点检测是数据挖掘中重要的一部分，它的任务是<strong>发现与大部分其他对象显著不同对象</strong>。大部分数据挖掘方法都将这种差异信息视为噪声而丢弃，然而在一些应用中，罕见的数据可能蕴含着更大的研究价值。<br><img src="images/离群点类型.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;离群点检测已经被广泛应用于电信和信用卡的诈骗检测、贷款审批、电子商务、网络入侵和天气预报等领域。例如，可以利用离群点检测分析运动员的统计数据，以发现异常的运动员。</p>
+<ul>
+<li>离群点的成因<br>离群点主要成因有：数据来源于不同的类、自然变异、数据测量和搜集误差。</li>
+<li>离群点的类型<ul>
+<li>全局离群点和局部离群点</li>
+<li>数据型离群点和分类型离群点</li>
+<li>一维离群点和多维离群点</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用离群点检测方法"><a href="#常用离群点检测方法" class="headerlink" title="常用离群点检测方法"></a>常用离群点检测方法</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">离群点检测方法</th>
+<th style="text-align:left">方法描述</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">基于统计</td>
+<td style="text-align:left">大部分的基于统计的离群点检测方法是构建一个概率分布模型，并计算对象符合模型概率，把具有低概率的对象视为离群点。</td>
+<td>基于统计模型的利群带你检测方法的前提是必须知道数据集服从什么分布；对于高维数据，检验效果可能很差</td>
+</tr>
+<tr>
+<td style="text-align:left">基于邻近度</td>
+<td style="text-align:left">通常可以在数据对象之间定义邻近性度量，把远离大部分点的对象视为离群点</td>
+<td>简单，二维或三维的数据可以做散点图观察；大数据集不适用；对参数选择敏感；具有全局阈值，不能处理具有不同密度区域的数据集</td>
+</tr>
+<tr>
+<td style="text-align:left">基于密度</td>
+<td style="text-align:left">考虑数据集可能存在不同密度区域这一事实，从基于密度的观点分析，离群点是在低密度区域中的对象。一个对象的离群点得分是该对象周围密度的逆。</td>
+<td>给出了对象时离群点的定量度量，并且即使数据具有不同的区域也能够很好处理；大数据集不适用；参数选择是困难的</td>
+</tr>
+<tr>
+<td style="text-align:left">基于聚类</td>
+<td style="text-align:left">一种利用聚类检测离群点的方法是丢弃远离其他簇的小簇；另一种更系统的方法，首先聚类所有对象，然后评估对象属于簇的程度（离群点得分）</td>
+<td>基于聚类技术发现离群点可能是高度有效的；聚类算法产生簇的质量对该算法产生的离群点的质量影响非常大。</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    <div>    
+     
+     
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+              <strong>本文作者：</strong>YuJianZhe
+          </li>
+          <li class="post-copyright-title">
+              <strong>本文标签：</strong>Python数据分析（四）——挖掘建模
+          </li>
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="/2018/06/27/挖掘建模/" title="Python数据分析（四）——挖掘建模">2018/06/27/挖掘建模/</a>
+          </li>
+          </li>
+          <li class="post-copyright-link">
+            <strong>发布时间：</strong>
+            2018年6月27日 - 18时06分
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明： </strong>
+            本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！
+          </li>
+        </ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="YuJianZhe 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/22/数据预处理/" rel="next" title="Python数据分析（三）——数据预处理">
+                <i class="fa fa-chevron-left"></i> Python数据分析（三）——数据预处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/29/Python语言/" rel="prev" title="Python语言之IO文件操作">
+                Python语言之IO文件操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzM4NS8xMzkxOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="YuJianZhe" />
+            
+              <p class="site-author-name" itemprop="name">YuJianZhe</p>
+              <p class="site-description motion-element" itemprop="description">4939yujianzhe@gmail.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gofisher" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/80902846/home?leftnav=1" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分类与预测"><span class="nav-number">1.</span> <span class="nav-text">分类与预测 </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程"><span class="nav-number">1.1.</span> <span class="nav-text">实现过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的分类和预测算法"><span class="nav-number">1.2.</span> <span class="nav-text">常用的分类和预测算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回归分析"><span class="nav-number">1.3.</span> <span class="nav-text">回归分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树"><span class="nav-number">1.4.</span> <span class="nav-text">决策树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#人工神经网络"><span class="nav-number">1.5.</span> <span class="nav-text">人工神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法评价"><span class="nav-number">1.6.</span> <span class="nav-text">算法评价</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回归指标"><span class="nav-number">1.6.1.</span> <span class="nav-text">回归指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类指标"><span class="nav-number">1.6.2.</span> <span class="nav-text">分类指标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python分类预测模型的特点"><span class="nav-number">1.7.</span> <span class="nav-text">Python分类预测模型的特点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#聚类分析"><span class="nav-number">2.</span> <span class="nav-text">聚类分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#距离或相似度度量"><span class="nav-number">2.1.</span> <span class="nav-text">距离或相似度度量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闵可夫斯基距离（连续属性）"><span class="nav-number">2.1.1.</span> <span class="nav-text">闵可夫斯基距离（连续属性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向量内积（离散向量化属性）"><span class="nav-number">2.1.2.</span> <span class="nav-text">向量内积（离散向量化属性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的聚类分析算法"><span class="nav-number">2.1.3.</span> <span class="nav-text">常用的聚类分析算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#聚类分析算法评价"><span class="nav-number">2.2.</span> <span class="nav-text">聚类分析算法评价</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#purity评价法"><span class="nav-number">2.2.1.</span> <span class="nav-text">purity评价法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RI评价法"><span class="nav-number">2.2.2.</span> <span class="nav-text">RI评价法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F值评价法"><span class="nav-number">2.2.3.</span> <span class="nav-text">F值评价法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python主要聚类分析算法"><span class="nav-number">2.3.</span> <span class="nav-text">Python主要聚类分析算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关联规则"><span class="nav-number">3.</span> <span class="nav-text">关联规则 </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用关联规则算法"><span class="nav-number">3.1.</span> <span class="nav-text">常用关联规则算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关联规则和频繁项集"><span class="nav-number">3.2.</span> <span class="nav-text">关联规则和频繁项集</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时序模式"><span class="nav-number">4.</span> <span class="nav-text">时序模式 </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用时间序列模型"><span class="nav-number">4.1.</span> <span class="nav-text">常用时间序列模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间序列的预处理"><span class="nav-number">4.2.</span> <span class="nav-text">时间序列的预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平稳性检验"><span class="nav-number">4.2.1.</span> <span class="nav-text">平稳性检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#纯随机性检验"><span class="nav-number">4.2.2.</span> <span class="nav-text">纯随机性检验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python主要时序模式算法"><span class="nav-number">4.3.</span> <span class="nav-text">Python主要时序模式算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#离群点检测"><span class="nav-number">5.</span> <span class="nav-text">离群点检测 </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用离群点检测方法"><span class="nav-number">5.1.</span> <span class="nav-text">常用离群点检测方法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YuJianZhe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">85.1k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("thLnMG4yyzyRoUseIB7W0sFD-gzGzoHsz", "i7FOQgwimm0kSQgUNB00yASj");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,数据分析," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数据探索框架图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;通过检验数据集的数据质量、绘制图表、计算某些特征量等手段，对样本数据集的结构和规律进行分析的过程就是数据探索。数据探索有助于选择合适的数据预处理和建模方法，甚至可以完成一些通常由数据挖掘解决的问题。">
+<meta name="keywords" content="python,数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据分析（二）——数据探索">
+<meta property="og:url" content="https://gofisher.github.io/2018/06/20/数据探索/index.html">
+<meta property="og:site_name" content="Yu&#39;s-Blog">
+<meta property="og:description" content="数据探索框架图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;通过检验数据集的数据质量、绘制图表、计算某些特征量等手段，对样本数据集的结构和规律进行分析的过程就是数据探索。数据探索有助于选择合适的数据预处理和建模方法，甚至可以完成一些通常由数据挖掘解决的问题。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/数据探索.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/3σ原则.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/箱线图.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/结构相对数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/比例相对数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/比较相对数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/动态相对数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/强度相对数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/计划与实际.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/算数平均数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/中位数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/几何平均数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/调和平均数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/全距中点.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/中枢纽.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/三均值.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/极端调整平均数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/标准差.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/变异系数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/周期性分析.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/贡献度分析.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/散点图.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/散点矩阵图.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/相关系数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/相关系数2.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/相关性大小.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/sperman相关系数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/Spearman相关系数.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/ρ系数.png">
+<meta property="og:updated_time" content="2018-07-04T13:13:27.848Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python数据分析（二）——数据探索">
+<meta name="twitter:description" content="数据探索框架图&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;通过检验数据集的数据质量、绘制图表、计算某些特征量等手段，对样本数据集的结构和规律进行分析的过程就是数据探索。数据探索有助于选择合适的数据预处理和建模方法，甚至可以完成一些通常由数据挖掘解决的问题。">
+<meta name="twitter:image" content="https://gofisher.github.io/2018/06/20/数据探索/images/数据探索.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gofisher.github.io/2018/06/20/数据探索/"/>
+
+
+
+
+
+<script src="https://neveryu.github.io/js/src/pace.min.js"></script>
+
+
+  <title>Python数据分析（二）——数据探索 | Yu's-Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1682bd44752aaf16cf4a535a8ee72de9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yu's-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">余心所善，九死未悔！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gofisher.github.io/2018/06/20/数据探索/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YuJianZhe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yu's-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python数据分析（二）——数据探索</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-20T15:57:00+08:00">
+                2018-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; 更新于
+              <time itemprop="dateUpdated" datetime="2018-07-04T21:13:27+08:00" content="2018-07-04">
+                2018-07-04
+              </time>
+            </span>
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/20/数据探索/" class="leancloud_visitors" data-flag-title="Python数据分析（二）——数据探索">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,914字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="数据探索框架图"><a href="#数据探索框架图" class="headerlink" title="数据探索框架图"></a>数据探索框架图</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过检验数据集的数据质量、绘制图表、计算某些特征量等手段，对样本数据集的结构和规律进行分析的过程就是数据探索。<strong>数据探索有助于选择合适的数据预处理和建模方法，甚至可以完成一些通常由数据挖掘解决的问题</strong>。<br><a id="more"></a></p>
+<p><div align="center"> <img src="images/数据探索.png"> </div><br></p>
+<h1 id="数据质量分析"><a href="#数据质量分析" class="headerlink" title="数据质量分析"></a>数据质量分析</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据质量分析是数据挖掘中数据准备过程的重要一环，是数据预处理的前提，也是数据挖掘分析结论有效性和准确性的基础，没有可信的数据，数据挖掘构建的模型将是空中楼阁。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据质量分析的主要任务是<strong>检查原始数据中是否存在脏数据，脏数据一般是指不符合要求，以及不能直接进行相应分析的数据</strong>，赃数据包括如下内容：</p>
+<ul>
+<li><strong>缺失值</strong></li>
+<li><strong>异常值</strong></li>
+<li><strong>不一致得值</strong></li>
+<li><strong>重复数据及含有特殊符号</strong><h2 id="缺失值"><a href="#缺失值" class="headerlink" title="缺失值"></a>缺失值</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据的缺失主要包括<strong>记录的缺失和记录中某个字段信息的缺失</strong>，两者都会造成分析结果的不准确。</li>
+</ul>
+<p><strong>缺失值的原因：</strong></p>
+<ul>
+<li>信息暂时无法获取，或者获取信息的代价太大。</li>
+<li>信息被遗漏，人为的输入遗漏或者数据采集设备的遗漏。</li>
+<li>属性不存在，在某些情况下，缺失值并不意味着数据有错误，对一些对象来说某些属性值是不存在的，如未婚者的配偶姓名、儿童的固定收入等。</li>
+</ul>
+<p><strong>缺失值的影响</strong></p>
+<ul>
+<li>数据挖掘建模将丢失大量的有用信息。</li>
+<li>数据挖掘模型所表现出的不确定性更加显著，模型中蕴含的规律更难把握。</li>
+<li>包含空值的数据会使建模过程陷入混乱，导致不可靠的输出。</li>
+</ul>
+<p><strong>缺失值的分析</strong></p>
+<ul>
+<li>使用简单的统计分析，可以得到含有缺失值的属性的个数，以及每个属性的未缺失数、缺失数与缺失率。</li>
+</ul>
+<p><strong>缺失值的处理</strong></p>
+<ul>
+<li><strong>删除存在的缺失值的记录</strong>。</li>
+<li><strong>对可能值进行插补</strong>。</li>
+<li><strong>不处理情况</strong>。</li>
+<li><strong>构造新特征是否存在缺失值。</strong></li>
+</ul>
+<h2 id="异常值"><a href="#异常值" class="headerlink" title="异常值"></a>异常值</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;异常值分析是<strong>检验数据是否有录入错误以及含有不合常理的数据</strong>。忽视异常值的存在是十分危险的，不加剔除地把异常值包括进数据的计算分析过程中，对结果会产生不良影响。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>异常值是指样本中的个别值，其数值明显偏离其余的观测值</strong>。异常值也称为离群点，异常值分析也称为离群点分析。</p>
+<p><strong>简单的计量分析</strong></p>
+<ul>
+<li>可以先对变量做一个描述性统计，进而查看哪些数据时不合理的。最常用的统计量是最大值和最小值，用来判断这个变量的取值是否超出了合理的范围。如年龄的最大值为150，则该变量的取值为异常值。</li>
+<li><p><strong>3σ原则</strong><br><strong>如果数据服从正太分布，在3σ原则下，异常值被定义为一组测定值中与平均值的偏差超过3倍标准差的值</strong>。在正太太分布的假设下，距离平均值3σ之外的值出现的概率为P（|x-u|&gt;3σ）≤0.003，属于极个别的小概率事件。<br><div align="center"> <img src="images/3σ原则.png"> </div><br></p>
+</li>
+<li><p><strong>箱线图分析</strong><br>箱线图是一种直观简洁的方式去呈现一组数据的分布. 因其形状如箱子而得名。箱线图广泛用于各个数据分析领域, 其中包括品质管理。<strong>箱形图最大的优点就是不受异常值的影响，能够准确稳定地描绘出数据的离散分布情况，同时也利于数据的清洗</strong>。箱线图是由美国著名统计学家John Tukey发明。它能非常简单明了地显示一组数据中5个重要数值：</p>
+<ul>
+<li><strong>最小值(Minimum Value, Min)</strong></li>
+<li><strong>下四分位数(First Quartile, Q1)</strong></li>
+<li><strong>中位数(Median Value, Med)</strong></li>
+<li><strong>上四分位数(Third Quartile, Q3)</strong></li>
+<li><strong>最大值(Maximum Value, Max)</strong></li>
+<li><strong>四分位间距(Interquartile Range, IQR)</strong></li>
+</ul>
+</li>
+</ul>
+<p><div align="center"> <img src="images/箱线图.png"> </div><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱线图为我们提供了识别异常值的一个标准：异常值被定义为小于Q1－5IQR或大于Q3＋1.5IQR的值。</p>
+<h2 id="一致性分析"><a href="#一致性分析" class="headerlink" title="一致性分析"></a>一致性分析</h2><ul>
+<li>数据不一致是指数据进行挖掘，可能会产生与实际相违背的挖掘结果。</li>
+<li>不一致数据的产生主要发生在数据集成的过程中，这是由于不同的数据源，对于重复存放的数据未能进行一致性更新造成的。<h1 id="数据特征分析"><a href="#数据特征分析" class="headerlink" title="数据特征分析"></a>数据特征分析</h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需要通过绘制图表、计算某些特征量等手段进行数据特征分析。<h2 id="分布分析"><a href="#分布分析" class="headerlink" title="分布分析"></a>分布分析</h2>分布分析揭示数据的分布特征和分布类型。</li>
+<li>对于定量数据，了解其分布形式是对称的还是非对称的，发现某些特大或特小的可疑值，可通过绘制频率分布表、频率分布直方图、茎叶图进行直观分析。</li>
+<li>对于定性分类，可用饼图和条形图。</li>
+</ul>
+<p><strong>定量数据的分布分析遵循的主要原则：</strong></p>
+<ul>
+<li>各组之间必须是相互排斥的。</li>
+<li>各组必须将所有的数据包含在内。</li>
+<li>各组的组宽最好相等。<h2 id="对比分析"><a href="#对比分析" class="headerlink" title="对比分析"></a>对比分析</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>对比分析法也称比较分析法，是把客观事物加以比较，以达到认识事物的本质和规律并做出正确的评价。</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对比分析法通常是把两个相互联系的指标数据进行比较，从数量上展示和说明研究对象规模的大小，水平的高低，速度的快慢，以及各种关系是否协调。在对比分析中，选择合适的对比标准是十分关键的步骤，选择的合适，才能做出客观的评价，选择不合适，评价可能得出错误的结论。</li>
+<li><strong>绝对数比较</strong><ul>
+<li>它是利用绝对数进行对比，从而寻找差异的一种方法。</li>
+</ul>
+</li>
+<li><p><strong>相对数比较</strong><br><strong>它是由两个有联系的指标对比计算的，用以反映客观现象之间数量联系程度的综合指标，其数值表现为相对数</strong>。由于研究目的和对比基础不同，相对数可以分为以下几种：</p>
+<ul>
+<li><p><strong>结构相对数（部分与总体关系）</strong>：将同一总体内的部分数值与全部数值对比求得比重，用以说明事物的性质、结构或质量。如,居民食品支出额占消费支出总额比重、产品合格率等。<br><div align="center"> <img src="images/结构相对数.png"> </div><br></p>
+</li>
+<li><p><strong>比例相对数（部分与部分关系）</strong>：将同一总体内不同部分的数值对*，表明总体内各部分的比例关系，如,人口性别比例、投资与消费比例等。<br><div align="center"> <img src="images/比例相对数.png"> </div><br></p>
+</li>
+<li><p><strong>比较相对数（横向对比关系）</strong>：将同一时期两个性质相同的指标数值对比，说明同类现象在不同空间条件下的数量对比关系。如,不同地区商品价格对比，不同行业、不同企业间某项指标对比等。<br><div align="center"> <img src="images/比较相对数.png"> </div><br></p>
+</li>
+<li><p><strong>动态相对数（纵向对比关系）</strong>：将同一现象在不同时期的指标数值对比，用以说明发展方向和变化的速度。如,发展速度、增长速度等。<br><div align="center"> <img src="images/动态相对数.png"> </div><br></p>
+</li>
+<li><p><strong>强度相对数（关联指标间关系）</strong>：将两个性质不同但有一定联系的总量指标对比，用以说明现象的强度、密度和普遍程度。如,人均国内生产总值用”元/人”表示，人口密度用”人/平方公里”表示，也有用百分数或千分数表示的，如,人口出生率用‰表示。<br><div align="center"> <img src="images/强度相对数.png"> </div><br></p>
+</li>
+<li><p><strong>计划完成程度相对数（实际与计划关系）</strong>：是某一时期实际完成数与计划数对比，用以说明计划完成程度。<br><div align="center"> <img src="images/计划与实际.png"> </div><br></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="统计量分析"><a href="#统计量分析" class="headerlink" title="统计量分析"></a>统计量分析</h2><p>用统计指标对定量数据进行统计描述，常从<strong>集中趋势</strong>和<strong>离中趋势</strong>两个方面进行分析。</p>
+<ul>
+<li><strong>平均水平的指标是对个体集中趋势的度量，使用最广泛的是均值和中位数</strong>。</li>
+<li><strong>反应变异程度的指标是对个体离开平均水平的度量，使用较广泛的是标准差（方差）、四分位间距</strong>。</li>
+</ul>
+<h3 id="集中趋势度量"><a href="#集中趋势度量" class="headerlink" title="集中趋势度量"></a>集中趋势度量</h3><ul>
+<li><strong>算数平均数</strong><br>观测值的总和除以观测值的个数，即<br><div align="center"> <img src="images/算数平均数.png"> </div><br></li>
+</ul>
+<p>常简称为平均数，也往往是背后机率分布的期望值之不偏估计。</p>
+<ul>
+<li><p><strong>中位数</strong><br>将所有观测值按大小排序后在顺序上居中的数值。实数数列x=(x1,x2,…,xn)的中位数:<br><div align="center"> <img src="images/中位数.png"> </div><br></p>
+</li>
+<li><p><strong>众数</strong><br>出现最多次的观测值,用众数代表一组数据，适合于数据量较多时使用，且众数不受极端数据的影响.</p>
+</li>
+<li><p><strong>几何平均数</strong><br>观测值的乘积之观测值个数方根，即<br><div align="center"> <img src="images/几何平均数.png"> </div><br></p>
+</li>
+<li><p><strong>调和平均数</strong><br>观测值个数除以观测值倒数的总和，即<br><div align="center"> <img src="images/调和平均数.png"> </div><br></p>
+</li>
+<li><p><strong>加权平均数</strong><br>考虑不同群资料贡献程度不同时的算数平均数</p>
+</li>
+<li><p><strong>截尾平均数（truncated mean）</strong><br>忽略特定比例或特定数值之外的极端值后所得的平均数。例如，四分平均数（interquartile mean）正是忽略25%前及75%后的资料后所得的算数平均数。</p>
+</li>
+<li><p><strong>全距中点（midrange）</strong><br>最大值与最小值的算数平均数，即<br><div align="center"> <img src="images/全距中点.png"> </div><br></p>
+</li>
+<li><p><strong>中枢纽（midhinge）</strong><br>第一四分位数与第三四分位数的算数平均数，即 <div align="center"> <img src="images/中枢纽.png"> </div><br></p>
+</li>
+<li><p><strong>三均值（trimean）</strong><br>考虑三个四分位数的加权平均数，即 <div align="center"> <img src="images/三均值.png"> </div><br></p>
+</li>
+<li><p><strong>极端值调整平均数（winsorized mean）</strong><br>以最接近的观测值取代特定比例的极端值后取得的算数平均数。举例来说，考虑10个观测值（由小到大排列为 由小到大列为x1至x10的情况下，10%的极端值调整平均数为<br><div align="center"> <img src="images/极端调整平均数.png"> </div><br></p>
+</li>
+</ul>
+<p><strong>以上的统计量在多维变数中仍可单独地被套用在各个维度上进行，但并不能保证在转轴后仍维持一致的结果。</strong></p>
+<h3 id="离中趋势度量"><a href="#离中趋势度量" class="headerlink" title="离中趋势度量"></a>离中趋势度量</h3><ul>
+<li><p><strong>极差</strong><br>极差=最大值-最小值<strong>极差为离散程度的最简单测度值，易受极端值影响。</strong></p>
+</li>
+<li><p><strong>标准差</strong><br>标准差（又称标准偏差、均方差，英语：Standard Deviation，缩写SD），数学符号σ（sigma）），<strong>在概率统计中最常使用作为测量一组数值的离散程度之用。标准差定义：为方差开算术平方根，反映组内个体间的离散程度。</strong><br><div align="center"> <img src="images/标准差.png"> </div><br></p>
+</li>
+<li><p><strong>变异系数</strong><br>在概率论和统计学中，变异系数，又称“离散系数”（英文：coefficient of variation），是概率分布离散程度的一个归一化量度，其定义为<strong>标准差</strong>与<strong>平均值</strong>之比:<br><div align="center"> <img src="images/变异系数.png"> </div><br></p>
+</li>
+</ul>
+<p>特点：<br>当需要比较两组数据离散程度大小的时候，如果<strong>两组数据的测量尺度相差太大，或者数据量纲的不同</strong>,直接使用标准差来进行比较不合适，此时就应当消除测量尺度和量纲的影响，而变异系数可以做到这一点，它是原始数据标准差与原始数据平均数的比。CV没有量纲，这样就可以进行客观比较了。</p>
+<ul>
+<li><strong>四分位间距</strong><br>四分位距（interquartile range, IQR）。是描述统计学中的一种方法，以确定第三四分位数和第一四分位数的分别（即Q_{1}, Q_{3}的差距）。<strong>与变异数、标准差一样，表示统计资料中各变量分散情形，但四分差更多为一种稳健统计（robust statistic）</strong>。<br>四分位差（Quartile Deviation, QD），是 Q_{1}, Q_{3}}的差距，即QD=(Q_{3}-Q_{1})。</li>
+</ul>
+<h2 id="周期性分析"><a href="#周期性分析" class="headerlink" title="周期性分析"></a>周期性分析</h2><p><strong>周期性分析是探索某个变量是否随着时间变化而呈现出某种周期变换趋势</strong>。时间尺度相对较长的周期性趋势有年度周期性趋势、季节性周期趋势，相对较短的有月度周期性趋势、周度周期性趋势，甚至更短的天、消失周期性趋势。</p>
+<p><div align="center"> <img src="images/周期性分析.png"> </div><br></p>
+<h2 id="贡献度分析"><a href="#贡献度分析" class="headerlink" title="贡献度分析"></a>贡献度分析</h2><p>贡献度分析又称帕累托分析，它的原理是帕累托法则，又称20/80定律。同样的投入放在不同的地方会产生不同的效益。</p>
+<p><div align="center"> <img src="images/贡献度分析.png"> </div><br></p>
+<h2 id="相关性分析"><a href="#相关性分析" class="headerlink" title="相关性分析"></a>相关性分析</h2><p>分析连续变量之间线性相关程度的强弱，并用适当的统计指标表示出来的过程称为相关性分析。</p>
+<h3 id="散点图绘制"><a href="#散点图绘制" class="headerlink" title="散点图绘制"></a>散点图绘制</h3><p>判断两个变量是否具有线性相关关系的最直观的方法是直接绘制散点图</p>
+<p><div align="center"> <img src="images/散点图.png"> </div><br></p>
+<h3 id="绘制散点矩阵图"><a href="#绘制散点矩阵图" class="headerlink" title="绘制散点矩阵图"></a>绘制散点矩阵图</h3><p>需要同时考虑多个变量间的相关关系时，一一绘制它们间的简单散点图是十分麻烦的。此时利用散点矩阵同时绘制各变量间的散点图，从而快速发现多个变量间的主要相关性，在进行多元线性回归时显得尤为重要。</p>
+<p><div align="center"> <img src="images/散点矩阵图.png"> </div><br></p>
+<h3 id="计算相关系数"><a href="#计算相关系数" class="headerlink" title="计算相关系数"></a>计算相关系数</h3><p>为了更加准确地描述变量之间的线性相关程度，可以通过计算相关系数来进行相关分析。<strong>在二元变量的相关性分析过程中比较常用的有Pearson相关系数、Spearman秩相关系数和判读系数</strong>。</p>
+<ul>
+<li><strong>Pearson相关系数</strong></li>
+</ul>
+<p>在统计学中，皮尔逊积矩相关系数（英语：Pearson product-moment correlation coefficient，又称作 PPMCC或PCCs, 文章中常用r或Pearson’s r表示）<strong>用于度量两个变量X和Y之间的相关（线性相关），其值介于-1与1之间</strong>。两个变量之间的皮尔逊相关系数定义为两个变量之间的协方差和标准差的商：</p>
+<p><div align="center"> <img src="images/相关系数.png"> </div><br></p>
+<p>上式定义了总体相关系数，常用希腊小写字母ρ作为代表符号。估算样本的协方差和标准差，可得到样本相关系数(样本皮尔逊系数)，常用英文小写字母 r代表：</p>
+<p><div align="center"> <img src="images/相关系数2.png"> </div><br></p>
+<p>相关性强度：</p>
+<p><div align="center"> <img src="images/相关性大小.png"> </div><br></p>
+<ul>
+<li><strong>Spearnman秩相关系数</strong></li>
+</ul>
+<p>斯皮尔曼相关系数被定义成 等级变量之间的皮尔逊相关系数。 对于样本容量为 n的样本，n个 =原始数据Xi，Yi” style=”border:none;”&gt;被转换成等级数据xi,yi, 相关系数ρ为</p>
+<p><div align="center"> <img src="images/sperman相关系数.png"> </div><br></p>
+<p>原始数据依据其在总体数据中平均的降序位置，被分配了一个相应的等级。 如下表所示：</p>
+<p><div align="center"> <img src="images/Spearman相关系数.png"> </div><br></p>
+<p>实际应用中， 变量间的连结是无关紧要的， 于是可以通过简单的步骤计算 ρ.[1][2] 被观测的两个变量的等级的差值 di=xi-yi， 则 ρ 为</p>
+<p><div align="center"> <img src="images/ρ系数.png"> </div><br></p>
+<ul>
+<li><strong>判定系数</strong></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;决定系数（英语：coefficient of determination，记为R2或r2）在统计学中用于度量因变量的变异中可由自变量解释部分所占的比例，以此来判断统计模型的解释力。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;判定系数是相关系数的评分，用r2表示；<strong>判定系数取值范围：0≤r2≤1。r2越接近1，表明x与y之间的相关性越强；r2越接近于0，表明两个变量之间几乎没有直线相关关系</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于简单线性回归而言，决定系数为样本相关系数的平方。当加入其他回归自变量后，决定系数相应地变为多重相关系数的平方。</p>
+
+      
+    </div>
+
+    <div>    
+     
+     
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+              <strong>本文作者：</strong>YuJianZhe
+          </li>
+          <li class="post-copyright-title">
+              <strong>本文标签：</strong>Python数据分析（二）——数据探索
+          </li>
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="/2018/06/20/数据探索/" title="Python数据分析（二）——数据探索">2018/06/20/数据探索/</a>
+          </li>
+          </li>
+          <li class="post-copyright-link">
+            <strong>发布时间：</strong>
+            2018年6月20日 - 15时06分
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明： </strong>
+            本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！
+          </li>
+        </ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="YuJianZhe 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/19/Python开发平台/" rel="next" title="Python数据分析（一）——搭建Python平台">
+                <i class="fa fa-chevron-left"></i> Python数据分析（一）——搭建Python平台
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/22/数据预处理/" rel="prev" title="Python数据分析（三）——数据预处理">
+                Python数据分析（三）——数据预处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzM4NS8xMzkxOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="YuJianZhe" />
+            
+              <p class="site-author-name" itemprop="name">YuJianZhe</p>
+              <p class="site-description motion-element" itemprop="description">4939yujianzhe@gmail.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gofisher" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/80902846/home?leftnav=1" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据探索框架图"><span class="nav-number">1.</span> <span class="nav-text">数据探索框架图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据质量分析"><span class="nav-number">2.</span> <span class="nav-text">数据质量分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缺失值"><span class="nav-number">2.1.</span> <span class="nav-text">缺失值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异常值"><span class="nav-number">2.2.</span> <span class="nav-text">异常值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一致性分析"><span class="nav-number">2.3.</span> <span class="nav-text">一致性分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据特征分析"><span class="nav-number">3.</span> <span class="nav-text">数据特征分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布分析"><span class="nav-number">3.1.</span> <span class="nav-text">分布分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对比分析"><span class="nav-number">3.2.</span> <span class="nav-text">对比分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统计量分析"><span class="nav-number">3.3.</span> <span class="nav-text">统计量分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集中趋势度量"><span class="nav-number">3.3.1.</span> <span class="nav-text">集中趋势度量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离中趋势度量"><span class="nav-number">3.3.2.</span> <span class="nav-text">离中趋势度量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#周期性分析"><span class="nav-number">3.4.</span> <span class="nav-text">周期性分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贡献度分析"><span class="nav-number">3.5.</span> <span class="nav-text">贡献度分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关性分析"><span class="nav-number">3.6.</span> <span class="nav-text">相关性分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#散点图绘制"><span class="nav-number">3.6.1.</span> <span class="nav-text">散点图绘制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绘制散点矩阵图"><span class="nav-number">3.6.2.</span> <span class="nav-text">绘制散点矩阵图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算相关系数"><span class="nav-number">3.6.3.</span> <span class="nav-text">计算相关系数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YuJianZhe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">85.1k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("thLnMG4yyzyRoUseIB7W0sFD-gzGzoHsz", "i7FOQgwimm0kSQgUNB00yASj");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,文件操作,Json," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;I/O在计算机中是指Input/Output，也就是Stream(流)的输入和输出。这里的输入和输出是相对于内存来说的，Input Stream（输入流）是指数据从外（磁盘、网络）流进内存，Output Stream是数据从内存流出到外面（磁盘、网络）。程序运行时，数据都是在内存中驻留，由CPU这个超快的计算核心来执行，涉及到">
+<meta name="keywords" content="Python,文件操作,Json">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python语言之IO文件操作">
+<meta property="og:url" content="https://gofisher.github.io/2018/06/29/Python语言/index.html">
+<meta property="og:site_name" content="Yu&#39;s-Blog">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;I/O在计算机中是指Input/Output，也就是Stream(流)的输入和输出。这里的输入和输出是相对于内存来说的，Input Stream（输入流）是指数据从外（磁盘、网络）流进内存，Output Stream是数据从内存流出到外面（磁盘、网络）。程序运行时，数据都是在内存中驻留，由CPU这个超快的计算核心来执行，涉及到">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/IO操作.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/txt.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/json.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/csv.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/xls.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/mode.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/file对象方法.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/Excel文件操作.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/json与python的数据类型.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/json的参数.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/方法总览.jpg">
+<meta property="og:updated_time" content="2018-07-04T13:08:54.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python语言之IO文件操作">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;I/O在计算机中是指Input/Output，也就是Stream(流)的输入和输出。这里的输入和输出是相对于内存来说的，Input Stream（输入流）是指数据从外（磁盘、网络）流进内存，Output Stream是数据从内存流出到外面（磁盘、网络）。程序运行时，数据都是在内存中驻留，由CPU这个超快的计算核心来执行，涉及到">
+<meta name="twitter:image" content="https://gofisher.github.io/2018/06/29/Python语言/images/IO操作.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gofisher.github.io/2018/06/29/Python语言/"/>
+
+
+
+
+
+<script src="https://neveryu.github.io/js/src/pace.min.js"></script>
+
+
+  <title>Python语言之IO文件操作 | Yu's-Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1682bd44752aaf16cf4a535a8ee72de9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yu's-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">余心所善，九死未悔！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gofisher.github.io/2018/06/29/Python语言/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YuJianZhe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yu's-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python语言之IO文件操作</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-29T20:50:40+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; 更新于
+              <time itemprop="dateUpdated" datetime="2018-07-04T21:08:54+08:00" content="2018-07-04">
+                2018-07-04
+              </time>
+            </span>
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python语言/" itemprop="url" rel="index">
+                    <span itemprop="name">Python语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/06/29/Python语言/" class="leancloud_visitors" data-flag-title="Python语言之IO文件操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7,710字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  33 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I/O在计算机中是指Input/Output，也就是Stream(流)的输入和输出。这里的输入和输出是相对于内存来说的，<strong>Input Stream（输入流）是指数据从外（磁盘、网络）流进内存，Output Stream是数据从内存流出到外面（磁盘、网络）</strong>。程序运行时，数据都是在内存中驻留，由CPU这个超快的计算核心来执行，涉及到数据交换的地方（通常是磁盘、网络操作）就需要IO接口。<br><a id="more"></a></p>
+<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=461080452&auto=1&height=66"></iframe><br><img src="images/IO操作.png" alt="io操作"></p>
+<h1 id="文件的读写操作"><a href="#文件的读写操作" class="headerlink" title="文件的读写操作 "></a>文件的读写操作 <i class="fa fa-file" aria-hidden="true"></i></h1><h2 id="文件读写实现原理"><a href="#文件读写实现原理" class="headerlink" title="文件读写实现原理"></a>文件读写实现原理</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文件读写就是一种常见的IO操作。那么根据上面的描述，可以推断python也应该封装操作系统的底层接口，直接提供了文件读写相关的操作方法。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于操作I/O的能力是由操作系统提供的，且现代操作系统不允许普通程序直接操作磁盘，所以读写文件时需要请求操作系统打开一个对象（通常被称为文件描述符–file descriptor, 简称fd），这就是我们在程序中要操作的文件对象。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>通常高级编程语言中会提供一个内置的函数，通过接收“文件路径”以及“文件打开模式”等参数来打开一个文件对象，并返回该文件对象的文件描述符</strong>。因此通过这个函数我们就可以获取要操作的文件对象了。这个内置函数在<strong>Python中叫open(),</strong> 在PHP中叫fopen()。</p>
+<h2 id="文件读写操作步骤"><a href="#文件读写操作步骤" class="headerlink" title="文件读写操作步骤"></a>文件读写操作步骤</h2><p>不同的编程语言读写文件的操作步骤大体都是一样的，都分为以下几个步骤：</p>
+<ul>
+<li><strong>打开文件，获取文件描述符</strong></li>
+<li><strong>操作文件描述符,读/写</strong></li>
+<li><strong>关闭文件,close方法</strong></li>
+</ul>
+<p><strong>需要注意的是</strong>：文件读写操作完成后，应该及时关闭。</p>
+<ul>
+<li><strong>一方面，文件对象会占用操作系统的资源；</strong></li>
+<li><strong>另外一方面，操作系统对同一时间能打开的文件描述符的数量是有限制的。</strong><h2 id="常用数据格式储存"><a href="#常用数据格式储存" class="headerlink" title="常用数据格式储存"></a>常用数据格式储存</h2></li>
+<li>TXT是微软在操作系统上附带的一种<strong>文本格式</strong>，是最常见的一种文件格式 。<br><img src="images/txt.jpg" alt="txt"></li>
+<li>JSON(JavaScript Object Notation) <strong>是一种轻量级的数据交换格式。 易于人阅读和编写</strong>。格式如下所示,非常类似Python的字典形式：<br><img src="images/json.png" alt="json"></li>
+<li>CSV(Comma-Separated Values,逗号分隔值)其文件以纯文本形式存储表格数据（数字和文本）。CSV文件由任意数目的记录组成，记录间以某种换行符分隔；每条记录由字段组成，字段间的分隔符是其它字符或字符串，最常见的是逗号或制表符。<br><img src="images/csv.png" alt="csv"></li>
+<li>Microsoft Excel是Microsoft为使用Windows和Apple Macintosh操作系统的计算机编写的一款电子表格软件。<strong>直观的界面、出色的计算功能和图表工具，再加上成功的市场营销，使Excel成为最流行的个人计算机数据处理软件。</strong><br><img src="images/xls.jpg" alt="xls"><h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="控制台I-O"><a href="#控制台I-O" class="headerlink" title="控制台I/O"></a>控制台I/O</h3></li>
+<li><p>读取键盘输入：内置函数input([prompt])，用于从标准输入读取一个行，并返回一个字符串（去掉结尾的换行符）。</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">i = input(<span class="string">"Enter your input:"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>印到屏幕：最简单的输出方法是用print语句，你可以给它传递零个或多个用逗号隔开的表达式。</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print([object, ...][, sep=<span class="string">' '</span>][, end=<span class="string">'endline_character_here'</span>][, file=redirect_to_here])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>sep表示分割符</li>
+<li>end表示结束符</li>
+<li>file表示重定向文件</li>
+<li>如果要给sep、end、file指定值必须使用关键字参数。<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'hello'</span>, <span class="string">'world'</span>, sep=<span class="string">'%'</span>)    <span class="comment"># 输出 hello%world  </span></span><br><span class="line">print(<span class="string">'hello'</span>, <span class="string">'world'</span>, end=<span class="string">'*'</span>)    <span class="comment"># 输出 hello world*，并且不换行</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="打开和关闭文件"><a href="#打开和关闭文件" class="headerlink" title="打开和关闭文件"></a>打开和关闭文件</h3><p><strong>使用内置函数open()，创建file文件对象。</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file=open(file,mode =<span class="string">'r'</span>,buffering = <span class="number">-1</span>,encoding=<span class="keyword">None</span>,errors=<span class="keyword">None</span>,newline=<span class="keyword">None</span>,closefd =<span class="keyword">True</span>,opener=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>file</strong>：一个类似于路径的对象，它提供要打开的文件的路径名（绝对或相对于当前工作目录）或要打包的文件的整数文件描述符。</li>
+<li><strong>mode</strong>：是一个可选字符串，用于指定文件打开的模式 。它默认为’r’，这意味着开放以文本方式阅读。<br><img src="images/mode.jpg" alt="mode"></li>
+<li><strong>buffering</strong>：是用于设置缓冲策略的可选整数。通过0切换缓冲关闭（仅在二进制模式下允许），1选择行缓冲（仅在文本模式下可用）以及&gt; 1的整数，以指示固定大小的块缓冲区的大小（以字节为单位）。</li>
+<li><strong>encoding</strong>：是用于解码或编码文件的编码的名称。<strong>这只能用于文本模式</strong>。默认编码是平台相关的（无论locale.getpreferredencoding()返回），但可以使用Python支持的任何文本编码。</li>
+</ul>
+<p><strong>以上是比较常用的参数，下面的参数只做了解即可</strong>：</p>
+<ul>
+<li><strong>errors</strong>：是一个可选字符串，指定如何处理编码和解码错误 - <strong>这不能用于二进制模式</strong>。有多种标准错误处理程序可用（列在“ 错误处理程序”下），但已注册的任何错误处理名称 codecs.register_error()也是有效的。标准名称包括：<ul>
+<li><code>strict</code>如果存在编码错误，则引发异常。默认值None具有相同的效果。</li>
+<li><code>ignore</code>忽略错误。请注意，忽略编码错误可能会导致数据丢失。</li>
+<li><code>replace</code>导致替换标记（例如’?’）被插入有错误数据的地方。</li>
+<li><code>surrogateescape</code>会将任何不正确的字节表示为Unicode专用区域中的代码。</li>
+<li><code>xmlcharrefreplace</code>仅在写入文件时才受支持。编码不支持的字符将替换为适当的XML字符引用&#nnn;。</li>
+<li><code>backslashreplace</code> 用Python的反斜杠转义序列替换畸形数据。</li>
+<li><code>namereplace</code>（也仅在写入时才支持）用换\N{…}码序列替换不支持的字符。</li>
+</ul>
+</li>
+<li><strong>newline</strong>：控制通用换行符模式的工作方式（<strong>仅适用于文本模式</strong>）。它可以是None，’’，’\n’，’\r’，和 ‘\r\n’。</li>
+<li><strong>closefd</strong>：是False文件描述符而不是文件名，那么文件关闭时底层文件描述符将保持打开状态。如果给定文件名，closefd必须是True（默认），否则会引发错误。</li>
+<li><strong>opener</strong>：可以通过传递可调用的opener来使用自定义opener。然后通过调用opener（file，flags）来获得文件对象的底层文件描述符。</li>
+</ul>
+<h3 id="File对象的属性"><a href="#File对象的属性" class="headerlink" title="File对象的属性"></a>File对象的属性</h3><p>一个文件被打开后，你有一个file对象，你可以得到有关该文件的各种信息。以下是和file对象相关的所有属性的列表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">file.closefd</td>
+<td style="text-align:left">返回true如果文件已被关闭，否则返回false</td>
+</tr>
+<tr>
+<td style="text-align:left">file name</td>
+<td style="text-align:left">返回文件的名称</td>
+</tr>
+<tr>
+<td style="text-align:left">file.mode</td>
+<td style="text-align:left">返回open中的mode参数配置</td>
+</tr>
+<tr>
+<td style="text-align:left">file.buffer</td>
+<td style="text-align:left">返回open中的buffer参数配置</td>
+</tr>
+<tr>
+<td style="text-align:left">file.encoding</td>
+<td style="text-align:left">返回open中的encoding参数配置</td>
+</tr>
+<tr>
+<td style="text-align:left">file.errors</td>
+<td style="text-align:left">返回open中的errors参数配置</td>
+</tr>
+<tr>
+<td style="text-align:left">file.line_buffering</td>
+<td style="text-align:left">返回open中的buffering参数配置</td>
+</tr>
+<tr>
+<td style="text-align:left">file.newlines</td>
+<td style="text-align:left">返回open中的newlines参数配置</td>
+</tr>
+</tbody>
+</table>
+<p><strong>代码测试如下：</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">file = open(<span class="string">'demo.txt'</span>,<span class="string">'r'</span>,encoding=<span class="string">'utf8'</span>,)</span><br><span class="line">print(<span class="string">"是否关闭："</span>,file.closed)<span class="comment"># 是否关闭： False</span></span><br><span class="line">print(<span class="string">"文件名称："</span>,file.name)<span class="comment"># 文件名称： demo.txt</span></span><br><span class="line">print(<span class="string">"访问模式："</span>,file.mode)<span class="comment"># 访问模式： r</span></span><br><span class="line">print(<span class="string">"文件缓冲："</span>,file.buffer)<span class="comment"># 文件缓冲： &lt;_io.BufferedReader name='demo.txt'&gt;</span></span><br><span class="line">print(<span class="string">"文件编码："</span>,file.encoding)<span class="comment"># 文件编码： utf8</span></span><br><span class="line">print(<span class="string">"错误处理："</span>,file.errors)<span class="comment"># 错误处理： strict</span></span><br><span class="line">print(<span class="string">"行缓冲："</span>,file.line_buffering)<span class="comment"># 行缓冲： False</span></span><br><span class="line">print(<span class="string">"行换符："</span>,file.newlines)<span class="comment"># 行换符： None</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="File读写操作"><a href="#File读写操作" class="headerlink" title="File读写操作"></a>File读写操作</h3><p>file对象使用open函数来创建，下面列出了file对象常用的函数。<br><img src="images/file对象方法.png" alt="file方法"><br>建立一个demo.txt文件对上述方法进行实际操作，demo.txt的内容如下，是python之道。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import this</span><br><span class="line">print(this)</span><br><span class="line">---------------------------</span><br><span class="line">Beautiful is better than ugly.</span><br><span class="line">Explicit is better than implicit.</span><br><span class="line">Simple is better than complex.</span><br><span class="line">Complex is better than complicated.</span><br><span class="line">Flat is better than nested.</span><br><span class="line">Sparse is better than dense.</span><br><span class="line">Readability counts.</span><br><span class="line">Special cases aren&apos;t special enough to break the rules.</span><br><span class="line">Although practicality beats purity.</span><br><span class="line">Errors should never pass silently.</span><br><span class="line">Unless explicitly silenced.</span><br><span class="line">In the face of ambiguity, refuse the temptation to guess.</span><br><span class="line">There should be one-- and preferably only one --obvious way to do it.</span><br><span class="line">Although that way may not be obvious at first unless you&apos;re Dutch.</span><br><span class="line">Now is better than never.</span><br><span class="line">Although never is often better than *right* now.</span><br><span class="line">If the implementation is hard to explain, it&apos;s a bad idea.</span><br><span class="line">If the implementation is easy to explain, it may be a good idea.</span><br><span class="line">Namespaces are one honking great idea -- let&apos;s do more of those!</span><br></pre></td></tr></table></figure></p>
+<p>测试的脚本为demo.txt<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">'demo.txt'</span>,<span class="string">'r+'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    print(<span class="string">"光标起始位置："</span>,file.tell())<span class="comment"># 光标起始位置： 0</span></span><br><span class="line">    print(<span class="string">"光标移动字符："</span>,file.seek(<span class="number">10</span>))<span class="comment"># 光标移动字符： 10</span></span><br><span class="line">    print(<span class="string">'现在光标的位置：'</span>,file.tell())<span class="comment"># 现在光标的位置： 10</span></span><br><span class="line">    print(<span class="string">'恢复光标起始位置：'</span>,file.seek(<span class="number">0</span>))<span class="comment"># 恢复光标起始位置： 0</span></span><br><span class="line">    print(<span class="string">'光标所在的一行：'</span>,file.__next__())<span class="comment"># 光标所在的一行： import this</span></span><br><span class="line">    print(<span class="string">'读取十个字符：'</span>,file.read(<span class="number">20</span>))<span class="comment"># 读取十个字符： print(this)--------</span></span><br><span class="line">    print(<span class="string">'读取整行：'</span>,file.readline())<span class="comment"># 读取整行： ---------------------------</span></span><br><span class="line">    print(<span class="string">'读取所有行并储存为列表：'</span>,file.readlines())<span class="comment"># 读取所有行并储存为列表： ['Beautiful is better than ugly.\n', 'Explicit is better than implicit.\n', 'Simple is better than complex.\n', 'Complex is better than complicated.\n', 'Flat is better than nested.\n', 'Sparse is better than dense.\n', 'Readability counts.\n', "Special cases aren't special enough to break the rules.\n", 'Although practicality beats purity.\n', 'Errors should never pass silently.\n', 'Unless explicitly silenced.\n', 'In the face of ambiguity, refuse the temptation to guess.\n', 'There should be one-- and preferably only one --obvious way to do it.\n', "Although that way may not be obvious at first unless you're Dutch.\n", 'Now is better than never.\n', 'Although never is often better than *right* now.\n', "If the implementation is hard to explain, it's a bad idea.\n", 'If the implementation is easy to explain, it may be a good idea.\n', "Namespaces are one honking great idea -- let's do more of those!"]</span></span><br><span class="line">    print(<span class="string">'写入字符串(不会自动换行)：'</span>,file.write(<span class="string">'\n'</span>+<span class="string">"perfect!"</span>))<span class="comment"># 写入字符串(不会自动换行)： 9</span></span><br><span class="line">    file.writelines([<span class="string">'2'</span>,<span class="string">'1'</span>,<span class="string">'2'</span>,<span class="string">'3'</span>,<span class="string">'4'</span>])<span class="comment"># perfect!21234</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>常用的读写操作代码</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果只读模式为r，如果读写则r+</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'demo.txt'</span>,<span class="string">'r+'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> file.readlines():</span><br><span class="line">        <span class="comment"># 一些对文本的操作代码</span></span><br><span class="line">        print(line)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 相当于创建demo.txt文件，并写入数据，</span></span><br><span class="line"><span class="comment"># demo文件原数据会被请客，追加的话模式修改为a</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'demo.txt'</span>,<span class="string">'a'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.write(<span class="string">"demo"</span>+<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="CSV读写操作"><a href="#CSV读写操作" class="headerlink" title="CSV读写操作"></a>CSV读写操作</h3><ul>
+<li><strong>第一种方法使用reader函数，接收一个可迭代的对象（比如csv文件），能返回一个生成器，就可以从其中解析出csv的内容</strong>。</li>
+<li>第二种方法是使用DictReader，和reader函数类似，接收一个可迭代的对象，能返回一个生成器。<strong>这里版本不一样可能结果不一样，在版本3.6中更改：返回的行现在是类型OrderedDict</strong>，</li>
+</ul>
+<p><strong>测试的csv文件内容如下：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">No,Name,Age,Score</span><br><span class="line">1,mayi,18,99</span><br><span class="line">2,jack,21,89</span><br><span class="line">3,tom,25,95</span><br><span class="line">4,rain,19,80</span><br></pre></td></tr></table></figure></p>
+<p><strong>两种方法的读取的代码：</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> csv</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'demo.csv'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    reader = csv.reader(file)</span><br><span class="line">    <span class="keyword">for</span> info <span class="keyword">in</span> reader:</span><br><span class="line">        print(info)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'demo.csv'</span>,<span class="string">'r'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    reader = csv.DictReader(file)</span><br><span class="line">    <span class="keyword">for</span> info <span class="keyword">in</span> reader:</span><br><span class="line">        print(info)</span><br><span class="line"><span class="comment"># output：</span></span><br><span class="line"><span class="comment"># ['No', 'Name', 'Age', 'Score']</span></span><br><span class="line"><span class="comment"># ['1', 'mayi', '18', '99']</span></span><br><span class="line"><span class="comment"># ['2', 'jack', '21', '89']</span></span><br><span class="line"><span class="comment"># ['3', 'tom', '25', '95']</span></span><br><span class="line"><span class="comment"># ['4', 'rain', '19', '80']</span></span><br><span class="line"><span class="comment"># OrderedDict([('No', '1'), ('Name', 'mayi'), ('Age', '18'), ('Score', '99')])</span></span><br><span class="line"><span class="comment"># OrderedDict([('No', '2'), ('Name', 'jack'), ('Age', '21'), ('Score', '89')])</span></span><br><span class="line"><span class="comment"># OrderedDict([('No', '3'), ('Name', 'tom'), ('Age', '25'), ('Score', '95')])</span></span><br><span class="line"><span class="comment"># OrderedDict([('No', '4'), ('Name', 'rain'), ('Age', '19'), ('Score', '80')])</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>数据写入csv的代码如下：</strong></p>
+<ul>
+<li>csv.writer（csvfile，dialect =’excel’，** fmtparams ）返回一个编写器对象，负责将用户的数据转换为给定类文件对象上的分隔字符串。</li>
+<li>csvwriter.writerow（row ）将行参数写入文件对象，根据当前的格式化设置。</li>
+<li>在版本3.5中进行了更改：添加了对任意迭代的支持。csvwriter.writerows（row）将行中的所有元素（如上所述的行对象的迭代）写入文件对象，根据当前的格式化设置。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意这里的newline=''一定加上不然会多出空格</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'demo.csv'</span>,<span class="string">'a'</span>,newline=<span class="string">''</span>) <span class="keyword">as</span> file:</span><br><span class="line">    write = csv.writer(file)</span><br><span class="line">    write.writerow([<span class="number">5</span>, <span class="string">'yu'</span>, <span class="string">'26'</span>, <span class="string">'90'</span>])</span><br><span class="line">    write.writerows([<span class="string">'5'</span>, <span class="string">'yu'</span>, <span class="string">'26'</span>, <span class="string">'90'</span>])</span><br><span class="line"><span class="comment"># Output,比如两者的区别</span></span><br><span class="line"><span class="comment"># 1,mayi,18,99</span></span><br><span class="line"><span class="comment"># 2,jack,21,89</span></span><br><span class="line"><span class="comment"># 3,tom,25,95</span></span><br><span class="line"><span class="comment"># 4,rain,19,805</span></span><br><span class="line"><span class="comment"># 5,yu,26,90</span></span><br><span class="line"><span class="comment"># 5</span></span><br><span class="line"><span class="comment"># y,u</span></span><br><span class="line"><span class="comment"># 2,6</span></span><br><span class="line"><span class="comment"># 9,0</span></span><br></pre></td></tr></table></figure>
+<h3 id="JSON读写操作"><a href="#JSON读写操作" class="headerlink" title="JSON读写操作"></a>JSON读写操作</h3><p><strong>见JSON的序列化操作</strong></p>
+<h3 id="XLS文件操作"><a href="#XLS文件操作" class="headerlink" title="XLS文件操作"></a>XLS文件操作</h3><p><img src="images/Excel文件操作.png" alt="Excel文件操作"></p>
+<ul>
+<li><p><strong>xlrd：是用来从Excel中读写数据的，但常用只进行读操作，写操作会遇到些问题</strong>。用xlrd进行读取比较方便，流程和平常手动操作Excel一样，打开工作簿(Workbook)，选择工作表(sheets)，然后操作单元格(cell)。<br><strong>常用操作：</strong></p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开Excel工作簿</span></span><br><span class="line">data=xlrd.open_workbook(filename)</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看工作簿中所有sheet的名称</span></span><br><span class="line">data.sheet_names()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 选择某一个工作表（通过索引或表名称）</span></span><br><span class="line"><span class="comment">#获取第一个工作表</span></span><br><span class="line">table=data.sheets()[<span class="number">0</span>]</span><br><span class="line"><span class="comment">#通过索引获取第一个工作表</span></span><br><span class="line">table=data.sheet_by_index(<span class="number">0</span>)</span><br><span class="line"><span class="comment">#通过表名称选择工作表</span></span><br><span class="line">table=data.sheet_by_name(<span class="string">u'哈哈'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取表格的行数和列数</span></span><br><span class="line">nrows=table.nrows</span><br><span class="line">ncols=table.ncols</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取整行和整列的值</span></span><br><span class="line">table.row_values(number)</span><br><span class="line">table.column_values(number)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过循环读取表格的所有行</span></span><br><span class="line"><span class="keyword">for</span> rownum <span class="keyword">in</span> xrange(table.nrows):</span><br><span class="line">    <span class="keyword">print</span> table.row_values(rownum)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取单元格的值        </span></span><br><span class="line">cell_A1=table.row(<span class="number">0</span>)[<span class="number">0</span>].value</span><br><span class="line"><span class="comment">#或者像下面这样</span></span><br><span class="line">cell_A1=table.cell(<span class="number">0</span>,<span class="number">0</span>).value</span><br><span class="line"><span class="comment">#或者像下面这样通过列索引</span></span><br><span class="line">cell_A1=table.col(<span class="number">0</span>)[<span class="number">0</span>].value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>xlwt：如果说xlrd不是一个单纯的Reader（如果把xlrd中的后两个字符看成Reader，那么xlwt后两个字符类似看成Writer），那么xlwt就是一个纯粹的Writer了，因为它只能对Excel进行写操作</strong>。xlwt和xlrd不光名字像，连很多函数和操作格式也是完全相同。<br><strong>常用操作：</strong></p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新建一个Excel文件（只能通过新建写入）</span></span><br><span class="line">data=xlwt.Workbook()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个工作表</span></span><br><span class="line">table=data.add_sheet(<span class="string">'name'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 写入数据到A1单元格</span></span><br><span class="line">table.write(<span class="number">0</span>,<span class="number">0</span>,<span class="string">u'呵呵'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存文件</span></span><br><span class="line">data.save(<span class="string">'test.xls'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>openpyxl：该模块支持最新版的Excel文件格式</strong>，对Excel文件具有响应的读写操作，对此有专门的Reader和Writer两个类，便于对Excel文件的操作。<br><strong>常用操作：</strong></p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#读取Excel文件</span></span><br><span class="line"><span class="keyword">from</span> openpyxl.reader.excel <span class="keyword">import</span> load_workbook</span><br><span class="line">wb=load_workbook(filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示工作表的索引范围</span></span><br><span class="line">wb.get_named_ranges()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示所有工作表的名字</span></span><br><span class="line">wb.get_sheet_names()</span><br><span class="line"></span><br><span class="line"><span class="comment"># sheetnames = wb.get_sheet_names()  </span></span><br><span class="line">ws = wb.get_sheet_by_name(sheetnames[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取表名</span></span><br><span class="line">ws.title</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取表的列数</span></span><br><span class="line">ws.get_highest_column()</span><br><span class="line"></span><br><span class="line"><span class="comment">#读取B1单元格中的内容</span></span><br><span class="line">ws.cell(<span class="number">0</span>,<span class="number">1</span>).value</span><br><span class="line"></span><br><span class="line"><span class="comment">#当然也支持通过Excel坐标来读取数据，代码如下</span></span><br><span class="line"><span class="comment">#读取B1单元格中的内容</span></span><br><span class="line">ws.cell(<span class="string">"B1"</span>).value</span><br></pre></td></tr></table></figure>
+<p>  <strong>写文件，只有一种操作方式，就是通过坐标</strong>。例如要向单元格C1写数据，就要用类似ws.cell(“C1”).value=something这样的方式。一般推荐的方式是用openpyxl中的Writer类来实现。代码类似下面这样：</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl.workbook <span class="keyword">import</span> Workbook</span><br><span class="line"></span><br><span class="line"><span class="comment">#ExcelWriter,里面封装好了对Excel的写操作</span></span><br><span class="line"><span class="keyword">from</span> openpyxl.writer.excel <span class="keyword">import</span> ExcelWriter  </span><br><span class="line"></span><br><span class="line"><span class="comment">#get_column_letter函数将数字转换为相应的字母，如1--&gt;A,2--&gt;B  </span></span><br><span class="line"><span class="keyword">from</span> openpyxl.cell <span class="keyword">import</span> get_column_letter  </span><br><span class="line"></span><br><span class="line"><span class="comment">#新建一个workbook  </span></span><br><span class="line">wb = Workbook()  </span><br><span class="line"></span><br><span class="line"><span class="comment">#新建一个excelWriter  </span></span><br><span class="line">ew = ExcelWriter(workbook = wb)  </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置文件输出路径与名称  </span></span><br><span class="line">dest_filename = <span class="string">r'empty_book.xlsx'</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment">#第一个sheet是ws  </span></span><br><span class="line">ws = wb.worksheets[<span class="number">0</span>]  </span><br><span class="line"></span><br><span class="line"><span class="comment">#设置ws的名称  </span></span><br><span class="line">ws.title = <span class="string">"range names"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#向某个单元格中写入数据</span></span><br><span class="line">ws.cell(<span class="string">"C1"</span>).value=<span class="string">u'哈哈'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#最后保存文件</span></span><br><span class="line">ew.save(filename=dest_filename)</span><br></pre></td></tr></table></figure>
+<p>  向某个单元格内写文件时要先知道它对应的行数和列数，这里注意行数是从1开始计数的，而列则是从字母A开始，因此第一行第一列是A1，这实际上是采用坐标方式操作Excel。</p>
+  <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> openpyxl <span class="keyword">import</span> Workbook</span><br><span class="line"><span class="keyword">from</span> openpyxl.cell <span class="keyword">import</span> get_column_letter</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#生成一个对角阵</span></span><br><span class="line">a=np.diag([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#新建一个工作簿</span></span><br><span class="line">wb=Workbook()</span><br><span class="line"><span class="comment">#使用当前激活的工作表（默认就是Excel中的第一张表）</span></span><br><span class="line">ws=wb.active</span><br><span class="line"><span class="comment">#下面是对a的遍历，注意cell中行和列从1开始，a中索引从0开始。</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> xrange(<span class="number">1</span>,a.shape[<span class="number">0</span>]+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> xrange(<span class="number">1</span>,a.shape[<span class="number">1</span>]+<span class="number">1</span>):</span><br><span class="line">        col_letter=get_column_letter(col)</span><br><span class="line">        ws.cell(<span class="string">'%s%s'</span>%(col_letter,row)).value=a[row<span class="number">-1</span>,col<span class="number">-1</span>]</span><br><span class="line">wb.save(<span class="string">'test.xlsx'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Pandas</strong>：高效的数据科学处理库，将在后面详细的说明。</p>
+</li>
+</ul>
+<h1 id="文件目录操作"><a href="#文件目录操作" class="headerlink" title="文件目录操作 "></a>文件目录操作 <i class="fa fa-book" aria-hidden="true"></i></h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有关文件夹与文件的查找，删除等功能 在 os 模块中实现。使用时需先导入这个模块：<code>import os</code><br><strong>常用的命令如下：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">os.getcwd()</td>
+<td style="text-align:left">取得当前目录</td>
+<td>s=os.getcwd()</td>
+</tr>
+<tr>
+<td style="text-align:left">os.makedirs(“path”)</td>
+<td style="text-align:left">创建子目录</td>
+<td>os.makedirs(“C:\temp\test”)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.chdir(“path”)</td>
+<td style="text-align:left">更改当前目录</td>
+<td>os.chdir(‘c:\‘)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.path.split(“path”)</td>
+<td style="text-align:left">将路径分解为目录名和文件名</td>
+<td>a,b=os.path.splitext(“c:\dir1\dir2\file.txt”)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.path.exists(“path”)</td>
+<td style="text-align:left">判断一个路径（目录或文件）是否存在</td>
+<td>os.path.exists(“c:\data\demo.txt”)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.path.isfile(“path”)</td>
+<td style="text-align:left">检验给出的路径是否是一个文件</td>
+<td>os.path.isfile(“c:\data”)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.path.isdir(“path”)</td>
+<td style="text-align:left">检验给出的路径是否是一个目录</td>
+<td>os.path.isfile(“c:\data”)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.listdir(“path”)</td>
+<td style="text-align:left">获取目录中的文件及子目录的列表</td>
+<td>os.listdir(“C:\“)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.remove(“path”)</td>
+<td style="text-align:left">函数用来删除一个文件</td>
+<td>os.remove(“d:\demo.txt”)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.path.dirname(“path”)</td>
+<td style="text-align:left">获取路径名</td>
+<td>os.path.dirname(“c:\data\demo.txt”)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.path.basename(“path”)</td>
+<td style="text-align:left">获取文件名</td>
+<td>os.path.dirname(“c:\data\demo.txt”)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.system(“shell”)</td>
+<td style="text-align:left">运行shell命令</td>
+<td>os.system(‘ipconfig’)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.path.getsize（filename）</td>
+<td style="text-align:left">获取文件大小</td>
+<td>os.path.getsize（”c:\demo.txt”）</td>
+</tr>
+<tr>
+<td style="text-align:left">os.stat(file)</td>
+<td style="text-align:left">获取文件属性</td>
+<td>os.stat(“c:\demo.txt”)</td>
+</tr>
+<tr>
+<td style="text-align:left">os.rename(old， new)</td>
+<td style="text-align:left">重命名</td>
+<td>os.rename(old， new)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="序列化操作"><a href="#序列化操作" class="headerlink" title="序列化操作 "></a>序列化操作 <i class="fa fa-window-restore" aria-hidden="true"></i></h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="现实需求"><a href="#现实需求" class="headerlink" title="现实需求"></a>现实需求</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每种编程语言都有各自的数据类型，就、其中面向对象的编程语言还允许开发者自定义数据类型（如：自定义类），Python也是一样。很多时候我们会有这样的需求：</p>
+<ul>
+<li>把内存中的各种数据类型的数据通过网络传送给其它机器或客户端；</li>
+<li>把内存中的各种数据类型的数据保存到本地磁盘持久化。<h3 id="序列化-反序列化"><a href="#序列化-反序列化" class="headerlink" title="序列化/反序列化"></a>序列化/反序列化</h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>序列化</strong>将<strong>对象</strong>转换为可通过<strong>网络传输</strong>或可以<strong>存储到本地磁盘的数据格式</strong>（如：XML、JSON或特定格式的字节串）的过程称；反之，则称为反序列化。</li>
+</ul>
+<h3 id="相关模块"><a href="#相关模块" class="headerlink" title="相关模块"></a>相关模块</h3><table>
+<thead>
+<tr>
+<th style="text-align:left">模块名称</th>
+<th style="text-align:left">描述</th>
+<th>提供的api</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">json</td>
+<td style="text-align:left">实现Python数据类型与通用（json）字符串的转换</td>
+<td>dumps()、dump()、load()、loads()</td>
+</tr>
+<tr>
+<td style="text-align:left">pickle</td>
+<td style="text-align:left">实现Python数据类型与Python特定二进制格式之间的转换</td>
+<td>dumps()、dump()、loads()、load()</td>
+</tr>
+<tr>
+<td style="text-align:left">shelve</td>
+<td style="text-align:left">门用于将Python数据类型的数据持久化到磁盘，shelve是一个类似dict的对象，操作十分便捷</td>
+<td>open()</td>
+</tr>
+</tbody>
+</table>
+<h2 id="json模块"><a href="#json模块" class="headerlink" title="json模块"></a>json模块</h2><h3 id="序列化与反序列化"><a href="#序列化与反序列化" class="headerlink" title="序列化与反序列化"></a>序列化与反序列化</h3><p>Python的JSON模块序列化与反序列化的过程分别叫做：encoding 和 decoding。</p>
+<ul>
+<li>encoding：把Python对象转换成JSON字符串。</li>
+<li>decoding：把JSON字符串转换成python对象。</li>
+</ul>
+<p>json模块提供了以下两个方法来进行序列化和反序列化操作：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 序列化：将Python对象转换成json字符串</span></span><br><span class="line">dumps(obj, skipkeys=<span class="keyword">False</span>, ensure_ascii=<span class="keyword">True</span>, check_circular=<span class="keyword">True</span>, allow_nan=<span class="keyword">True</span>, cls=<span class="keyword">None</span>, indent=<span class="keyword">None</span>, separators=<span class="keyword">None</span>, default=<span class="keyword">None</span>, sort_keys=<span class="keyword">False</span>, **kw)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 反序列化：将json字符串转换成Python对象</span></span><br><span class="line">loads(s, encoding=<span class="keyword">None</span>, cls=<span class="keyword">None</span>, object_hook=<span class="keyword">None</span>, parse_float=<span class="keyword">None</span>, parse_int=<span class="keyword">None</span>, parse_constant=<span class="keyword">None</span>, object_pairs_hook=<span class="keyword">None</span>, **kw)</span><br></pre></td></tr></table></figure></p>
+<p>除此之外，json模块还提供了两个额外的方法允许我们<strong>直接将序列化后得到的json数据保存到文件中</strong>，以及直接读取文件中的json数据进行反序列化操作：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 序列化：将Python对象转换成json字符串并存储到文件中</span></span><br><span class="line">dump(obj, fp, skipkeys=<span class="keyword">False</span>, ensure_ascii=<span class="keyword">True</span>, check_circular=<span class="keyword">True</span>, allow_nan=<span class="keyword">True</span>, cls=<span class="keyword">None</span>, indent=<span class="keyword">None</span>, separators=<span class="keyword">None</span>, default=<span class="keyword">None</span>, sort_keys=<span class="keyword">False</span>, **kw)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 反序列化：读取指定文件中的json字符串并转换成Python对象</span></span><br><span class="line">load(fp, cls=<span class="keyword">None</span>, object_hook=<span class="keyword">None</span>, parse_float=<span class="keyword">None</span>, parse_int=<span class="keyword">None</span>, parse_constant=<span class="keyword">None</span>, object_pairs_hook=<span class="keyword">None</span>, **kw)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Json与Python之间数据类型对应关系"><a href="#Json与Python之间数据类型对应关系" class="headerlink" title="Json与Python之间数据类型对应关系"></a>Json与Python之间数据类型对应关系</h3><p><img src="images/json与python的数据类型.jpg" alt="json与python的数据类型"></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><strong>Python dict中的非字符串key被转换成JSON字符串时都会被转换为小写字符串；</strong></li>
+<li><strong>Python中的tuple，在序列化时会被转换为array，但是反序列化时，array会被转化为list；</strong></li>
+<li><strong>由以上两点可知，当Python对象中包含tuple数据或者包含dict，且dict中存在非字符串的key时，反序列化后得到的结果与原来的Python对象是不一致的</strong>；</li>
+<li><strong>对于Python内置的数据类型（如：str, unicode, int, float, bool, None, list, tuple, dict）json模块可以直接进行序列化/反序列化处理；对于自定义类的对象进行序列化和反序列化时，需要我们自己定义一个方法来完成定义object和dict之间进行转化。</strong></li>
+</ul>
+<h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="comment"># 序列化</span></span><br><span class="line"><span class="comment"># python对象-&gt;josn的字符串</span></span><br><span class="line">demo = &#123;<span class="string">'h'</span>: <span class="string">'中国'</span>, <span class="string">'a'</span>: <span class="string">'sTr'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>: (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;</span><br><span class="line">print(type(demo), demo)</span><br><span class="line">print(<span class="string">'python对象-&gt;josn的字符串:'</span>, )</span><br><span class="line">js_np = json.dumps(demo)</span><br><span class="line">print(type(js_np), js_np)</span><br><span class="line">js_p = json.dumps(demo, sort_keys=<span class="keyword">True</span>, separators=(<span class="string">','</span>, <span class="string">';'</span>),ensure_ascii=<span class="keyword">False</span>,indent=<span class="number">4</span>)</span><br><span class="line">print(type(js_p), js_p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># python对象-&gt;文件中</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'test.json'</span>, <span class="string">'w'</span>, encoding=<span class="string">'utf8'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    json.dump(demo, file, indent=<span class="number">4</span>, ensure_ascii=<span class="keyword">False</span>)</span><br><span class="line">    print(<span class="string">"python对象-&gt;文件中"</span>,<span class="string">":保存成功！"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 反序列化</span></span><br><span class="line"><span class="comment"># 文件对象-&gt;python对象</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'demo.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    py_obj = json.load(file)</span><br><span class="line">    print(<span class="string">"文件对象-&gt;python对象:"</span>)</span><br><span class="line">    print(type(py_obj), py_obj)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符串-&gt;python对象</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'demo.json'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    str_in = file.readlines()[<span class="number">0</span>]</span><br><span class="line">    str_obj = json.loads(str_in)</span><br><span class="line">    print(<span class="string">"字符串-&gt;python对象:"</span>)</span><br><span class="line">    print(type(str_obj), str_obj)</span><br></pre></td></tr></table></figure>
+<p><strong>输出的结果如下：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;dict&apos;&gt; &#123;&apos;h&apos;: &apos;中国&apos;, &apos;a&apos;: &apos;sTr&apos;, &apos;c&apos;: True, &apos;e&apos;: 10, &apos;b&apos;: 11.1, &apos;d&apos;: None, &apos;f&apos;: [1, 2, 3], &apos;g&apos;: (4, 5, 6)&#125;</span><br><span class="line">python对象-&gt;josn的字符串:</span><br><span class="line">&lt;class &apos;str&apos;&gt; &#123;&quot;h&quot;: &quot;\u4e2d\u56fd&quot;, &quot;a&quot;: &quot;sTr&quot;, &quot;c&quot;: true, &quot;e&quot;: 10, &quot;b&quot;: 11.1, &quot;d&quot;: null, &quot;f&quot;: [1, 2, 3], &quot;g&quot;: [4, 5, 6]&#125;</span><br><span class="line">&lt;class &apos;str&apos;&gt; &#123;</span><br><span class="line">    &quot;a&quot;;&quot;str&quot;,</span><br><span class="line">    &quot;b&quot;;11.1,</span><br><span class="line">    &quot;c&quot;;true,</span><br><span class="line">    &quot;d&quot;;null,</span><br><span class="line">    &quot;e&quot;;10,</span><br><span class="line">    &quot;f&quot;;[</span><br><span class="line">        1,</span><br><span class="line">        2,</span><br><span class="line">        3</span><br><span class="line">    ],</span><br><span class="line">    &quot;g&quot;;[</span><br><span class="line">        4,</span><br><span class="line">        5,</span><br><span class="line">        6</span><br><span class="line">    ],</span><br><span class="line">    &quot;h&quot;;&quot;中国&quot;</span><br><span class="line">&#125;</span><br><span class="line">python对象-&gt;文件中 :保存成功！</span><br><span class="line">文件对象-&gt;python对象:</span><br><span class="line">&lt;class &apos;dict&apos;&gt; &#123;&apos;h&apos;: &apos;中国&apos;, &apos;a&apos;: &apos;str&apos;, &apos;c&apos;: True, &apos;e&apos;: 10, &apos;b&apos;: 11.1, &apos;d&apos;: None, &apos;f&apos;: [1, 2, 3], &apos;g&apos;: [4, 5, 6]&#125;</span><br><span class="line">字符串-&gt;python对象:</span><br><span class="line">&lt;class &apos;dict&apos;&gt; &#123;&apos;h&apos;: &apos;中国&apos;, &apos;a&apos;: &apos;str&apos;, &apos;c&apos;: True, &apos;e&apos;: 10, &apos;b&apos;: 11.1, &apos;d&apos;: None, &apos;f&apos;: [1, 2, 3], &apos;g&apos;: [4, 5, 6]&#125;</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure></p>
+<p><strong>输出的结果分析：</strong><br><img src="images/json的参数.jpg" alt="json的参数"></p>
+<h2 id="pickle模块"><a href="#pickle模块" class="headerlink" title="pickle模块"></a>pickle模块</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pickle模块实现了用于<strong>对Python对象结构进行序列化和反序列化的二进制协议</strong>，与json模块不同的是pickle模块序列化和反序列化的过程分别叫做pickling和unpickling：</p>
+<ul>
+<li>pickling：是将<strong>Python对象</strong>转换为<strong>字节流</strong>的过程；</li>
+<li>unpickling：是将<strong>字节流二进制</strong>文件或字节对象转换回<strong>Python对象</strong>的过程；<h3 id="pickle模块与json模块对比"><a href="#pickle模块与json模块对比" class="headerlink" title="pickle模块与json模块对比"></a>pickle模块与json模块对比</h3></li>
+<li>JSON是一种文本序列化格式（它输出的是unicode文件，大多数时候会被编码为utf-8），而pickle是一个二进制序列化格式;</li>
+<li>JOSN是我们可以读懂的数据格式，而pickle是二进制格式，我们无法读懂；</li>
+<li>JSON是与特定的编程语言或系统无关的，且它在Python生态系统之外被广泛使用，而pickle使用的数据格式是特定于Python的；</li>
+<li><strong>默认情况下，JSON只能表示Python内建数据类型，对于自定义数据类型需要一些额外的工作来完成；pickle可以直接表示大量的Python数据类型，包括自定数据类型（其中，许多是通过巧妙地使用Python内省功能自动实现的；复杂的情况可以通过实现specific object API来解决）。</strong><h3 id="pickle模块提供的相关函数"><a href="#pickle模块提供的相关函数" class="headerlink" title="pickle模块提供的相关函数"></a>pickle模块提供的相关函数</h3><strong>pickle模块提供的几个序列化/反序列化的函数与json模块基本一致：</strong><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将指定的Python对象通过pickle序列化作为bytes对象返回，而不是将其写入文件</span></span><br><span class="line">dumps(obj, protocol=<span class="keyword">None</span>, fix_imports=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将通过pickle序列化后得到的字节对象进行反序列化，转换为Python对象并返回</span></span><br><span class="line">loads(bytes_object,  fix_imports=<span class="keyword">True</span>, encoding=<span class="string">"ASCII"</span>, errors=<span class="string">"strict"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将指定的Python对象通过pickle序列化后写入打开的文件对象中，等价于`Pickler(file, protocol).dump(obj)`</span></span><br><span class="line">dump(obj, file, protocol=<span class="keyword">None</span>,fix_imports=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从打开的文件对象中读取pickled对象表现形式并返回通过pickle反序列化后得到的Python对象</span></span><br><span class="line">load(file, ix_imports=<span class="keyword">True</span>, encoding=<span class="string">"ASCII"</span>, errors=<span class="string">"strict"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>Python 3.x的pickle代码示例</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line"></span><br><span class="line"><span class="comment"># 序列化</span></span><br><span class="line"><span class="comment"># python对象-&gt;pickle的二进制</span></span><br><span class="line">demo = &#123;<span class="string">'h'</span>: <span class="string">'中国'</span>, <span class="string">'a'</span>: <span class="string">'sTr'</span>, <span class="string">'c'</span>: <span class="keyword">True</span>, <span class="string">'e'</span>: <span class="number">10</span>, <span class="string">'b'</span>: <span class="number">11.1</span>, <span class="string">'d'</span>: <span class="keyword">None</span>, <span class="string">'f'</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="string">'g'</span>: (<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;</span><br><span class="line">print(type(demo), demo)</span><br><span class="line">print(<span class="string">'python对象-&gt;pickle的二进制:'</span>, )</span><br><span class="line">js_p = pickle.dumps(demo)</span><br><span class="line">print(type(js_p), js_p)</span><br><span class="line"></span><br><span class="line"><span class="comment"># python对象-&gt;文件中</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'pickle.txt'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    pickle.dump(demo, file,)</span><br><span class="line">    print(<span class="string">"python对象-&gt;文件中"</span>, <span class="string">":保存成功！"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 反序列化</span></span><br><span class="line"><span class="comment"># 文件对象-&gt;python对象</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'pickle.txt'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    py_obj = pickle.load(file)</span><br><span class="line">    print(<span class="string">"文件对象-&gt;python对象:"</span>)</span><br><span class="line">    print(type(py_obj), py_obj)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 二进制-&gt;python对象</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'pickle.txt'</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> file:</span><br><span class="line">    str_obj = pickle.loads(file.read())</span><br><span class="line">    print(<span class="string">"二进制-&gt;python对象:"</span>)</span><br><span class="line">    print(type(str_obj), str_obj)</span><br></pre></td></tr></table></figure></p>
+<p><strong>运行的结果：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;dict&apos;&gt; &#123;&apos;h&apos;: &apos;中国&apos;, &apos;a&apos;: &apos;sTr&apos;, &apos;c&apos;: True, &apos;e&apos;: 10, &apos;b&apos;: 11.1, &apos;d&apos;: None, &apos;f&apos;: [1, 2, 3], &apos;g&apos;: (4, 5, 6)&#125;</span><br><span class="line">python对象-&gt;pickle的二进制:</span><br><span class="line">&lt;class &apos;bytes&apos;&gt; b&apos;\x80\x03&#125;q\x00(X\x01\x00\x00\x00hq\x01X\x06\x00\x00\x00\xe4\xb8\xad\xe5\x9b\xbdq\x02X\x01\x00\x00\x00aq\x03X\x03\x00\x00\x00sTrq\x04X\x01\x00\x00\x00cq\x05\x88X\x01\x00\x00\x00eq\x06K\nX\x01\x00\x00\x00bq\x07G@&amp;333333X\x01\x00\x00\x00dq\x08NX\x01\x00\x00\x00fq\t]q\n(K\x01K\x02K\x03eX\x01\x00\x00\x00gq\x0bK\x04K\x05K\x06\x87q\x0cu.&apos;</span><br><span class="line">python对象-&gt;文件中 :保存成功！</span><br><span class="line">文件对象-&gt;python对象:</span><br><span class="line">&lt;class &apos;dict&apos;&gt; &#123;&apos;h&apos;: &apos;中国&apos;, &apos;a&apos;: &apos;sTr&apos;, &apos;c&apos;: True, &apos;e&apos;: 10, &apos;b&apos;: 11.1, &apos;d&apos;: None, &apos;f&apos;: [1, 2, 3], &apos;g&apos;: (4, 5, 6)&#125;</span><br><span class="line">字符串-&gt;python对象:</span><br><span class="line">&lt;class &apos;dict&apos;&gt; &#123;&apos;h&apos;: &apos;中国&apos;, &apos;a&apos;: &apos;sTr&apos;, &apos;c&apos;: True, &apos;e&apos;: 10, &apos;b&apos;: 11.1, &apos;d&apos;: None, &apos;f&apos;: [1, 2, 3], &apos;g&apos;: (4, 5, 6)&#125;</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意点：</strong></p>
+<ul>
+<li><strong>读写时记得模式加上b</strong></li>
+</ul>
+<h2 id="shelve模块"><a href="#shelve模块" class="headerlink" title="shelve模块"></a>shelve模块</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shelve是一个简单的数据存储方案，类似key-value数据库，可以很方便的保存python对象，其<strong>内部是通过pickle协议来实现数据序列化</strong>。<strong>shelve只有一个open()函数，这个函数用于打开指定的文件（一个持久的字典），然后返回一个shelf对象</strong>。shelf是一种持久的、类似字典的对象。它与“dbm”的不同之处在于，其<strong>values值可以是任意基本Python对象–pickle模块可以处理的任何数据</strong>。这包括大多数类实例、递归数据类型和包含很多共享子对象的对象。keys还是普通的字符串。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open(filename, flag=<span class="string">'c'</span>, protocol=<span class="keyword">None</span>, writeback=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>flag 参数表示打开数据存储文件的格式；</li>
+<li>protocol 参数表示序列化数据所使用的协议版本，默认是pickle v3；</li>
+<li>writeback 参数表示是否开启回写功能。</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们可以把shelf对象当dict来使用–存储、更改、查询某个key对应的数据，当操作完成之后，调用shelf对象的close()函数即可。当然，也可以使用上下文管理器（with语句），避免每次都要手动调用close()方法。<br><strong>代码示例</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> shelve</span><br><span class="line"><span class="comment"># 保存数据</span></span><br><span class="line"><span class="keyword">with</span> shelve.open(<span class="string">'student'</span>) <span class="keyword">as</span> db:</span><br><span class="line">    db[<span class="string">'name'</span>] = <span class="string">'Tom'</span></span><br><span class="line">    db[<span class="string">'age'</span>] = <span class="number">19</span></span><br><span class="line">    db[<span class="string">'hobby'</span>] = [<span class="string">'篮球'</span>, <span class="string">'看电影'</span>, <span class="string">'弹吉他'</span>]</span><br><span class="line">    db[<span class="string">'other_info'</span>] = &#123;<span class="string">'sno'</span>: <span class="number">1</span>, <span class="string">'addr'</span>: <span class="string">'china'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取数据</span></span><br><span class="line"><span class="keyword">with</span> shelve.open(<span class="string">'student'</span>) <span class="keyword">as</span> db:</span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> db.items():</span><br><span class="line">        print(key, <span class="string">': '</span>, value)</span><br></pre></td></tr></table></figure></p>
+<p><strong>结果显示：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">name :  Tom</span><br><span class="line">age :  19</span><br><span class="line">hobby :  [&apos;篮球&apos;, &apos;看电影&apos;, &apos;弹吉他&apos;]</span><br><span class="line">other_info :  &#123;&apos;sno&apos;: 1, &apos;addr&apos;: &apos;china&apos;&#125;</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure></p>
+<p><strong>自定义数据类型操作</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义class</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, age, sno)</span>:</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line">        self.sno = sno</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Student [name: %s, age: %d, sno: %d]'</span> % (self.name, self.age, self.sno)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 保存数据</span></span><br><span class="line">tom = Student(<span class="string">'Tom'</span>, <span class="number">19</span>, <span class="number">1</span>)</span><br><span class="line">jerry = Student(<span class="string">'Jerry'</span>, <span class="number">17</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> shelve.open(<span class="string">"stu.db"</span>) <span class="keyword">as</span> db:</span><br><span class="line">    db[<span class="string">'Tom'</span>] = tom</span><br><span class="line">    db[<span class="string">'Jerry'</span>] = jerry</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取数据</span></span><br><span class="line"><span class="keyword">with</span> shelve.open(<span class="string">"stu.db"</span>) <span class="keyword">as</span> db:</span><br><span class="line">    print(db[<span class="string">'Tom'</span>])</span><br><span class="line">    print(db[<span class="string">'Jerry'</span>])</span><br></pre></td></tr></table></figure></p>
+<p><strong>结果显示：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Student [name: Tom, age: 19, sno: 1]</span><br><span class="line">Student [name: Jerry, age: 17, sno: 2]</span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><ul>
+<li><p>json模块常用于编写web接口，将Python数据转换为通用的json格式传递给其它系统或客户端；也可以用于将Python数据保存到本地文件中，<strong>缺点是明文保存，保密性差。另外，如果需要保存非内置数据类型需要编写额外的转换函数或自定义类。</strong></p>
+</li>
+<li><p>pickle模块和shelve模块由于使用其特有的序列化协议，<strong>其序列化之后的数据只能被Python识别，因此只能用于Python系统内部</strong>。另外，Python 2.x 和 Python<br>3.x 默认使用的序列化协议也不同，如果需要互相兼容需要在序列化时通过protocol参数指定协议版本。除了上面这些缺点外，pickle模块和shelve模块相对于json模块的优点在于对于<strong>自定义数据类型可以直接序列化和反序列化，不需要编写额外的转换函数或类。</strong></p>
+</li>
+<li><p>shelve模块可以看做是pickle模块的升级版，因为shelve使用的就是pickle的序列化协议，但是shelve比pickle提供的操作方式更加简单、方便。<strong>shelve模块相对于其它两个模块在将Python数据持久化到本地磁盘时有一个很明显的优点就是，它允许我们可以像操作dict一样操作被序列化的数据，而不必一次性的保存或读取所有数据。</strong></p>
+</li>
+</ul>
+<h3 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h3><ul>
+<li><strong>需要与外部系统交互时用json模块；</strong></li>
+<li><strong>需要将少量、简单Python数据持久化到本地磁盘文件时可以考虑用pickle模块；</strong></li>
+<li><strong>需要将大量Python数据持久化到本地磁盘文件或需要一些简单的类似数据库的增删改查功能时，可以考虑用shelve模块。</strong></li>
+</ul>
+<h3 id="方法总览"><a href="#方法总览" class="headerlink" title="方法总览"></a>方法总览</h3><p><img src="images/方法总览.jpg" alt="方法总览"></p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接<i class="fa fa-link" aria-hidden="true"></i></h1><hr>
+<p><a href="https://www.cnblogs.com/yyds/p/6186621.html" target="_blank" rel="noopener">1.Python之文件读写</a><br><a href="https://blog.csdn.net/pfm685757/article/details/47806469" target="_blank" rel="noopener">2.python3 writerow CSV文件多一个空行</a><br><a href="https://blog.csdn.net/waple_0820/article/details/70049953" target="_blank" rel="noopener">3.python写入csv文件的几种方法总结</a><br><a href="https://www.lfhacks.com/tech/python-read-specific-row-csv" target="_blank" rel="noopener">4.Python 读取csv的某行</a><br><a href="https://blog.csdn.net/u012162613/article/details/41915859" target="_blank" rel="noopener">5.csv模块的使用</a><br><a href="https://www.cnblogs.com/mayi0312/p/6840931.html" target="_blank" rel="noopener">6.使用Python对Csv文件操作</a><br><a href="https://blog.csdn.net/zx_whu/article/details/52260239" target="_blank" rel="noopener">7.Python读写txt、csv文件</a><br><a href="https://blog.csdn.net/jiaoyangwm/article/details/79635417" target="_blank" rel="noopener">8.python3（十三）File对象的属性</a><br><a href="https://blog.csdn.net/lisonglisonglisong/article/details/38564417" target="_blank" rel="noopener">9.Python3基础（七） I/O操作</a><br><a href="https://blog.csdn.net/zengxiantao1994/article/details/53784924" target="_blank" rel="noopener">10.Python文件操作详解</a><br><a href="https://docs.python.org/3.6/library/csv.html#module-csv" target="_blank" rel="noopener">11.CSV文件读取和写入</a><br><a href="http://wenqiang-china.github.io/2016/05/13/python-opetating-excel/" target="_blank" rel="noopener">12.Python操作excel的几种方式–xlrd、xlwt、openpyxl</a><br><a href="https://www.cnblogs.com/rollenholt/archive/2012/04/23/2466179.html" target="_blank" rel="noopener">13.关于python文件操作</a><br><a href="https://www.cnblogs.com/zhoujie/archive/2013/04/10/python7.html" target="_blank" rel="noopener">14.python学习笔记（七）——文件和目录操作</a><br><a href="http://www.cnblogs.com/yyds/p/6563608.html" target="_blank" rel="noopener">15.Python之数据序列化（json、pickle、shelve）</a><br><a href="https://www.cnblogs.com/sun-haiyu/p/7087088.html" target="_blank" rel="noopener">16.Python序列化和反序列化</a><br><a href="http://python3-cookbook-personal.readthedocs.io/zh_CN/latest/c05/p21_serializing_python_objects.html" target="_blank" rel="noopener">17.序列化Python对象</a></p>
+
+      
+    </div>
+
+    <div>    
+     
+     
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+              <strong>本文作者：</strong>YuJianZhe
+          </li>
+          <li class="post-copyright-title">
+              <strong>本文标签：</strong>Python语言之IO文件操作
+          </li>
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="/2018/06/29/Python语言/" title="Python语言之IO文件操作">2018/06/29/Python语言/</a>
+          </li>
+          </li>
+          <li class="post-copyright-link">
+            <strong>发布时间：</strong>
+            2018年6月29日 - 20时06分
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明： </strong>
+            本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！
+          </li>
+        </ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="YuJianZhe 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/文件操作/" rel="tag"># 文件操作</a>
+          
+            <a href="/tags/Json/" rel="tag"># Json</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/27/挖掘建模/" rel="next" title="Python数据分析（四）——挖掘建模">
+                <i class="fa fa-chevron-left"></i> Python数据分析（四）——挖掘建模
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/04/Python语言/" rel="prev" title="Python语言之时间模块">
+                Python语言之时间模块 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzM4NS8xMzkxOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="YuJianZhe" />
+            
+              <p class="site-author-name" itemprop="name">YuJianZhe</p>
+              <p class="site-description motion-element" itemprop="description">4939yujianzhe@gmail.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gofisher" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/80902846/home?leftnav=1" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文件的读写操作"><span class="nav-number">1.</span> <span class="nav-text">文件的读写操作 </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件读写实现原理"><span class="nav-number">1.1.</span> <span class="nav-text">文件读写实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件读写操作步骤"><span class="nav-number">1.2.</span> <span class="nav-text">文件读写操作步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用数据格式储存"><span class="nav-number">1.3.</span> <span class="nav-text">常用数据格式储存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件操作"><span class="nav-number">1.4.</span> <span class="nav-text">文件操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#控制台I-O"><span class="nav-number">1.4.1.</span> <span class="nav-text">控制台I/O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打开和关闭文件"><span class="nav-number">1.4.2.</span> <span class="nav-text">打开和关闭文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File对象的属性"><span class="nav-number">1.4.3.</span> <span class="nav-text">File对象的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#File读写操作"><span class="nav-number">1.4.4.</span> <span class="nav-text">File读写操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSV读写操作"><span class="nav-number">1.4.5.</span> <span class="nav-text">CSV读写操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON读写操作"><span class="nav-number">1.4.6.</span> <span class="nav-text">JSON读写操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XLS文件操作"><span class="nav-number">1.4.7.</span> <span class="nav-text">XLS文件操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件目录操作"><span class="nav-number">2.</span> <span class="nav-text">文件目录操作 </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#序列化操作"><span class="nav-number">3.</span> <span class="nav-text">序列化操作 </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现实需求"><span class="nav-number">3.1.1.</span> <span class="nav-text">现实需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化-反序列化"><span class="nav-number">3.1.2.</span> <span class="nav-text">序列化/反序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关模块"><span class="nav-number">3.1.3.</span> <span class="nav-text">相关模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#json模块"><span class="nav-number">3.2.</span> <span class="nav-text">json模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#序列化与反序列化"><span class="nav-number">3.2.1.</span> <span class="nav-text">序列化与反序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Json与Python之间数据类型对应关系"><span class="nav-number">3.2.2.</span> <span class="nav-text">Json与Python之间数据类型对应关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">3.2.3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码示例"><span class="nav-number">3.2.4.</span> <span class="nav-text">代码示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pickle模块"><span class="nav-number">3.3.</span> <span class="nav-text">pickle模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pickle模块与json模块对比"><span class="nav-number">3.3.1.</span> <span class="nav-text">pickle模块与json模块对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pickle模块提供的相关函数"><span class="nav-number">3.3.2.</span> <span class="nav-text">pickle模块提供的相关函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shelve模块"><span class="nav-number">3.4.</span> <span class="nav-text">shelve模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对比"><span class="nav-number">3.5.1.</span> <span class="nav-text">对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建议"><span class="nav-number">3.5.2.</span> <span class="nav-text">建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法总览"><span class="nav-number">3.5.3.</span> <span class="nav-text">方法总览</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YuJianZhe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">85.1k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("thLnMG4yyzyRoUseIB7W0sFD-gzGzoHsz", "i7FOQgwimm0kSQgUNB00yASj");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

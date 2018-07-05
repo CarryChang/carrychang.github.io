@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,时间模块," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在平常的代码中，我们常常需要与时间打交道。在Python中，与时间处理有关的模块就包括：time，datetime以及calendar。  在Python中，通常有这几种方式来表示时间： 时间戳 格式化的时间字符串 时间元组（struct_time）共九个元素。由于Python的time模块实现主要">
+<meta name="keywords" content="Python,时间模块">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python语言之时间模块">
+<meta property="og:url" content="https://gofisher.github.io/2018/07/04/Python语言/index.html">
+<meta property="og:site_name" content="Yu&#39;s-Blog">
+<meta property="og:description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在平常的代码中，我们常常需要与时间打交道。在Python中，与时间处理有关的模块就包括：time，datetime以及calendar。  在Python中，通常有这几种方式来表示时间： 时间戳 格式化的时间字符串 时间元组（struct_time）共九个元素。由于Python的time模块实现主要">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gofisher.github.io/2018/07/04/Python语言/images/时间操作.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/07/04/Python语言/images/时间戳.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/07/04/Python语言/images/时间转换.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/07/04/Python语言/images/内置函数.jpg">
+<meta property="og:image" content="https://gofisher.github.io/2018/07/04/Python语言/images/arrow标记.png">
+<meta property="og:updated_time" content="2018-07-04T13:12:09.864Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python语言之时间模块">
+<meta name="twitter:description" content="简介&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在平常的代码中，我们常常需要与时间打交道。在Python中，与时间处理有关的模块就包括：time，datetime以及calendar。  在Python中，通常有这几种方式来表示时间： 时间戳 格式化的时间字符串 时间元组（struct_time）共九个元素。由于Python的time模块实现主要">
+<meta name="twitter:image" content="https://gofisher.github.io/2018/07/04/Python语言/images/时间操作.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gofisher.github.io/2018/07/04/Python语言/"/>
+
+
+
+
+
+<script src="https://neveryu.github.io/js/src/pace.min.js"></script>
+
+
+  <title>Python语言之时间模块 | Yu's-Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1682bd44752aaf16cf4a535a8ee72de9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yu's-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">余心所善，九死未悔！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gofisher.github.io/2018/07/04/Python语言/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YuJianZhe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yu's-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python语言之时间模块</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-04T16:42:21+08:00">
+                2018-07-04
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; 更新于
+              <time itemprop="dateUpdated" datetime="2018-07-04T21:12:09+08:00" content="2018-07-04">
+                2018-07-04
+              </time>
+            </span>
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python语言/" itemprop="url" rel="index">
+                    <span itemprop="name">Python语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/04/Python语言/" class="leancloud_visitors" data-flag-title="Python语言之时间模块">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6,000字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  28 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在平常的代码中，我们常常需要与时间打交道。在Python中，与时间处理有关的模块就包括：time，datetime以及calendar。</p>
+<ul>
+<li>在Python中，通常有这几种方式来表示时间：<ul>
+<li><strong>时间戳</strong></li>
+<li><strong>格式化的时间字符串</strong></li>
+<li><strong>时间元组（struct_time）共九个元素。</strong><br>由于Python的time模块实现主要调用C库，所以各个平台可能有所不同。</li>
+</ul>
+</li>
+<li>UTC（Coordinated Universal Time，世界协调时）亦即<strong>格林威治天文时间</strong>，世界标准时间。在中国为UTC+8。DST（Daylight Saving Time）即夏令时。</li>
+<li><strong>时间戳（timestamp）的方式</strong>：通常来说，时间戳表示的是从<strong>1970年1月1日00:00:00开始按秒计算的偏移量</strong>。返回时间戳方式的函数主要有time()，clock()等。</li>
+<li><strong>元组（struct_time）方式</strong>：struct_time元组共有9个元素，返回struct_time的函数主要有gmtime()，localtime()，strptime()。<a id="more"></a>
+</li>
+</ul>
+<p><strong><center>Python处理时间的库</center></strong></p>
+<p><img src="images/时间操作.png" alt="时间库"></p>
+<h1 id="时间和日期"><a href="#时间和日期" class="headerlink" title="时间和日期"></a>时间和日期</h1><h2 id="时间戳-Timestamp"><a href="#时间戳-Timestamp" class="headerlink" title="时间戳(Timestamp)"></a>时间戳(Timestamp)</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间戳（timestamp），一个能表示一份数据在某个特定时间之前已经存在的、 完整的、 可验证的数据,<strong>通常是一个字符序列，唯一地标识某一刻的时间</strong>。使用数字签名技术产生的数据， 签名的对象包括了原始文件信息、 签名参数、 签名时间等信息。广泛的运用在知识产权保护、 合同签字、 金融帐务、 电子报价投标、 股票交易等方面。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间戳是指<strong>格林威治时间1970年01月01日00时00分00秒(北京时间1970年01月01日08时00分00秒)起至现在的总秒数</strong>。<br><img src="images/时间戳.jpg" alt="时间戳"></p>
+<h2 id="时间格式化-Format-time"><a href="#时间格式化-Format-time" class="headerlink" title="时间格式化(Format_time)"></a>时间格式化(Format_time)</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;datetime、date、time都提供了strftime()方法，<strong>该方法接受一个格式字符串</strong>，输出日期时间的字符串表示,格式化符号如下：</p>
+<table>
+<thead>
+<tr>
+<th>格式符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%a</td>
+<td>星期的英文单词的缩写：如星期一， 则返回 Mon</td>
+</tr>
+<tr>
+<td>%A</td>
+<td>星期的英文单词的全拼：如星期一，返回 Monday</td>
+</tr>
+<tr>
+<td>%b</td>
+<td>月份的英文单词的缩写：如一月， 则返回 Jan</td>
+</tr>
+<tr>
+<td>%B</td>
+<td>月份的引文单词的缩写：如一月， 则返回 January</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>返回datetime的字符串表示，如03/08/15 23:01:26</td>
+</tr>
+<tr>
+<td>%d</td>
+<td>返回的是当前时间是当前月的第几天</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>微秒的表示： 范围: [0,999999]</td>
+</tr>
+<tr>
+<td>%H</td>
+<td>以24小时制表示当前小时</td>
+</tr>
+<tr>
+<td>%I</td>
+<td>以12小时制表示当前小时</td>
+</tr>
+<tr>
+<td>%j</td>
+<td>返回 当天是当年的第几天 范围[001,366]</td>
+</tr>
+<tr>
+<td>%m</td>
+<td>返回月份 范围[0,12]</td>
+</tr>
+<tr>
+<td>%M</td>
+<td>返回分钟数 范围 [0,59]</td>
+</tr>
+<tr>
+<td>%P</td>
+<td>返回是上午还是下午–AM or PM</td>
+</tr>
+<tr>
+<td>%S</td>
+<td>返回秒数范围 [0,61]参看python手册</td>
+</tr>
+<tr>
+<td>%U</td>
+<td>返回当周是当年的第几周 以周日为第一天</td>
+</tr>
+<tr>
+<td>%W</td>
+<td>返回当周是当年的第几周 以周一为第一天</td>
+</tr>
+<tr>
+<td>%w</td>
+<td>当天在当周的天数，范围为[0, 6]，6表示星期天</td>
+</tr>
+<tr>
+<td>%x</td>
+<td>日期的字符串表示 ：03/08/15</td>
+</tr>
+<tr>
+<td>%X</td>
+<td>时间的字符串表示 ：23:22:08</td>
+</tr>
+<tr>
+<td>%y</td>
+<td>两个数字表示的年份 15</td>
+</tr>
+<tr>
+<td>%Y</td>
+<td>四个数字表示的年份 2015</td>
+</tr>
+<tr>
+<td>%z</td>
+<td>与utc时间的间隔 （如果是本地时间，返回空字符串）</td>
+</tr>
+<tr>
+<td>%Z</td>
+<td>时区名称（如果是本地时间，返回空字符串）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="时间元祖-Struct-time"><a href="#时间元祖-Struct-time" class="headerlink" title="时间元祖(Struct_time)"></a>时间元祖(Struct_time)</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;返回struct_time的函数主要有gmtime()，localtime()，strptime()。</p>
+<table>
+<thead>
+<tr>
+<th>索引（Index）</th>
+<th>属性（Attribute）</th>
+<th>值（Values）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>tm_year（年）</td>
+<td>比如2011</td>
+</tr>
+<tr>
+<td>1</td>
+<td>tm_mon（月）</td>
+<td>1 - 12</td>
+</tr>
+<tr>
+<td>2</td>
+<td>tm_mday（日）</td>
+<td>1 - 31</td>
+</tr>
+<tr>
+<td>3</td>
+<td>tm_hour（时）</td>
+<td>0 - 23</td>
+</tr>
+<tr>
+<td>4</td>
+<td>tm_min（分）</td>
+<td>0 - 59</td>
+</tr>
+<tr>
+<td>5</td>
+<td>tm_sec（秒）</td>
+<td>0 - 61</td>
+</tr>
+<tr>
+<td>6</td>
+<td>tm_wday（weekday）</td>
+<td>0 - 6（0表示周日）</td>
+</tr>
+<tr>
+<td>7</td>
+<td>tm_yday（一年中的第几天）</td>
+<td>1 - 366</td>
+</tr>
+<tr>
+<td>8</td>
+<td>tm_isdst（是否是夏令时）</td>
+<td>默认为-1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="内置标准库"><a href="#内置标准库" class="headerlink" title="内置标准库"></a>内置标准库</h1><h2 id="Time模块"><a href="#Time模块" class="headerlink" title="Time模块"></a><a href="https://docs.python.org/3/library/time.html" target="_blank" rel="noopener">Time模块</a></h2><p>在time模块中，时间有三种表现形式：</p>
+<ul>
+<li>时间戳，一般指Unix时间戳，是从<strong>1970年开始到现在的秒数</strong>。</li>
+<li>本地时间的struct_time形式：<strong>一个长度为11的命名元组</strong>。</li>
+<li>UTC时间的struct_time形式：一个长度为11的命名元组，类似于本地时间，只不过为UTC时间。</li>
+</ul>
+<p><strong>其中后两者的类型一致，区别在于一个是本地时间（localtime），一个是utc时间。</strong><br>各表现形式如下：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">print(<span class="string">"time stamp:"</span>, time.time()) <span class="comment"># 时间戳</span></span><br><span class="line"><span class="comment"># time stamp: 1530605181.4410665</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"local time:"</span>, time.localtime()) <span class="comment"># 北京时间（东八区）</span></span><br><span class="line"><span class="comment"># local time: time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=16, tm_min=6, tm_sec=21, tm_wday=1, tm_yday=184, tm_isdst=0)</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"utc time:"</span>, time.gmtime()) <span class="comment"># 世界时间</span></span><br><span class="line"> <span class="comment"># utc time: time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=8, tm_min=6, tm_sec=21, tm_wday=1, tm_yday=184, tm_isdst=0)</span></span><br></pre></td></tr></table></figure></p>
+<p>各种时间形式和字符串之间的转换：<br><img src="images/时间转换.jpg" alt="时间转换"></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line"></span><br><span class="line">time_stamp = time.time()  <span class="comment"># 时间戳</span></span><br><span class="line">local_time = time.localtime(time_stamp)  <span class="comment"># 时间戳转struct_time类型的本地时间</span></span><br><span class="line">utc_time = time.gmtime(time_stamp)  <span class="comment"># 时间戳转struct_time类型的utc时间</span></span><br><span class="line">print(<span class="string">"时间戳："</span>, time_stamp, <span class="string">"，转换为本地时间："</span>, local_time)</span><br><span class="line"><span class="comment"># 时间戳： 1530606422.775597 ，转换为本地时间： time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=16, tm_min=27, tm_sec=2, tm_wday=1, tm_yday=184, tm_isdst=0)</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"时间戳："</span>, time_stamp, <span class="string">"，转换为utc时间："</span>, utc_time)</span><br><span class="line"><span class="comment"># 时间戳： 1530606422.775597 ，转换为utc时间： time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=8, tm_min=27, tm_sec=2, tm_wday=1, tm_yday=184, tm_isdst=0)</span></span><br><span class="line"></span><br><span class="line">time_stamp_1 = time.mktime(local_time)  <span class="comment"># struct_time类型的本地时间转时间戳</span></span><br><span class="line">time_stamp_2 = calendar.timegm(utc_time)  <span class="comment"># struct_time类型的utc时间转时间戳</span></span><br><span class="line">print(<span class="string">"本地时间："</span>, local_time, <span class="string">"，转换为时间戳："</span>, time_stamp_1)</span><br><span class="line"><span class="comment"># 本地时间： time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=16, tm_min=27, tm_sec=2, tm_wday=1, tm_yday=184, tm_isdst=0) ，转换为时间戳： 1530606422.0</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"utc时间："</span>, utc_time, <span class="string">"，转换为时间戳："</span>, time_stamp_2)</span><br><span class="line"><span class="comment"># utc时间： time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=8, tm_min=27, tm_sec=2, tm_wday=1, tm_yday=184, tm_isdst=0) ，转换为时间戳： 1530606422</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 各种时间形式和字符串之间的转换(常用):</span></span><br><span class="line">str_time = time.ctime(time_stamp)  <span class="comment"># 时间戳转字符串(本地时间字符串)</span></span><br><span class="line">print(<span class="string">"时间戳"</span>, time_stamp, <span class="string">"，转换为本地时间字符串："</span>, str_time)</span><br><span class="line"><span class="comment"># 时间戳 1530607825.8346324 ，转换为本地时间字符串： Tue Jul  3 16:50:25 2018</span></span><br><span class="line"></span><br><span class="line">str_time = time.asctime(local_time)  <span class="comment"># struct_time类型的本地时间转字符串</span></span><br><span class="line">print(<span class="string">"struct_time类型的本地时间"</span>, local_time, <span class="string">"，转换为字符串："</span>, str_time)</span><br><span class="line"><span class="comment"># struct_time类型的本地时间 time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=16, tm_min=50, tm_sec=25, tm_wday=1, tm_yday=184, tm_isdst=0) ，转换为字符串： Tue Jul  3 16:50:25 2018</span></span><br><span class="line"></span><br><span class="line">str_time = time.asctime(utc_time)  <span class="comment"># struct_time类型的utc时间转字符串</span></span><br><span class="line">print(<span class="string">"struct_time类型的utc时间"</span>, utc_time, <span class="string">"，转换为字符串："</span>, str_time)</span><br><span class="line"><span class="comment"># struct_time类型的utc时间 time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=8, tm_min=50, tm_sec=25, tm_wday=1, tm_yday=184, tm_isdst=0) ，转换为字符串： Tue Jul  3 08:50:25 2018</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># struct_time类型的本地时间转字符串：自定义格式</span></span><br><span class="line">set_time = time.strftime(<span class="string">"%Y-%m-%d, %H:%M:%S, %w"</span>, local_time)</span><br><span class="line">print(<span class="string">"struct_time类型的本地时间"</span>, local_time, <span class="string">"，转换为字符串："</span>, set_time)</span><br><span class="line"><span class="comment"># struct_time类型的本地时间 time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=16, tm_min=50, tm_sec=25, tm_wday=1, tm_yday=184, tm_isdst=0) ，转换为字符串： 2018-07-03, 16:50:25, 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># struct_time类型的utc时间转字符串：自定义格式</span></span><br><span class="line">set_time = time.strftime(<span class="string">"%Y-%m-%d, %H:%M:%S, %w"</span>, utc_time)</span><br><span class="line">print(<span class="string">"struct_time类型的本地时间"</span>, utc_time, <span class="string">"，转换为字符串："</span>, set_time)</span><br><span class="line"><span class="comment"># struct_time类型的本地时间 time.struct_time(tm_year=2018, tm_mon=7, tm_mday=3, tm_hour=8, tm_min=50, tm_sec=25, tm_wday=1, tm_yday=184, tm_isdst=0) ，转换为字符串： 2018-07-03, 08:50:25, 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 字符串转struct_time类型</span></span><br><span class="line">struct_time1 = time.strptime(<span class="string">"2016-11-15, 15:32:12, 2"</span>, <span class="string">"%Y-%m-%d, %H:%M:%S, %w"</span>)</span><br><span class="line">struct_time2 = time.strptime(<span class="string">"20161115"</span>, <span class="string">"%Y%m%d"</span>)</span><br><span class="line">print(<span class="string">"2016-11-15, 15:32:12, 2 匹配 %Y-%m-%d, %H:%M:%S, %w："</span>, struct_time1)</span><br><span class="line"><span class="comment"># 2016-11-15, 15:32:12, 2 匹配 %Y-%m-%d, %H:%M:%S, %w： time.struct_time(tm_year=2016, tm_mon=11, tm_mday=15, tm_hour=15, tm_min=32, tm_sec=12, tm_wday=1, tm_yday=320, tm_isdst=-1)</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"20161115 匹配 %Y%m%:"</span>, struct_time2)</span><br><span class="line"><span class="comment"># 20161115 匹配 %Y%m%: time.struct_time(tm_year=2016, tm_mon=11, tm_mday=15, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=1, tm_yday=320, tm_isdst=-1)</span></span><br></pre></td></tr></table></figure>
+<h3 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time 模块包含了以下内置函数，既有时间处理的，也有转换时间格式的：<br><img src="images/内置函数.jpg" alt="内置函数"></p>
+<p>Time模块包含了以下2个非常重要的属性：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>time.timezone</td>
+<td>属性time.timezone是当地时区（未启动夏令时）距离格林威治的偏移秒数（&gt;0，美洲;&lt;=0大部分欧洲，亚洲，非洲）。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>time.tzname</td>
+<td>属性time.tzname包含一对根据情况的不同而不同的字符串，分别是带夏令时的本地时区名称，和不带的。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="延伸拓展"><a href="#延伸拓展" class="headerlink" title="延伸拓展"></a>延伸拓展</h3><ul>
+<li><strong>CPU time</strong>和<strong>wall time</strong>的区别<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有时候需要统计程序的运行时间，这是我们一般会做一个艰难的选择：是使用time.clock()还是time.time(),首先需要明确几个概念：CPU time和wall time。<ul>
+<li><strong>CPU time是当CPU完全被某个进程所使用时所花费的时间</strong>，因为CPU并不是被某个进程单独占用的，在你的进程执行的这段时间中，你的进程可能只占用了其中若干的时间片（由操作系统决定），CPU时间只是处理你的进程占用的那些时间片的相加，对于这段时间中由其他进程占用的时间片是不纳入你的进程的CPU时间的。</li>
+<li>wall time从名字上来看就是墙上时钟的意思，<strong>可以理解为进程从开始到结束的时间，包括其他进程占用的时间</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在Python中有哥模块专门用于统计程序运行时间的模块：timeit。在timeit的源代码中针对不同的系统做了不同的定义：<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> sys.platform == <span class="string">"win32"</span>:</span><br><span class="line">    <span class="comment"># On Windows, the best timer is time.clock()</span></span><br><span class="line">    default_timer = time.clock</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="comment"># On most other platforms the best timer is time.time()</span></span><br><span class="line">    default_timer = time.time</span><br></pre></td></tr></table></figure></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从中我们可以看出<strong>在Windows中最好使用clock()函数，而在其他平台上最好使用time.time()</strong>。程序的执行时间总是和运行环境相关的，因为程序不可能运行在一个拥有无限的资源的环境中，而且在测量运行时间时，多次测量取平均值要比只运行一次得到的结果要更好。</p>
+<h2 id="Datetime模块"><a href="#Datetime模块" class="headerlink" title="Datetime模块"></a><a href="https://docs.python.org/3/library/datetime.html" target="_blank" rel="noopener">Datetime模块</a></h2><p>datatime模块重新封装了time模块，提供更多接口，该模块中包含4个主要的类：</p>
+<ul>
+<li>datetime.time：<strong>时间类</strong>，只包含时、分、秒、微秒等时间信息。</li>
+<li>datetime.date：<strong>日期类</strong>，只包含年、月、日、星期等日期信息。</li>
+<li>datetime.datetime：<strong>日期时间类</strong>，包含以上两者的全部信息。</li>
+<li>datetime.timedelta：<strong>时间日期差值类</strong>，用来表示两个datetime之间的差值。</li>
+</ul>
+<h3 id="datetime-time类"><a href="#datetime-time类" class="headerlink" title="datetime.time类"></a>datetime.time类</h3><blockquote>
+<p>datetime.time(hour[ , minute[ , second[ , microsecond[ , tzinfo,[fold ]] ] ] ] )</p>
+</blockquote>
+<p>所有参数都是可选的。 tzinfo可以是None，或者是tzinfo子类的实例。其余参数可以是整数，范围如下：</p>
+<ul>
+<li>0 &lt;= hour &lt; 24，</li>
+<li>0 &lt;= minute &lt; 60，</li>
+<li>0 &lt;= second &lt; 60，</li>
+<li>0 &lt;= microsecond &lt; 1000000，</li>
+<li>fold in [0, 1]。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(datetime.time())</span><br><span class="line">print(datetime.time(<span class="number">23</span>, <span class="number">23</span>, <span class="number">30</span>, <span class="number">123123</span>))</span><br><span class="line"><span class="comment"># 00:00:00</span></span><br><span class="line"><span class="comment"># 23:23:30.123123</span></span><br></pre></td></tr></table></figure>
+<p><strong>静态字段</strong></p>
+<ul>
+<li>time.min：time类所能表示的最小时间，time.min = time(0, 0, 0, 0)。</li>
+<li>time.max：time类所能表示的最大时间，time.max = time(23, 59, 59, 999999)。</li>
+<li>time.resolution：时间的最小单位，这里是1微秒</li>
+</ul>
+<p><strong>属性和方法</strong></p>
+<ul>
+<li>t1.hour：时</li>
+<li>t1.minute：分</li>
+<li>t1.second：秒</li>
+<li>t1.microsecond：微秒</li>
+<li>t1.tzinfo：时区信息</li>
+<li>t1.replace([ hour[ , minute[ , second[ , microsecond[ , tzinfo] ] ] ] ] )：创建一个新的时间对象，用参数指定的时、分、秒、微秒代替原有对象中的属性（原有对象仍保持不变）</li>
+<li>t1.isoformat()：返回型如”HH:MM:SS”格式的字符串表示</li>
+<li>t1.strftime(fmt)：同time模块中的format</li>
+</ul>
+<p><strong>代码实例:</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tm = datetime.time(<span class="number">9</span>, <span class="number">23</span>, <span class="number">45</span>, <span class="number">23123</span>)  <span class="comment"># 初始化time对象</span></span><br><span class="line">print(<span class="string">"time:"</span>,tm) <span class="comment"># time: 09:23:45.023123</span></span><br><span class="line">print(<span class="string">"时:"</span>, tm.hour) <span class="comment"># 时: 9</span></span><br><span class="line">print(<span class="string">"分:"</span>, tm.minute) <span class="comment"># 分: 23</span></span><br><span class="line">print(<span class="string">"秒:"</span>, tm.second) <span class="comment"># 秒: 45</span></span><br><span class="line">print(<span class="string">"微秒:"</span>, tm.microsecond) <span class="comment"># 微秒: 23123</span></span><br><span class="line">print(<span class="string">"时区信息:"</span>, tm.tzinfo) <span class="comment"># 时区信息: None</span></span><br><span class="line">print(<span class="string">"替换对应的时间:"</span>, tm.replace(<span class="number">10</span>)) <span class="comment"># 替换对应的时间: 10:23:45.023123</span></span><br><span class="line">print(<span class="string">"返回格式化时间字符串:"</span>, tm.isoformat())<span class="comment"># 返回格式化时间字符串: 09:23:45.023123</span></span><br><span class="line">s = tm.strftime(<span class="string">"%H:%M:%S %Z"</span>)</span><br><span class="line">print(<span class="string">"格式化字符串:"</span>, s)<span class="comment"># 格式化字符串: 09:23:45</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="datetime-date类"><a href="#datetime-date类" class="headerlink" title="datetime.date类"></a><a href="https://docs.python.org/3/library/datetime.html#date-objects" target="_blank" rel="noopener">datetime.date类</a></h3><blockquote>
+<p>datetime.date(year, month, day)</p>
+</blockquote>
+<p><strong>所有参数都是必需的</strong>。参数可以是整数，范围如下：</p>
+<ul>
+<li>MINYEAR &lt;= year &lt;= MAXYEAR</li>
+<li>1 &lt;= month &lt;= 12</li>
+<li>1 &lt;= day &lt;= number of days in the given month and year</li>
+</ul>
+<p><strong>静态方法和字段</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- date.max、date.min：date对象所能表示的最大、最小日期；</span><br><span class="line">- date.resolution：date对象表示日期的最小单位。这里是天。</span><br><span class="line">- date.today()：返回一个表示当前本地日期的date对象；</span><br><span class="line">- date.fromtimestamp(timestamp)：根据给定的时间戮，返回一个date对象；</span><br></pre></td></tr></table></figure></p>
+<p><strong>代码示例</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">time_stamp = time.time()</span><br><span class="line">print(time_stamp) <span class="comment"># 1530672191.8658917</span></span><br><span class="line">dt = datetime.date.fromtimestamp(time_stamp)</span><br><span class="line">print(dt) <span class="comment"># 2018-07-04</span></span><br><span class="line">print(dt.min) <span class="comment"># 0001-01-01</span></span><br><span class="line">print(dt.max) <span class="comment"># 9999-12-31</span></span><br><span class="line">print(dt.resolution) <span class="comment"># 1 day, 0:00:00</span></span><br><span class="line">print(dt.today()) <span class="comment"># 2018-07-04</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>方法和属性</strong></p>
+<ul>
+<li>d1.year、date.month、date.day：年、月、日；</li>
+<li>d1.replace(year, month, day)：生成一个新的日期对象，用参数指定的年，月，日代替原有对象中的属性。（原有对象仍保持不变）</li>
+<li>d1.timetuple()：返回日期对应的time.struct_time对象；</li>
+<li>d1.weekday()：返回weekday，如果是星期一，返回0；如果是星期2，返回1，以此类推；</li>
+<li>d1.isoweekday()：返回weekday，如果是星期一，返回1；如果是星期2，返回2，以此类推；</li>
+<li>d1.isocalendar()：返回格式如(year，month，day)的元组；</li>
+<li>d1.isoformat()：返回格式如’YYYY-MM-DD’的字符串；</li>
+<li>d1.strftime(fmt)：和time模块format相同。</li>
+</ul>
+<p><strong>代码示例</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">td = datetime.date.today()</span><br><span class="line">print(td) <span class="comment"># 2018-07-04</span></span><br><span class="line">print(td.year, td.month, td.day) <span class="comment"># 2018 7 4</span></span><br><span class="line">print(td.replace(month=<span class="number">8</span>)) <span class="comment"># 2018-08-04</span></span><br><span class="line">print(td.timetuple()) <span class="comment"># time.struct_time(tm_year=2018, tm_mon=7, tm_mday=4, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=2, tm_yday=185, tm_isdst=-1)</span></span><br><span class="line">print(td.weekday()) <span class="comment"># 2</span></span><br><span class="line">print(td.isoweekday()) <span class="comment"># 3</span></span><br><span class="line">print(td.isocalendar()) <span class="comment"># (2018, 27, 3)</span></span><br><span class="line">print(td.isoformat()) <span class="comment"># 2018-07-04</span></span><br><span class="line">print(td.strftime(<span class="string">"%Y-%m-%d"</span>)) <span class="comment"># 2018-07-04</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="datetime-datetime类"><a href="#datetime-datetime类" class="headerlink" title="datetime.datetime类"></a><a href="https://docs.python.org/3/library/datetime.html#datetime-objects" target="_blank" rel="noopener">datetime.datetime类</a></h3><blockquote>
+<p>datetime.datetime (year, month, day[ , hour[ , minute[ , second[ , microsecond[ , tzinfo] ] ] ] ] )</p>
+</blockquote>
+<p>datetime相当于date和time结合起来，<strong>年，月和日的参数是必需的</strong>。 tzinfo可以是None，或者是tzinfo子类的实例。其余参数可以是整数，范围如下：</p>
+<ul>
+<li>MINYEAR &lt;= year &lt;= MAXYEAR，</li>
+<li>1 &lt;= month &lt;= 12，</li>
+<li>1 &lt;= day &lt;= number of days in the given month and year，</li>
+<li>0 &lt;= hour &lt; 24，</li>
+<li>0 &lt;= minute &lt; 60，</li>
+<li>0 &lt;= second &lt; 60，</li>
+<li>0 &lt;= microsecond &lt; 1000000，</li>
+<li>fold in [0, 1]。</li>
+</ul>
+<p><strong>静态方法和字段</strong></p>
+<ul>
+<li>datetime.today()：返回一个表示当前本地时间的datetime对象；</li>
+<li>datetime.now([tz])：返回一个表示当前本地时间的datetime对象，如果提供了参数tz，则获取tz参数所指时区的本地时间；</li>
+<li>datetime.utcnow()：返回一个当前utc时间的datetime对象；#格林威治时间</li>
+<li>datetime.fromtimestamp(timestamp[, tz])：根据时间戮创建一个datetime对象，参数tz指定时区信息；</li>
+<li>datetime.utcfromtimestamp(timestamp)：根据时间戮创建一个datetime对象；</li>
+<li>datetime.combine(date, time)：根据date和time，创建一个datetime对象；</li>
+<li>datetime.strptime(date_string, format)：将格式字符串转换为datetime对象；</li>
+</ul>
+<p><strong>代码示例</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">time_stamp = time.time()</span><br><span class="line">print(datetime.datetime.today()) <span class="comment"># 2018-07-04 13:46:57.688327</span></span><br><span class="line">print(datetime.datetime.now()) <span class="comment"># 2018-07-04 13:46:57.688327</span></span><br><span class="line">print(datetime.datetime.utcnow()) <span class="comment"># 2018-07-04 05:46:57.688327</span></span><br><span class="line">print(datetime.datetime.fromtimestamp(time_stamp)) <span class="comment"># 2018-07-04 13:46:57.688327</span></span><br><span class="line">print(datetime.datetime.utcfromtimestamp(time_stamp))<span class="comment"># 2018-07-04 05:46:57.688327</span></span><br><span class="line">print(datetime.datetime.combine(datetime.date.today(), datetime.time(<span class="number">13</span>, <span class="number">23</span>, <span class="number">23</span>, <span class="number">23213</span>))) <span class="comment"># 2018-07-04 13:23:23.023213</span></span><br><span class="line">print(datetime.datetime.strptime(<span class="string">"20180111"</span>, <span class="string">"%Y%m%d"</span>)) <span class="comment"># 2018-01-11 00:00:00</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>方法和属性</strong></p>
+<ul>
+<li>dt.year、month、day、hour、minute、second、microsecond、tzinfo：</li>
+<li>dt.date()：获取date对象；</li>
+<li>dt.time()：获取time对象；</li>
+<li>dt. replace([ year[ , month[ , day[ , hour[ , minute[ , second[ , microsecond[ , tzinfo] ] ] ] ] ] ] ]):替换时间；</li>
+<li>dt. timetuple()：本地时间元祖；</li>
+<li>dt. utctimetuple()：国际时间元祖；</li>
+<li>dt. toordinal()：返回日期的格雷戈里序数；</li>
+<li>dt. weekday()：返回weekday，如果是星期一，返回0；如果是星期2，返回1，以此类推；</li>
+<li>dt. isocalendar ()：返回weekday，如果是星期一，返回1；如果是星期2，返回2，以此类推；</li>
+<li>dt. isoformat([ sep] )：返回格式如’YYYY-MM-DD’的字符串；</li>
+<li>dt. ctime()：返回一个日期时间的C格式字符串，等效于time.ctime(time.mktime(dt.timetuple()))；</li>
+<li><p>dt. strftime (format)：和time模块format相同。</p>
+<p><strong>代码示例</strong></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> datetime_str = datetime.datetime.today()</span><br><span class="line">print(datetime_str) <span class="comment"># 2018-07-04 14:07:49.378147</span></span><br><span class="line">print(datetime_str.year, datetime_str.month, datetime_str.day, datetime_str.hour, datetime_str.minute,</span><br><span class="line">      datetime_str.second, datetime_str.microsecond) <span class="comment"># 2018 7 4 14 7 49 378147</span></span><br><span class="line">print(datetime_str.date(), datetime_str.time()) <span class="comment"># 2018-07-04 14:07:49.378147</span></span><br><span class="line">print(datetime_str.replace(year=<span class="number">2019</span>)) <span class="comment"># 2019-07-04 14:07:49.378147</span></span><br><span class="line">print(datetime_str.timetuple()) <span class="comment"># time.struct_time(tm_year=2018, tm_mon=7, tm_mday=4, tm_hour=14, tm_min=7, tm_sec=49, tm_wday=2, tm_yday=185, tm_isdst=-1)</span></span><br><span class="line">print(datetime_str.utctimetuple()) <span class="comment"># time.struct_time(tm_year=2018, tm_mon=7, tm_mday=4, tm_hour=14, tm_min=7, tm_sec=49, tm_wday=2, tm_yday=185, tm_isdst=0)</span></span><br><span class="line">print(datetime_str.toordinal()) <span class="comment"># 736879</span></span><br><span class="line">print(datetime_str.weekday()) <span class="comment"># 2</span></span><br><span class="line">print(datetime_str.isoweekday()) <span class="comment"># 3</span></span><br><span class="line">print(datetime_str.isoformat()) <span class="comment"># 2018-07-04T14:07:49.378147</span></span><br><span class="line">print(datetime_str.ctime()) <span class="comment"># Wed Jul  4 14:07:49 2018</span></span><br><span class="line">print(datetime_str.strptime(<span class="string">"20191222"</span>, <span class="string">"%Y%m%d"</span>)) <span class="comment"># 2019-12-22 00:00:00</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="datetime-timedelta类"><a href="#datetime-timedelta类" class="headerlink" title="datetime.timedelta类"></a><a href="https://docs.python.org/3/library/datetime.html#timedelta-objects" target="_blank" rel="noopener">datetime.timedelta类</a></h3><blockquote>
+<p>datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)</p>
+</blockquote>
+<p>使用timedelta可以很方便的在日期上做天days，小时hour，分钟，秒，毫秒，微妙的时间计算，如果要计算月份则需要另外的办法。所有参数都是可选的，默认为0。参数可能是整数或浮点数，可能是正数或负数。<br><strong>支持的操作</strong></p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t1 = t2 + t3</td>
+<td>Sum of t2 and t3. Afterwards t1-t2 == t3 and t1-t3 == t2 are true. (1)</td>
+</tr>
+<tr>
+<td>t1 = t2 - t3</td>
+<td>Difference of t2 and t3. Afterwards t1 == t2 - t3 and t2 == t1 + t3 are true. (1)</td>
+</tr>
+<tr>
+<td>t1 = t2 <em> i or t1 = i </em> t2</td>
+<td>Delta multiplied by an integer. Afterwards t1 // i == t2 is true, provided i != 0.</td>
+</tr>
+<tr>
+<td></td>
+<td>In general, t1 <em> i == t1 </em> (i-1) + t1 is true. (1)</td>
+</tr>
+<tr>
+<td>t1 = t2 <em> f or t1 = f </em> t2</td>
+<td>Delta multiplied by a float. The result is rounded to the nearest multiple of timedelta.resolution using round-half-to-even.</td>
+</tr>
+<tr>
+<td>f = t2 / t3</td>
+<td>Division (3) of t2 by t3. Returns a float object.</td>
+</tr>
+<tr>
+<td>t1 = t2 / f or t1 = t2 / i</td>
+<td>Delta divided by a float or an int. The result is rounded to the nearest multiple of timedelta.resolution using round-half-to-even.</td>
+</tr>
+<tr>
+<td>t1 = t2 // i or t1 = t2 // t3</td>
+<td>The floor is computed and the remainder (if any) is thrown away. In the second case, an integer is returned. (3)</td>
+</tr>
+<tr>
+<td>t1 = t2 % t3</td>
+<td>The remainder is computed as a timedelta object. (3)</td>
+</tr>
+<tr>
+<td>q, r = divmod(t1, t2)</td>
+<td>Computes the quotient and the remainder: q = t1 // t2 (3) and r = t1 % t2. q is an integer and r is a timedelta object.</td>
+</tr>
+<tr>
+<td>+t1</td>
+<td>Returns a timedelta object with the same value. (2)</td>
+</tr>
+<tr>
+<td>-t1</td>
+<td>equivalent to timedelta(-t1.days, -t1.seconds, -t1.microseconds), and to t1* -1. (1)(4)</td>
+</tr>
+<tr>
+<td>str(t)</td>
+<td>Returns a string in the form [D day[s], ][H]H:MM:SS[.UUUUUU], where D is negative for negative t. (5)</td>
+</tr>
+<tr>
+<td>repr(t)</td>
+<td>Returns a string representation of the timedelta object as a constructor call with canonical attribute values.</td>
+</tr>
+</tbody>
+</table>
+<p>abs(t)|    equivalent to +t when t.days &gt;= 0, and to -t when t.days &lt; 0. (2)|</p>
+<h2 id="calendar模块"><a href="#calendar模块" class="headerlink" title="calendar模块"></a><a href="https://docs.python.org/3/library/calendar.html?highlight=calendar#module-calendar" target="_blank" rel="noopener">calendar模块</a></h2><p>此模块的函数都是日历相关的，例如打印某月的字符月历。星期一是默认的每周<strong>第一天，星期天是默认的最后一天</strong>。更改设置需调用calendar.setfirstweekday()函数。<br><strong>代码示例</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line">print(calendar.month(<span class="number">2018</span>, <span class="number">7</span>))</span><br><span class="line"><span class="comment">#      July 2018</span></span><br><span class="line"><span class="comment"># Mo Tu We Th Fr Sa Su</span></span><br><span class="line"><span class="comment">#                    1</span></span><br><span class="line"><span class="comment">#  2  3  4  5  6  7  8</span></span><br><span class="line"><span class="comment">#  9 10 11 12 13 14 15</span></span><br><span class="line"><span class="comment"># 16 17 18 19 20 21 22</span></span><br><span class="line"><span class="comment"># 23 24 25 26 27 28 29</span></span><br><span class="line"><span class="comment"># 30 31</span></span><br></pre></td></tr></table></figure></p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>calendar.calendar(year,w=2,l=1,c=6)</td>
+<td>返回一个多行字符串格式的year年年历，3个月一行，间隔距离为c。 每日宽度间隔为w字符。每行长度为21<em> W+18+2</em> C。l是每星期行数。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>calendar.firstweekday( )</td>
+<td>返回当前每周起始日期的设置。默认情况下，首次载入caendar模块时返回0，即星期一。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>calendar.isleap(year)</td>
+<td>是闰年返回True，否则为false。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>calendar.leapdays(y1,y2)</td>
+<td>返回在Y1，Y2两年之间的闰年总数。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>calendar.month(year,month,w=2,l=1)</td>
+<td>返回一个多行字符串格式的year年month月日历，两行标题，一周一行。每日宽度间隔为w字符。每行的长度为7* w+6。l是每星期的行数。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>calendar.monthcalendar(year,month)</td>
+<td>返回一个整数的单层嵌套列表。每个子列表装载代表一个星期的整数。Year年month月外的日期都设为0;范围内的日子都由该月第几日表示，从1开始。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>calendar.monthrange(year,month)</td>
+<td>返回两个整数。第一个是该月的星期几的日期码，第二个是该月的日期码。日从0（星期一）到6（星期日）;月从1到12。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>calendar.prcal(year,w=2,l=1,c=6)</td>
+<td>相当于 print calendar.calendar(year,w,l,c).</td>
+</tr>
+<tr>
+<td>9</td>
+<td>calendar.prmonth(year,month,w=2,l=1)</td>
+<td>相当于 print calendar.calendar（year，w，l，c）。</td>
+</tr>
+<tr>
+<td>10</td>
+<td>calendar.setfirstweekday(weekday)</td>
+<td>设置每周的起始日期码。0（星期一）到6（星期日）。</td>
+</tr>
+<tr>
+<td>11</td>
+<td>calendar.timegm(tupletime)</td>
+<td>和time.gmtime相反：接受一个时间元组形式，返回该时刻的时间戳（1970纪元后经过的浮点秒数）。</td>
+</tr>
+<tr>
+<td>12</td>
+<td>calendar.weekday(year,month,day)</td>
+<td>返回给定日期的日期码。0（星期一）到6（星期日）。月份为 1（一月） 到 12（12月）。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用时间问题"><a href="#常用时间问题" class="headerlink" title="常用时间问题"></a>常用时间问题</h2><h3 id="获取当前的日期、时间"><a href="#获取当前的日期、时间" class="headerlink" title="获取当前的日期、时间"></a>获取当前的日期、时间</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">dt = datetime.datetime.today()</span><br><span class="line">print(<span class="string">"当前的日期和时间:"</span>, dt)</span><br><span class="line">print(<span class="string">"当前的日期:"</span>, dt.date())</span><br><span class="line">print(<span class="string">"当前的时间:"</span>, dt.time())</span><br><span class="line"><span class="comment"># 当前的日期和时间: 2018-07-04 15:29:44.038381</span></span><br><span class="line"><span class="comment"># 当前的日期: 2018-07-04</span></span><br><span class="line"><span class="comment"># 当前的时间: 15:29:44.038381</span></span><br></pre></td></tr></table></figure>
+<h3 id="将字符串转化为日期"><a href="#将字符串转化为日期" class="headerlink" title="将字符串转化为日期"></a>将字符串转化为日期</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">strtotime</span><span class="params">(str_time, format)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> datetime.datetime.strptime(str_time, format)</span><br><span class="line">str_time1 = <span class="string">"2018723"</span></span><br><span class="line">format1 = <span class="string">"%Y%m%d"</span></span><br><span class="line">str_time2 = <span class="string">"2018-7-23"</span></span><br><span class="line">format2 = <span class="string">"%Y-%m-%d"</span></span><br><span class="line">str_time3 = <span class="string">"2018:7:23"</span></span><br><span class="line">format3 = <span class="string">"%Y:%m:%d"</span></span><br><span class="line">str_time4 = <span class="string">"2018年7月23日"</span></span><br><span class="line">format4 = <span class="string">"%Y年%m月%d日"</span></span><br><span class="line">print(strtotime(str_time1, format1).date())</span><br><span class="line">print(strtotime(str_time2, format2).date())</span><br><span class="line">print(strtotime(str_time3, format3).date())</span><br><span class="line">print(strtotime(str_time4, format4).date())</span><br><span class="line"><span class="comment"># 2018-07-23</span></span><br><span class="line"><span class="comment"># 2018-07-23</span></span><br><span class="line"><span class="comment"># 2018-07-23</span></span><br><span class="line"><span class="comment"># 2018-07-23</span></span><br></pre></td></tr></table></figure>
+<h3 id="给定日期向前后N天的日期"><a href="#给定日期向前后N天的日期" class="headerlink" title="给定日期向前后N天的日期"></a>给定日期向前后N天的日期</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">d1 = datetime.datetime.today().date()  <span class="comment"># 只取日期</span></span><br><span class="line">print(<span class="string">"今天："</span>, d1)  <span class="comment"># 今天</span></span><br><span class="line">d2 = datetime.timedelta(<span class="number">-1</span>)  <span class="comment"># 昨天</span></span><br><span class="line">d3 = datetime.timedelta(+<span class="number">1</span>)  <span class="comment"># 明天</span></span><br><span class="line">print(<span class="string">"昨天："</span>, d1 + d2, <span class="string">"，明天："</span>, d1 + d3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 今天： 2018-07-04</span></span><br><span class="line"><span class="comment"># 昨天： 2018-07-03 ，明天： 2018-07-05</span></span><br></pre></td></tr></table></figure>
+<h3 id="获取给定参数的前几天的日期，返回一个list"><a href="#获取给定参数的前几天的日期，返回一个list" class="headerlink" title="获取给定参数的前几天的日期，返回一个list"></a>获取给定参数的前几天的日期，返回一个list</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDayList</span><span class="params">(num)</span>:</span></span><br><span class="line">    today = datetime.datetime.today().date()</span><br><span class="line">    day = datetime.timedelta(<span class="number">-1</span>)</span><br><span class="line">    date_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(num):</span><br><span class="line">        date_list.append(today)</span><br><span class="line">        today = today + day</span><br><span class="line">    <span class="keyword">return</span> date_list</span><br><span class="line">print(<span class="string">"前十天:"</span>, getDayList(<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 前十天: [datetime.date(2018, 7, 4), datetime.date(2018, 7, 3), datetime.date(2018, 7, 2), datetime.date(2018, 7, 1), datetime.date(2018, 6, 30), datetime.date(2018, 6, 29), datetime.date(2018, 6, 28), datetime.date(2018, 6, 27), datetime.date(2018, 6, 26), datetime.date(2018, 6, 25)]</span></span><br></pre></td></tr></table></figure>
+<h3 id="两个日期相隔的天数，如2018-3-4和2018-7-4"><a href="#两个日期相隔的天数，如2018-3-4和2018-7-4" class="headerlink" title="两个日期相隔的天数，如2018-3-4和2018-7-4"></a>两个日期相隔的天数，如2018-3-4和2018-7-4</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">datediff</span><span class="params">(beginDate, endDate)</span>:</span></span><br><span class="line">    format = <span class="string">"%Y-%m-%d"</span></span><br><span class="line">    bd = datetime.datetime.strptime(beginDate, format)</span><br><span class="line">    ed = datetime.datetime.strptime(endDate, format)</span><br><span class="line">    <span class="keyword">return</span> abs((bd - ed).days) + <span class="number">1</span></span><br><span class="line">beginDate = <span class="string">"2018-3-4"</span></span><br><span class="line">endDate = <span class="string">"2018-7-4"</span></span><br><span class="line">print(beginDate,<span class="string">"到"</span>,endDate,<span class="string">"相隔:"</span>,datediff(beginDate, endDate),<span class="string">"天"</span>)</span><br><span class="line"><span class="comment"># 2018-3-4 到 2018-7-4 相隔: 123 天</span></span><br></pre></td></tr></table></figure>
+<h1 id="第三方扩展库（力推arrow）"><a href="#第三方扩展库（力推arrow）" class="headerlink" title="第三方扩展库（力推arrow）"></a>第三方扩展库（力推arrow）</h1><h2 id="Arrow"><a href="#Arrow" class="headerlink" title="Arrow"></a><a href="http://arrow.readthedocs.io/en/latest/#tokens" target="_blank" rel="noopener">Arrow</a></h2><p>arrow是一个提供了更易懂和友好的方法来创建、操作、格式化和转化日期、时间和时间戳的python库。可以完全替代datetime，支持python2和3。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install arrow</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> arrow</span><br><span class="line">t1 = arrow.now()</span><br><span class="line">t2 = arrow.utcnow()</span><br><span class="line">print(<span class="string">"本地时间:"</span>, t1)</span><br><span class="line">print(<span class="string">"国际时间:"</span>, t2)</span><br><span class="line">print(t1.date())</span><br><span class="line">print(t1.time())</span><br><span class="line"><span class="comment"># 本地时间: 2018-07-04T16:11:31.994133+08:00</span></span><br><span class="line"><span class="comment"># 国际时间: 2018-07-04T08:11:31.994133+00:00</span></span><br><span class="line"><span class="comment"># 2018-07-04</span></span><br><span class="line"><span class="comment"># 16:23:58.881471</span></span><br></pre></td></tr></table></figure>
+<p>通过utcnow()和now()分别获取了utc时间和local时间，最终获取的是一个Arrow时间对象，通过这个对象我们可以做各种时间转换。</p>
+<h3 id="时间形式转换"><a href="#时间形式转换" class="headerlink" title="时间形式转换"></a>时间形式转换</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> arrow</span><br><span class="line"></span><br><span class="line">t1 = arrow.now()</span><br><span class="line">print(<span class="string">"时间戳:"</span>, t1.timestamp)</span><br><span class="line"><span class="comment"># 时间戳: 1530692291</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"时间字符串:"</span>, t1.format())</span><br><span class="line"><span class="comment"># 时间字符串: 2018-07-04 16:18:11+08:00</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"格式化时间字符串:"</span>, t1.format(<span class="string">"YYYY-MM-DD HH:mm"</span>))</span><br><span class="line"><span class="comment"># 格式化时间字符串: 2018-07-04 16:18</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"从字符串转换成Arrow对象:"</span>,arrow.get(<span class="string">"2017-07-04 11:30"</span>, <span class="string">"YYYY-MM-DD HH:mm"</span>))</span><br><span class="line"><span class="comment"># 从字符串转换成Arrow对象: 2017-07-04T11:30:00+00:00</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"从时间戳转化为Arrow对象:"</span>,arrow.get(t1.timestamp)) <span class="comment">#</span></span><br><span class="line">从时间戳转化为Arrow对象: <span class="number">2018</span><span class="number">-07</span><span class="number">-04</span>T08:<span class="number">18</span>:<span class="number">11</span>+<span class="number">00</span>:<span class="number">00</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">"直接生成Arrow对象:"</span>,arrow.Arrow(<span class="number">2018</span>, <span class="number">7</span>, <span class="number">4</span>))</span><br><span class="line"><span class="comment"># 直接生成Arrow对象: 2018-07-04T00:00:00+00:00</span></span><br></pre></td></tr></table></figure>
+<h3 id="时间推移"><a href="#时间推移" class="headerlink" title="时间推移"></a>时间推移</h3><p>时间推移就是要获取某个时间之前的时间或者之后的时间，比如要获取相对于当前时间前一天的时间。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">t1 = arrow.now()</span><br><span class="line">print(<span class="string">"今天:"</span>,t1.date()) <span class="comment"># 今天: 2018-07-04</span></span><br><span class="line">print(<span class="string">"前一天:"</span>,t1.shift(days=<span class="number">-1</span>).date())  <span class="comment"># 前一天: 2018-07-03</span></span><br><span class="line">print(<span class="string">"前一周"</span>,t1.shift(weeks=<span class="number">-1</span>).date())  <span class="comment"># 前一周2018-06-27</span></span><br><span class="line">print(<span class="string">"前两个月:"</span>,t1.shift(months=<span class="number">-2</span>).date())  <span class="comment"># 前两个月2018-05-04</span></span><br><span class="line">print(<span class="string">"明年:"</span>,t1.shift(years=<span class="number">1</span>).date())  <span class="comment"># 明年2019-07-04</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>Arrow的时间格式化</strong><br><img src="images/arrow标记.png" alt="时间标记"></p>
+
+      
+    </div>
+
+    <div>    
+     
+     
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+              <strong>本文作者：</strong>YuJianZhe
+          </li>
+          <li class="post-copyright-title">
+              <strong>本文标签：</strong>Python语言之时间模块
+          </li>
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="/2018/07/04/Python语言/" title="Python语言之时间模块">2018/07/04/Python语言/</a>
+          </li>
+          </li>
+          <li class="post-copyright-link">
+            <strong>发布时间：</strong>
+            2018年7月4日 - 16时07分
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明： </strong>
+            本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！
+          </li>
+        </ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="YuJianZhe 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/时间模块/" rel="tag"># 时间模块</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/29/Python语言/" rel="next" title="Python语言之IO文件操作">
+                <i class="fa fa-chevron-left"></i> Python语言之IO文件操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzM4NS8xMzkxOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="YuJianZhe" />
+            
+              <p class="site-author-name" itemprop="name">YuJianZhe</p>
+              <p class="site-description motion-element" itemprop="description">4939yujianzhe@gmail.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gofisher" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/80902846/home?leftnav=1" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#时间和日期"><span class="nav-number">2.</span> <span class="nav-text">时间和日期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#时间戳-Timestamp"><span class="nav-number">2.1.</span> <span class="nav-text">时间戳(Timestamp)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间格式化-Format-time"><span class="nav-number">2.2.</span> <span class="nav-text">时间格式化(Format_time)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间元祖-Struct-time"><span class="nav-number">2.3.</span> <span class="nav-text">时间元祖(Struct_time)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内置标准库"><span class="nav-number">3.</span> <span class="nav-text">内置标准库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Time模块"><span class="nav-number">3.1.</span> <span class="nav-text">Time模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内置函数"><span class="nav-number">3.1.1.</span> <span class="nav-text">内置函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延伸拓展"><span class="nav-number">3.1.2.</span> <span class="nav-text">延伸拓展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Datetime模块"><span class="nav-number">3.2.</span> <span class="nav-text">Datetime模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#datetime-time类"><span class="nav-number">3.2.1.</span> <span class="nav-text">datetime.time类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#datetime-date类"><span class="nav-number">3.2.2.</span> <span class="nav-text">datetime.date类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#datetime-datetime类"><span class="nav-number">3.2.3.</span> <span class="nav-text">datetime.datetime类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#datetime-timedelta类"><span class="nav-number">3.2.4.</span> <span class="nav-text">datetime.timedelta类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#calendar模块"><span class="nav-number">3.3.</span> <span class="nav-text">calendar模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用时间问题"><span class="nav-number">3.4.</span> <span class="nav-text">常用时间问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取当前的日期、时间"><span class="nav-number">3.4.1.</span> <span class="nav-text">获取当前的日期、时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将字符串转化为日期"><span class="nav-number">3.4.2.</span> <span class="nav-text">将字符串转化为日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给定日期向前后N天的日期"><span class="nav-number">3.4.3.</span> <span class="nav-text">给定日期向前后N天的日期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取给定参数的前几天的日期，返回一个list"><span class="nav-number">3.4.4.</span> <span class="nav-text">获取给定参数的前几天的日期，返回一个list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两个日期相隔的天数，如2018-3-4和2018-7-4"><span class="nav-number">3.4.5.</span> <span class="nav-text">两个日期相隔的天数，如2018-3-4和2018-7-4</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三方扩展库（力推arrow）"><span class="nav-number">4.</span> <span class="nav-text">第三方扩展库（力推arrow）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Arrow"><span class="nav-number">4.1.</span> <span class="nav-text">Arrow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">4.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取当前时间"><span class="nav-number">4.3.1.</span> <span class="nav-text">获取当前时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间形式转换"><span class="nav-number">4.3.2.</span> <span class="nav-text">时间形式转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间推移"><span class="nav-number">4.3.3.</span> <span class="nav-text">时间推移</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YuJianZhe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">85.1k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("thLnMG4yyzyRoUseIB7W0sFD-gzGzoHsz", "i7FOQgwimm0kSQgUNB00yASj");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
