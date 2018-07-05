@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,正则表达式,随机数," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="random模块&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;真正意义上的随机数（或者随机事件）在某次产生过程中是按照实验过程中表现的分布概率随机产生的，其结果是不可预测的，是不可见的。而计算机中的随机函数是按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。所以用计算机随机函数所产生的“随机数">
+<meta name="keywords" content="Python,正则表达式,随机数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python语言之随机数和正则">
+<meta property="og:url" content="https://gofisher.github.io/2018/07/05/Python语言/index.html">
+<meta property="og:site_name" content="Yu&#39;s-Blog">
+<meta property="og:description" content="random模块&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;真正意义上的随机数（或者随机事件）在某次产生过程中是按照实验过程中表现的分布概率随机产生的，其结果是不可预测的，是不可见的。而计算机中的随机函数是按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。所以用计算机随机函数所产生的“随机数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gofisher.github.io/2018/07/05/Python语言/images/元字符.png">
+<meta property="og:image" content="https://gofisher.github.io/2018/07/05/Python语言/images/函数模块.jpg">
+<meta property="og:updated_time" content="2018-07-05T14:23:39.751Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python语言之随机数和正则">
+<meta name="twitter:description" content="random模块&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;真正意义上的随机数（或者随机事件）在某次产生过程中是按照实验过程中表现的分布概率随机产生的，其结果是不可预测的，是不可见的。而计算机中的随机函数是按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。所以用计算机随机函数所产生的“随机数">
+<meta name="twitter:image" content="https://gofisher.github.io/2018/07/05/Python语言/images/元字符.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gofisher.github.io/2018/07/05/Python语言/"/>
+
+
+
+
+
+<script src="https://neveryu.github.io/js/src/pace.min.js"></script>
+
+
+  <title>Python语言之随机数和正则 | Yu's-Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1682bd44752aaf16cf4a535a8ee72de9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yu's-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">余心所善，九死未悔！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gofisher.github.io/2018/07/05/Python语言/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YuJianZhe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yu's-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python语言之随机数和正则</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-05T22:18:35+08:00">
+                2018-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; 更新于
+              <time itemprop="dateUpdated" datetime="2018-07-05T22:23:39+08:00" content="2018-07-05">
+                2018-07-05
+              </time>
+            </span>
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python语言/" itemprop="url" rel="index">
+                    <span itemprop="name">Python语言</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/05/Python语言/" class="leancloud_visitors" data-flag-title="Python语言之随机数和正则">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,217字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="random模块"><a href="#random模块" class="headerlink" title="random模块"></a>random模块</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;真正意义上的随机数（或者随机事件）在某次产生过程中是按照实验过程中表现的分布概率随机产生的，其结果是不可预测的，是不可见的。而计算机中的随机函数是按照一定算法模拟产生的，其结果是确定的，是可见的。我们可以这样认为这个可预见的结果其出现的概率是100%。<strong>所以用计算机随机函数所产生的“随机数”并不随机，是伪随机数</strong>。</p>
+<ul>
+<li><strong>计算机的伪随机数是由随机种子根据一定的计算方法计算出来的数值。所以，只要计算方法一定，随机种子一定，那么产生的随机数就是固定的</strong>。</li>
+<li><strong>只要用户或第三方不设置随机种子，那么在默认情况下随机种子来自系统时钟。</strong><a id="more"></a>
+</li>
+</ul>
+<p>Python的这个库在底层使用通用的算法，经过长久的考验，可靠性没得说，但<strong>绝对不能用于密码相关的功能</strong>。</p>
+<h2 id="基本方法"><a href="#基本方法" class="headerlink" title="基本方法"></a>基本方法</h2><ul>
+<li>random.seed(a=None, version=2)<br>初始化伪随机数生成器。<strong>如果未提供a或者a=None，则使用系统时间为种子。如果a是一个整数，则作为种子。</strong></li>
+<li>random.getstate()<br>返回一个当前生成器的内部状态的对象</li>
+<li>random.setstate(state)<br>传入一个先前利用getstate方法获得的状态对象，使得生成器恢复到这个状态。</li>
+<li>random.getrandbits(k)<br><strong>返回一个不大于K位的Python整数（十进制），比如k=10，则结果在0~2^10之间的整数。</strong></li>
+</ul>
+<h2 id="整数方法"><a href="#整数方法" class="headerlink" title="整数方法"></a>整数方法</h2><ul>
+<li>random.randrange(stop)</li>
+<li>random.randrange(start, stop[, step])<br>等同于choice(range(start, stop, step))，但并不实际创建range对象。</li>
+<li>random.randint(a, b)<br><strong>返回一个a &lt;= N &lt;= b的随机整数N。等同于 randrange(a, b+1)</strong></li>
+</ul>
+<p><strong>代码示例</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">print(random.randrange(<span class="number">4</span>)) <span class="comment"># 3</span></span><br><span class="line">print(random.randrange(<span class="number">2</span>, <span class="number">10</span>,<span class="number">2</span>)) <span class="comment"># 8</span></span><br><span class="line">print(random.randint(<span class="number">1</span>, <span class="number">5</span>)) <span class="comment"># 1</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="序列结构方法"><a href="#序列结构方法" class="headerlink" title="序列结构方法"></a>序列结构方法</h2><ul>
+<li>random.choice(seq)<br><strong>从非空序列seq中随机选取一个元素</strong>。如果seq为空则弹出 IndexError异常。</li>
+<li>random.choices(population, weights=None, *, cum_weights=None, k=1)<br>3.6版本新增。<strong>从population集群中随机抽取K个元素</strong>。weights是相对权重列表，cum_weights是累计权重，两个参数不能同时存在。</li>
+<li>random.shuffle(x[, random])<br><strong>随机打乱序列x内元素的排列顺序。只能针对可变的序列</strong>，对于不可变序列，请使用下面的sample()方法。</li>
+<li>random.sample(population, k)<br><strong>从population样本或集合中随机抽取K个不重复的元素形成新的序列</strong>。常用于不重复的随机抽样。返回的是一个新的序列，不会破坏原有序列。要从一个整数区间随机抽取一定数量的整数，请使用sample(range(10000000), k=60)类似的方法，这非常有效和节省空间。如果k大于population的长度，则弹出ValueError异常。</li>
+</ul>
+<p><strong>代码示例</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line">list_str = [<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>]</span><br><span class="line">print(<span class="string">"原来排序:"</span>, list_str) <span class="comment"># 原来排序: ['1', '2', '3', '4', '5']</span></span><br><span class="line">print(<span class="string">"从指定序列中随机1个:"</span>, random.choice(list_str)) <span class="comment"># 从指定序列中随机1个: 5</span></span><br><span class="line">print(<span class="string">"从指定序列中随机2个:"</span>, random.choices(list_str, k=<span class="number">2</span>)) <span class="comment"># 从指定序列中随机2个: ['2', '3']</span></span><br><span class="line">random.shuffle(list_str) <span class="comment"># 随机打乱顺序</span></span><br><span class="line">print(<span class="string">"洗牌的显示:"</span>,list_str) <span class="comment"># 洗牌的显示: ['5', '2', '3', '4', '1']</span></span><br><span class="line">print(<span class="string">"抽取样本:"</span>, random.sample(list_str, k=<span class="number">3</span>)) <span class="comment"># 抽取样本: ['1', '2', '4']</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="真值分布"><a href="#真值分布" class="headerlink" title="真值分布"></a>真值分布</h2><ul>
+<li>random.random()<br><strong>返回一个介于左闭右开[0.0, 1.0)区间的浮点数</strong></li>
+<li>random.uniform(a, b)<br><strong>返回一个介于a和b之间的浮点数。如果a&gt;b，则是b到a之间的浮点数。这里的a和b都有可能出现在结果中。</strong></li>
+<li>random.triangular(low, high, mode)<br>返回一个low &lt;= N &lt;=high的三角形分布的随机数。参数mode指明众数出现位置。</li>
+<li>random.betavariate(alpha, beta)<br>β分布。返回的结果在0~1之间</li>
+<li>random.expovariate(lambd)<br>指数分布</li>
+<li>random.gammavariate(alpha, beta)<br>伽马分布</li>
+<li>random.gauss(mu, sigma)<br>高斯分布</li>
+<li>random.lognormvariate(mu, sigma)<br>对数正态分布</li>
+<li>random.normalvariate(mu, sigma)<br>正态分布</li>
+<li>random.vonmisesvariate(mu, kappa)<br>卡帕分布</li>
+<li>random.paretovariate(alpha)<br>帕累托分布</li>
+<li>random.weibullvariate(alpha, beta)<br>威布尔分布</li>
+</ul>
+<h2 id="典型的问题"><a href="#典型的问题" class="headerlink" title="典型的问题"></a>典型的问题</h2><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>random()                             <span class="comment"># 随机浮点数:  0.0 &lt;= x &lt; 1.0</span></span><br><span class="line"><span class="number">0.37444887175646646</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>uniform(<span class="number">2.5</span>, <span class="number">10.0</span>)                   <span class="comment"># 随机浮点数:  2.5 &lt;= x &lt; 10.0</span></span><br><span class="line"><span class="number">3.1800146073117523</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>randrange(<span class="number">10</span>)                        <span class="comment"># 0-9的整数：</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>randrange(<span class="number">0</span>, <span class="number">101</span>, <span class="number">2</span>)                 <span class="comment"># 0-100的偶数</span></span><br><span class="line"><span class="number">26</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>choice([<span class="string">'win'</span>, <span class="string">'lose'</span>, <span class="string">'draw'</span>])      <span class="comment"># 从序列随机选择一个元素</span></span><br><span class="line"><span class="string">'draw'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>deck = <span class="string">'ace two three four'</span>.split()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>shuffle(deck)                        <span class="comment"># 对序列进行洗牌，改变原序列</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>deck</span><br><span class="line">[<span class="string">'four'</span>, <span class="string">'two'</span>, <span class="string">'ace'</span>, <span class="string">'three'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sample([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>], k=<span class="number">4</span>)    <span class="comment"># 不改变原序列的抽取指定数目样本，并生成新序列</span></span><br><span class="line">[<span class="number">40</span>, <span class="number">10</span>, <span class="number">50</span>, <span class="number">30</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># 6次旋转红黑绿轮盘(带权重可重复的取样)，不破坏原序列</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>choices([<span class="string">'red'</span>, <span class="string">'black'</span>, <span class="string">'green'</span>], [<span class="number">18</span>, <span class="number">18</span>, <span class="number">2</span>], k=<span class="number">6</span>)</span><br><span class="line">[<span class="string">'red'</span>, <span class="string">'green'</span>, <span class="string">'black'</span>, <span class="string">'black'</span>, <span class="string">'red'</span>, <span class="string">'black'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># 德州扑克计算概率Deal 20 cards without replacement from a deck of 52 playing cards</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># and determine the proportion of cards with a ten-value</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># (a ten, jack, queen, or king).</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>deck = collections.Counter(tens=<span class="number">16</span>, low_cards=<span class="number">36</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>seen = sample(list(deck.elements()), k=<span class="number">20</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>seen.count(<span class="string">'tens'</span>) / <span class="number">20</span></span><br><span class="line"><span class="number">0.15</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># 模拟概率Estimate the probability of getting 5 or more heads from 7 spins</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># of a biased coin that settles on heads 60% of the time.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>trial = <span class="keyword">lambda</span>: choices(<span class="string">'HT'</span>, cum_weights=(<span class="number">0.60</span>, <span class="number">1.00</span>), k=<span class="number">7</span>).count(<span class="string">'H'</span>) &gt;= <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum(trial() <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>)) / <span class="number">10000</span></span><br><span class="line"><span class="number">0.4169</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Probability of the median of 5 samples being in middle two quartiles</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>trial = <span class="keyword">lambda</span> : <span class="number">2500</span> &lt;= sorted(choices(range(<span class="number">10000</span>), k=<span class="number">5</span>))[<span class="number">2</span>]  &lt; <span class="number">7500</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sum(trial() <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>)) / <span class="number">10000</span></span><br><span class="line"><span class="number">0.7958</span></span><br></pre></td></tr></table></figure>
+<p><strong>下面是生成一个包含大写字母A-Z和数字0-9的随机4位验证码的程序</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">checkcode = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">    type = [<span class="string">"num"</span>, <span class="string">"alp"</span>]</span><br><span class="line">    random_type = random.choice(type)</span><br><span class="line">    <span class="keyword">if</span> random_type == <span class="string">"num"</span>:</span><br><span class="line">        checkcode.append(chr(random.randint(<span class="number">65</span>, <span class="number">90</span>)))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        checkcode.append(random.randint(<span class="number">0</span>, <span class="number">9</span>))</span><br><span class="line">print(checkcode)</span><br></pre></td></tr></table></figure></p>
+<p><strong>下面是生成指定长度字母数字随机序列的代码：</strong><br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> random, string</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_random_string</span><span class="params">(length)</span>:</span></span><br><span class="line">    <span class="comment"># 数字的个数随机产生</span></span><br><span class="line">    num_of_numeric = random.randint(<span class="number">1</span>,length<span class="number">-1</span>)</span><br><span class="line">    <span class="comment"># 剩下的都是字母</span></span><br><span class="line">    num_of_letter = length - num_of_numeric</span><br><span class="line">    <span class="comment"># 随机生成数字</span></span><br><span class="line">    numerics = [random.choice(string.digits) <span class="keyword">for</span> i <span class="keyword">in</span> range(num_of_numeric)]</span><br><span class="line">    <span class="comment"># 随机生成字母</span></span><br><span class="line">    letters = [random.choice(string.ascii_letters) <span class="keyword">for</span> i <span class="keyword">in</span> range(num_of_letter)]</span><br><span class="line">    <span class="comment"># 结合两者</span></span><br><span class="line">    all_chars = numerics + letters</span><br><span class="line">    <span class="comment"># 洗牌</span></span><br><span class="line">    random.shuffle(all_chars)</span><br><span class="line">    <span class="comment"># 生成最终字符串</span></span><br><span class="line">    result = <span class="string">''</span>.join([i <span class="keyword">for</span> i <span class="keyword">in</span> all_chars])</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(gen_random_string(<span class="number">64</span>))</span><br></pre></td></tr></table></figure></p>
+<h1 id="Python正则表达式"><a href="#Python正则表达式" class="headerlink" title="Python正则表达式"></a>Python正则表达式</h1><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>正则表达式（regular expression）是可以匹配文本片段的模式</strong>。最简单的正则表达式就是普通字符串，可以匹配其自身。比如，正则表达式 ‘hello’ 可以匹配字符串 ‘hello’。</p>
+<p>要注意的是，<strong>正则表达式并不是一个程序，而是用于处理字符串的一种模式</strong>，如果你想用它来处理字符串，就必须使用支持正则表达式的工具，比如 Linux 中的 awk, sed, grep，或者编程语言 Perl, Python, Java 等等。</p>
+<p>正则表达式有多种不同的风格，下表列出了适用于 Python等编程语言的部分元字符以及说明：<br><img src="images/元字符.png" alt="元字符"></p>
+<h3 id="数量词的贪婪模式与非贪婪模式"><a href="#数量词的贪婪模式与非贪婪模式" class="headerlink" title="数量词的贪婪模式与非贪婪模式"></a>数量词的贪婪模式与非贪婪模式</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正则表达式通常用于在文本中查找匹配的字符串。<strong>Python里数量词默认是贪婪的（在少数语言里也可能是默认非贪婪），总是尝试匹配尽可能多的字符；非贪婪的则相反，总是尝试匹配尽可能少的字符</strong>。例如：正则表达式”ab<em>“如果用于查找”abbbc”，将找到”abbb”。而如果使用非贪婪的数量词”ab</em>?”，将找到”a”。</p>
+<h3 id="反斜杠的困扰"><a href="#反斜杠的困扰" class="headerlink" title="反斜杠的困扰"></a>反斜杠的困扰</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;与大多数编程语言相同，正则表达式里使用”\”作为转义字符，这就可能造成反斜杠困扰。假如你需要匹配文本中的字符”\”，那么使用编程语言表示的正则表达式里将需要4个反斜杠”\\“：前两个和后两个分别用于在编程语言里转义成反斜杠，转换成两个反斜杠后再在正则表达式里转义成一个反斜杠。Python里的原生字符串很好地解决了这个问题，这个例子中的正则表达式可以使用r”\“表示。同样，匹配一个数字的”\d”可以写成r”\d”。有了原生字符串，你再也不用担心是不是漏写了反斜杠，写出来的表达式也更直观。</p>
+<h3 id="匹配模式"><a href="#匹配模式" class="headerlink" title="匹配模式"></a>匹配模式</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>正则表达式提供了一些可用的匹配模式，比如忽略大小写、多行匹配等</strong>，这部分内容将在Pattern类的工厂方法re.compile(pattern[, flags])中一起介绍。</p>
+<h2 id="re模块"><a href="#re模块" class="headerlink" title="re模块"></a>re模块</h2><h2 id="开始使用re"><a href="#开始使用re" class="headerlink" title="开始使用re"></a>开始使用re</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Python通过re模块提供对正则表达式的支持。<strong>使用re的一般步骤是先将正则表达式的字符串形式编译为Pattern实例，然后使用Pattern实例处理文本并获得匹配结果（一个Match实例），最后使用Match实例获得信息</strong>，进行其他的操作。</p>
+<p><strong>函数总览</strong><br><img src="images/函数模块.jpg" alt="函数模块"></p>
+<h2 id="正则使用"><a href="#正则使用" class="headerlink" title="正则使用"></a>正则使用</h2><p>使用步骤如下：</p>
+<ul>
+<li>使用 compile 函数将正则表达式的字符串形式编译为一个 Pattern 对象；</li>
+<li>通过 Pattern 对象提供的一系列方法对文本进行匹配查找，获得匹配结果（一个 Match 对象）；</li>
+<li>最后使用 Match 对象提供的属性和方法获得信息，根据需要进行其他的操作。<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将正则表达式编译成Pattern对象</span></span><br><span class="line">pattern = re.compile(<span class="string">r'hello'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回None</span></span><br><span class="line">match = pattern.match(<span class="string">'hello world!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> match:</span><br><span class="line">    <span class="comment"># 使用Match获得分组信息</span></span><br><span class="line">    print(match.group())</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="re-compile-strPattern-flag"><a href="#re-compile-strPattern-flag" class="headerlink" title="re.compile(strPattern[, flag]):"></a>re.compile(strPattern[, flag]):</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个方法是Pattern类的工厂方法，用于将字符串形式的正则表达式编译为Pattern对象。 <strong>第二个参数flag是匹配模式，取值可以使用按位或运算符’|’表示同时生效，比如re.I | re.M</strong>。另外，你也可以在regex字符串中指定模式，比如re.compile(‘pattern’, re.I | re.M)与re.compile(‘(?im)pattern’)是等价的。<br>可选值有：</p>
+<ul>
+<li><strong>re.I(re.IGNORECASE): 忽略大小写（括号内是完整写法，下同）</strong></li>
+<li><strong>M(MULTILINE): 多行模式，改变’^’和’$’的行为（参见上图）</strong></li>
+<li>S(DOTALL): 点任意匹配模式，改变’.’的行为</li>
+<li>L(LOCALE): 使预定字符类 \w \W \b \B \s \S 取决于当前区域设定</li>
+<li>U(UNICODE): 使预定字符类 \w \W \b \B \s \S \d \D 取决于unicode定义的字符属性</li>
+<li>X(VERBOSE): 详细模式。这个模式下正则表达式可以是多行，忽略空白字符，并可以加入注释。以下两个正则表达式是等价的</li>
+</ul>
+<h3 id="Pattern"><a href="#Pattern" class="headerlink" title="Pattern"></a>Pattern</h3><p>Pattern对象是一个编译好的正则表达式，通过Pattern提供的一系列方法可以对文本进行匹配查找。<strong>Pattern不能直接实例化，必须使用re.compile()进行构造</strong>。Pattern提供了几个可读属性用于获取表达式的相关信息：</p>
+<ul>
+<li>pattern: 编译时用的表达式字符串。</li>
+<li>flags: 编译时用的匹配模式。数字形式。</li>
+<li>groups: 表达式中分组的数量。</li>
+<li>groupindex: 以表达式中有别名的组的别名为键、以该组对应的编号为值的字典，没有别名的组不包含在内。<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">p = re.compile(<span class="string">r'(\w+) (\w+)(?P&lt;sign&gt;.*)'</span>, re.DOTALL)</span><br><span class="line">print(<span class="string">"p.pattern:"</span>, p.pattern) <span class="comment"># p.pattern: (\w+) (\w+)(?P&lt;sign&gt;.*)</span></span><br><span class="line">print(<span class="string">"p.flags:"</span>, p.flags) <span class="comment"># p.flags: 48</span></span><br><span class="line">print(<span class="string">"p.groups:"</span>, p.groups) <span class="comment"># p.groups: 3</span></span><br><span class="line">print(<span class="string">"p.groupindex:"</span>, p.groupindex) <span class="comment"># p.groupindex: &#123;'sign': 3&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Pattern的实例方法和re模块方法"><a href="#Pattern的实例方法和re模块方法" class="headerlink" title="Pattern的实例方法和re模块方法"></a>Pattern的实例方法和re模块方法</h3><h4 id="match"><a href="#match" class="headerlink" title="match"></a>match</h4><p><strong>参数：(string[, pos[, endpos]]) | re.match(pattern, string[, flags])</strong>:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个方法将从string的pos下标处起尝试匹配pattern；如果pattern结束时仍可匹配，则返回一个Match对象；如果匹配过程中pattern无法匹配，或者匹配未结束就已到达endpos，则返回None。 pos和endpos的默认值分别为0和len(string)；re.match()无法指定这两个参数，参数flags用于编译pattern时指定匹配模式。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Match对象是一次匹配的结果，包含了很多关于此次匹配的信息，可以使用Match提供的可读属性或方法来获取这些信息。</p>
+<p><strong>属性：</strong></p>
+<ul>
+<li>string: 匹配时使用的文本。</li>
+<li>re: 匹配时使用的Pattern对象。</li>
+<li>pos: 文本中正则表达式开始搜索的索引。值与Pattern.match()和Pattern.seach()方法的同名参数相同。</li>
+<li>endpos: 文本中正则表达式结束搜索的索引。值与Pattern.match()和Pattern.seach()方法的同名参数相同。</li>
+<li>lastindex: 最后一个被捕获的分组在文本中的索引。如果没有被捕获的分组，将为None。</li>
+<li>lastgroup: 最后一个被捕获的分组的别名。如果这个分组没有别名或者没有被捕获的分组，将为None。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># pattern = re.compile(r'(\w+) (\w+)(?P&lt;sign&gt;.*)')</span></span><br><span class="line"><span class="comment"># m = pattern.match('hello world!')</span></span><br><span class="line">m = re.match(<span class="string">r'(\w+) (\w+)(?P&lt;sign&gt;.*)'</span>, <span class="string">'hello world!'</span>)</span><br><span class="line">print(<span class="string">"m.string:"</span>, m.string) <span class="comment"># m.string: hello world!</span></span><br><span class="line">print(<span class="string">"m.re:"</span>, m.re) <span class="comment"># m.re: re.compile('(\\w+) (\\w+)(?P&lt;sign&gt;.*)')</span></span><br><span class="line">print(<span class="string">"m.pos:"</span>, m.pos) <span class="comment"># m.pos: 0</span></span><br><span class="line">print(<span class="string">"m.endpos:"</span>, m.endpos) <span class="comment"># m.endpos: 12</span></span><br><span class="line">print(<span class="string">"m.lastindex:"</span>, m.lastindex) <span class="comment"># m.lastindex: 3</span></span><br><span class="line">print(<span class="string">"m.lastgroup:"</span>, m.lastgroup) <span class="comment"># m.lastgroup: sign</span></span><br><span class="line">print(<span class="string">"m.group(1,2):"</span>, m.group(<span class="number">1</span>, <span class="number">2</span>)) <span class="comment"># m.group(1,2): ('hello', 'world')</span></span><br><span class="line">print(<span class="string">"m.groups():"</span>, m.groups()) <span class="comment"># m.groups(): ('hello', 'world', '!')</span></span><br><span class="line">print(<span class="string">"m.groupdict():"</span>, m.groupdict()) <span class="comment"># m.groupdict(): &#123;'sign': '!'&#125;</span></span><br><span class="line">print(<span class="string">"m.start(2):"</span>, m.start(<span class="number">2</span>)) <span class="comment"># m.start(2): 6</span></span><br><span class="line">print(<span class="string">"m.end(2):"</span>, m.end(<span class="number">2</span>)) <span class="comment"># m.end(2): 11</span></span><br><span class="line">print(<span class="string">"m.span(2):"</span>, m.span(<span class="number">2</span>)) <span class="comment"># m.span(2): (6, 11)</span></span><br><span class="line">print(<span class="string">r"m.expand(r'\2 \1\3'):"</span>, m.expand(<span class="string">r'\2 \1\3'</span>)) <span class="comment"># m.expand(r'\2 \1\3'): world hello!</span></span><br></pre></td></tr></table></figure>
+<p><strong>方法：</strong></p>
+<ul>
+<li>group([group1, …]):<br>获得一个或多个分组截获的字符串；指定多个参数时将以元组形式返回。<strong>group1可以使用编号也可以使用别名；编号0代表整个匹配的子串；不填写参数时，返回group(0)；没有截获字符串的组返回None；截获了多次的组返回最后一次截获的子串。</strong></li>
+<li>groups([default]):<br>以元组形式返回全部分组截获的字符串。相当于调用group(1,2,…last)。default表示没有截获字符串的组以这个值替代，默认为None。</li>
+<li>groupdict([default]):<br>返回以有别名的组的别名为键、以该组截获的子串为值的字典，没有别名的组不包含在内。default含义同上。</li>
+<li>start([group]):<br>返回指定的组截获的子串在string中的起始索引（子串第一个字符的索引）。group默认值为0。</li>
+<li>end([group]):<br>返回指定的组截获的子串在string中的结束索引（子串最后一个字符的索引+1）。group默认值为0。</li>
+<li>span([group]):<br>返回(start(group), end(group))。</li>
+<li>expand(template):<br>将匹配到的分组代入template中然后返回。template中可以使用\id或\g<id>、\g<name>引用分组，但不能使用编号0。\id与\g<id>是等价的；但\10将被认为是第10个分组，如果你想表达\1之后是字符’0’，只能使用\g<1>0。</1></id></name></id></li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pattern = re.compile(<span class="string">r'([a-z]+) ([a-z]+)'</span>, re.I)   <span class="comment"># re.I 表示忽略大小写</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m = pattern.match(<span class="string">'Hello World Wide Web'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> m                               <span class="comment"># 匹配成功，返回一个 Match 对象</span></span><br><span class="line">&lt;_sre.SRE_Match object at <span class="number">0x10bea83e8</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">0</span>)                            <span class="comment"># 返回匹配成功的整个子串</span></span><br><span class="line"><span class="string">'Hello World'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.span(<span class="number">0</span>)                             <span class="comment"># 返回匹配成功的整个子串的索引</span></span><br><span class="line">(<span class="number">0</span>, <span class="number">11</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">1</span>)                            <span class="comment"># 返回第一个分组匹配成功的子串</span></span><br><span class="line"><span class="string">'Hello'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.span(<span class="number">1</span>)                             <span class="comment"># 返回第一个分组匹配成功的子串的索引</span></span><br><span class="line">(<span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">2</span>)                            <span class="comment"># 返回第二个分组匹配成功的子串</span></span><br><span class="line"><span class="string">'World'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.span(<span class="number">2</span>)                             <span class="comment"># 返回第二个分组匹配成功的子串</span></span><br><span class="line">(<span class="number">6</span>, <span class="number">11</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.groups()                            <span class="comment"># 等价于 (m.group(1), m.group(2), ...)</span></span><br><span class="line">(<span class="string">'Hello'</span>, <span class="string">'World'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>m.group(<span class="number">3</span>)                            <span class="comment"># 不存在第三个分组</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">IndexError: no such group</span><br></pre></td></tr></table></figure>
+<p><strong>注意：这个方法并不是完全匹配。当pattern结束时若string还有剩余字符，仍然视为成功。想要完全匹配，可以在表达式末尾加上边界匹配符’$’。</strong></p>
+<h4 id="search"><a href="#search" class="headerlink" title="search"></a>search</h4><p><strong>参数：(string[, pos[, endpos]]) | re.search(pattern, string[, flags])</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个方法用于<strong>查找字符串中可以匹配成功的子串</strong>。从string的pos下标处起尝试匹配pattern，如果pattern结束时仍可匹配，则返回一个Match对象；若无法匹配，则将pos加1后重新尝试匹配；直到pos=endpos时仍无法匹配则返回None。 pos和endpos的默认值分别为0和len(string))；re.search()无法指定这两个参数，参数flags用于编译pattern时指定匹配模式。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将正则表达式编译成Pattern对象</span></span><br><span class="line">pattern = re.compile(<span class="string">r'world'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用search()查找匹配的子串，不存在能匹配的子串时将返回None</span></span><br><span class="line"><span class="comment"># 这个例子中使用match()无法成功匹配</span></span><br><span class="line">match = pattern.search(<span class="string">'hello world!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> match:</span><br><span class="line">    <span class="comment"># 使用Match获得分组信息</span></span><br><span class="line">    print(match.group()) <span class="comment"># world</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="split"><a href="#split" class="headerlink" title="split"></a>split</h4><p><strong>参数:(string[, maxsplit]) | re.split(pattern, string[, maxsplit])</strong><br>按照能够匹配的子串将string分割后返回列表。maxsplit用于指定最大分割次数，不指定将全部分割。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">p = re.compile(<span class="string">r'\d+'</span>)</span><br><span class="line">print(p.split(<span class="string">'one1two2three3four4'</span>)) <span class="comment"># ['one', 'two', 'three', 'four', '']</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="findall"><a href="#findall" class="headerlink" title="findall"></a>findall</h4><p><strong>参数：(string[, pos[, endpos]]) | re.findall(pattern, string[, flags])</strong><br>搜索string，以列表形式返回全部能匹配的子串。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">p = re.compile(<span class="string">r'\d+'</span>)</span><br><span class="line">print(p.findall(<span class="string">'one1two2three3four4'</span>)) <span class="comment"># ['1', '2', '3', '4']</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="finditer"><a href="#finditer" class="headerlink" title="finditer"></a>finditer</h4><p><strong>参数：(string[, pos[, endpos]]) | re.finditer(pattern, string[, flags]):</strong><br>搜索string，返回一个顺序访问每一个匹配结果（Match对象）的迭代器。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">p = re.compile(<span class="string">r'\d+'</span>)</span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> p.finditer(<span class="string">'one1two2three3four4'</span>):</span><br><span class="line">    <span class="keyword">print</span> (m.group()) <span class="comment"># 1 2 3 4</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="sub"><a href="#sub" class="headerlink" title="sub"></a>sub</h4><p><strong>参数：(repl, string[, count]) | re.sub(pattern, repl, string[, count])</strong><br>使用repl替换string中每一个匹配的子串后返回替换后的字符串。</p>
+<ul>
+<li>当repl是一个字符串时，可以使用\id或\g<id>、\g<name>引用分组，但不能使用编号0。</name></id></li>
+<li>当repl是一个方法时，这个方法应当只接受一个参数（Match对象），并返回一个字符串用于替换（返回的字符串中不能再引用分组）。</li>
+<li>count用于指定最多替换次数，不指定时全部替换。</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">p = re.compile(<span class="string">r'(\w+) (\w+)'</span>)</span><br><span class="line">s = <span class="string">'i say, hello world!'</span></span><br><span class="line">print(p.sub(<span class="string">r'\2 \1'</span>, s)) <span class="comment"># say i, world hello!</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(m)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> m.group(<span class="number">1</span>).title() + <span class="string">' '</span> + m.group(<span class="number">2</span>).title()</span><br><span class="line"></span><br><span class="line">print(p.sub(func, s)) <span class="comment"># I Say, Hello World!</span></span><br></pre></td></tr></table></figure>
+<h4 id="subn"><a href="#subn" class="headerlink" title="subn"></a>subn</h4><p><strong>参数：(repl, string[, count]) |re.sub(pattern, repl, string[, count])</strong><br>返回 (sub(repl, string[, count]), 替换次数)。<br><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">p = re.compile(<span class="string">r'(\w+) (\w+)'</span>)</span><br><span class="line">s = <span class="string">'i say, hello world!'</span></span><br><span class="line"></span><br><span class="line">print(p.subn(<span class="string">r'\2 \1'</span>, s)) <span class="comment"># ('say i, world hello!', 2)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">(m)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> m.group(<span class="number">1</span>).title() + <span class="string">' '</span> + m.group(<span class="number">2</span>).title()</span><br><span class="line"></span><br><span class="line">print(p.subn(func, s)) <span class="comment"># ('I Say, Hello World!', 2)</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="使用哪种方法？"><a href="#使用哪种方法？" class="headerlink" title="使用哪种方法？"></a>使用哪种方法？</h2><p>从上文可以看到，使用 re 模块有两种方式：</p>
+<ul>
+<li>使用 re.compile 函数生成一个 Pattern 对象，然后使用 Pattern 对象的一系列方法对文本进行匹配查找；</li>
+<li>直接使用 re.match, re.search 和 re.findall 等函数直接对文本匹配查找。</li>
+</ul>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将正则表达式编译成Pattern对象</span></span><br><span class="line">pattern = re.compile(<span class="string">r'hello'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回None</span></span><br><span class="line">match = pattern.match(<span class="string">'hello world!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> match:</span><br><span class="line">    <span class="comment"># 使用Match获得分组信息</span></span><br><span class="line">    print(match.group()) <span class="comment"># hello</span></span><br></pre></td></tr></table></figure>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># 直接使用re模块的方法</span></span><br><span class="line">match = re.match(<span class="string">r'hello'</span>,<span class="string">'hello world!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> match:</span><br><span class="line">    <span class="comment"># 使用Match获得分组信息</span></span><br><span class="line">    print(match.group()) <span class="comment"># hello</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果一个正则表达式需要用到多次（比如上面的 \d+），在多种场合经常需要被用到，出于效率的考虑，我们应该预先编译该正则表达式，生成一个 Pattern 对象，再使用该对象的一系列方法对需要匹配的文件进行匹配；而如果直接使用 re.match, re.search 等函数，每次传入一个正则表达式，它都会被编译一次，效率就会大打折扣。因此，推荐使用第 1 种用法。</li>
+<li>如果只是简单的对文本进行提取，可以使用方法2，可以使代码更加的简洁。</li>
+</ul>
+<h2 id="常见的正则提取"><a href="#常见的正则提取" class="headerlink" title="常见的正则提取"></a>常见的正则提取</h2><h3 id="匹配中文"><a href="#匹配中文" class="headerlink" title="匹配中文"></a>匹配中文</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line">title = <span class="string">'你好，hello，世界'</span></span><br><span class="line">pattern = re.compile(<span class="string">r'[\u4e00-\u9fa5]+'</span>)</span><br><span class="line">result = pattern.findall(title)</span><br><span class="line">print(result) <span class="comment"># ['你好', '世界']</span></span><br></pre></td></tr></table></figure>
+<h3 id="贪婪匹配"><a href="#贪婪匹配" class="headerlink" title="贪婪匹配"></a>贪婪匹配</h3><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">content = <span class="string">'&lt;div&gt;test1&lt;/div&gt;&lt;div&gt;test2&lt;/div&gt;'</span></span><br><span class="line">pattern1 = re.compile(<span class="string">r'&lt;div&gt;(.*)&lt;/div&gt;'</span>)</span><br><span class="line">result1 = pattern1.findall(content)</span><br><span class="line">pattern2 = re.compile(<span class="string">r'&lt;div&gt;(.*?)&lt;/div&gt;'</span>)</span><br><span class="line">result2 = pattern2.findall(content)</span><br><span class="line">print(<span class="string">"贪婪匹配结果:"</span>, result1)  <span class="comment"># 贪婪匹配结果: ['test1&lt;/div&gt;&lt;div&gt;test2'] #</span></span><br><span class="line">print(<span class="string">"非贪婪匹配结果:"</span>, result2) <span class="comment"># 非贪婪匹配结果: ['test1', 'test2']</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>    
+     
+     
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+              <strong>本文作者：</strong>YuJianZhe
+          </li>
+          <li class="post-copyright-title">
+              <strong>本文标签：</strong>Python语言之随机数和正则
+          </li>
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="/2018/07/05/Python语言/" title="Python语言之随机数和正则">2018/07/05/Python语言/</a>
+          </li>
+          </li>
+          <li class="post-copyright-link">
+            <strong>发布时间：</strong>
+            2018年7月5日 - 22时07分
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明： </strong>
+            本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！
+          </li>
+        </ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="YuJianZhe 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/正则表达式/" rel="tag"># 正则表达式</a>
+          
+            <a href="/tags/随机数/" rel="tag"># 随机数</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/04/Python语言/" rel="next" title="Python语言之时间模块">
+                <i class="fa fa-chevron-left"></i> Python语言之时间模块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzM4NS8xMzkxOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="YuJianZhe" />
+            
+              <p class="site-author-name" itemprop="name">YuJianZhe</p>
+              <p class="site-description motion-element" itemprop="description">4939yujianzhe@gmail.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gofisher" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/80902846/home?leftnav=1" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#random模块"><span class="nav-number">1.</span> <span class="nav-text">random模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本方法"><span class="nav-number">1.1.</span> <span class="nav-text">基本方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#整数方法"><span class="nav-number">1.2.</span> <span class="nav-text">整数方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#序列结构方法"><span class="nav-number">1.3.</span> <span class="nav-text">序列结构方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#真值分布"><span class="nav-number">1.4.</span> <span class="nav-text">真值分布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#典型的问题"><span class="nav-number">1.5.</span> <span class="nav-text">典型的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Python正则表达式"><span class="nav-number">2.</span> <span class="nav-text">Python正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">2.1.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数量词的贪婪模式与非贪婪模式"><span class="nav-number">2.1.1.</span> <span class="nav-text">数量词的贪婪模式与非贪婪模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反斜杠的困扰"><span class="nav-number">2.1.2.</span> <span class="nav-text">反斜杠的困扰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配模式"><span class="nav-number">2.1.3.</span> <span class="nav-text">匹配模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#re模块"><span class="nav-number">2.2.</span> <span class="nav-text">re模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始使用re"><span class="nav-number">2.3.</span> <span class="nav-text">开始使用re</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则使用"><span class="nav-number">2.4.</span> <span class="nav-text">正则使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#re-compile-strPattern-flag"><span class="nav-number">2.4.1.</span> <span class="nav-text">re.compile(strPattern[, flag]):</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pattern"><span class="nav-number">2.4.2.</span> <span class="nav-text">Pattern</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pattern的实例方法和re模块方法"><span class="nav-number">2.4.3.</span> <span class="nav-text">Pattern的实例方法和re模块方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#match"><span class="nav-number">2.4.3.1.</span> <span class="nav-text">match</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#search"><span class="nav-number">2.4.3.2.</span> <span class="nav-text">search</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#split"><span class="nav-number">2.4.3.3.</span> <span class="nav-text">split</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#findall"><span class="nav-number">2.4.3.4.</span> <span class="nav-text">findall</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#finditer"><span class="nav-number">2.4.3.5.</span> <span class="nav-text">finditer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sub"><span class="nav-number">2.4.3.6.</span> <span class="nav-text">sub</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#subn"><span class="nav-number">2.4.3.7.</span> <span class="nav-text">subn</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用哪种方法？"><span class="nav-number">2.5.</span> <span class="nav-text">使用哪种方法？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">2.5.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">2.5.2.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的正则提取"><span class="nav-number">2.6.</span> <span class="nav-text">常见的正则提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配中文"><span class="nav-number">2.6.1.</span> <span class="nav-text">匹配中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#贪婪匹配"><span class="nav-number">2.6.2.</span> <span class="nav-text">贪婪匹配</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YuJianZhe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">90.3k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("thLnMG4yyzyRoUseIB7W0sFD-gzGzoHsz", "i7FOQgwimm0kSQgUNB00yASj");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
