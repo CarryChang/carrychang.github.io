@@ -309,6 +309,258 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gofisher.github.io/2018/07/06/Python语言/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YuJianZhe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yu's-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/06/Python语言/" itemprop="url">Python语言之杂货铺</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-06T10:39:44+08:00">
+                2018-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; 更新于
+              <time itemprop="dateUpdated" datetime="2018-07-06T10:50:03+08:00" content="2018-07-06">
+                2018-07-06
+              </time>
+            </span>
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/杂货铺/" itemprop="url" rel="index">
+                    <span itemprop="name">杂货铺</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/06/Python语言/" class="leancloud_visitors" data-flag-title="Python语言之杂货铺">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  671字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+		
+		  <div class="out-img-topic">
+		    <img src=https://gofisher.github.io/2018/07/06/Python语言/images/杂货铺封面.png class="img-topic">
+		  </div>
+		
+        
+          
+            <h1 id="python虚拟环境"><a href="#python虚拟环境" class="headerlink" title="python虚拟环境"></a>python虚拟环境</h1><blockquote>
+<p>在开发Python应用程序的时候，系统安装的Python3只有一个版本：3.4。所有第三方的包都会被<code>pip</code>安装到Python3的<code>site-packages</code>目录下。如果我们要同时开发多个应用程序，那这些应用程序都会共用一个Python，就是安装在系统的Python 3。如果应用A需要jinja 2.7，而应用B需要jinja 2.6怎么办？这种情况下，每个应用可能需要各自拥有一套“独立”的Python运行环境。virtualenv就是用来为一个应用创建一套“隔离”的Python运行环境。</p>
+</blockquote>
+<ul>
+<li><strong>已经装好python，并且配置好环境目录，在系统环境中添加如下变量名，并加入系统的Path中</strong><img src="images/QQ截图20180329144827.png" alt=""></li>
+</ul>
+<p>1.<strong>通过pip install virtualenv –命令可以安装虚拟环境</strong></p>
+<blockquote>
+<p>安装命令：python -m pip install -i <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a> virtualenv<br>卸载命令：python -m pip uninstall virtualenv</p>
+</blockquote>
+<p>2.<strong>安装完成后可以通过  virtualenv + 名字 就可以创建虚拟环境，但是环境创建存放在当前命令行所在的根目录会创建对应的文件夹</strong></p>
+<blockquote>
+<p>带指定版本python的虚拟环境：virtualenv -p python版本的完整路径到.exe为止</p>
+</blockquote>
+<p>3.<strong>安装虚拟环境管理工具（virtualenvwrapper）：</strong></p>
+<ul>
+<li>将所有虚拟环境整合在一个目录下</li>
+<li>管理（新增，删除，复制）虚拟环境</li>
+<li>切换虚拟环境</li>
+</ul>
+<blockquote>
+<p>python -m pip install -I <a href="https://pypi.douban.com/simple/" target="_blank" rel="noopener">https://pypi.douban.com/simple/</a>  virtualenvwrapper-win</p>
+<p>python -m pip install virtualenvwrapper-win</p>
+<p>如果没有加-win出现不了workon的命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">此时virtualenvwrapper就可以使用了。virtualenvwrapper的基本使用方式：</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>列出虚拟环境列表</strong><br> workon 或者 lsvirtualenvpytho</p>
+</li>
+<li><p><strong>新建虚拟环境</strong><br> mkvirtualenv [虚拟环境名称]<br> 或者 virtualenv -p /usr/bin/python2.7 [虚拟环境名字]</p>
+</li>
+<li><p><strong>启动/切换虚拟环境</strong><br> workon [虚拟环境名称]</p>
+</li>
+<li><p><strong>删除虚拟环境</strong><br> rmvirtualenv [虚拟环境名称]<br> 或者 Rmvirtualenv –python的exe文件目录 [虚拟环境名称]</p>
+</li>
+<li><p><strong>离开虚拟环境，和virutalenv一样的命令</strong><br> deactivate.bat</p>
+</li>
+</ul>
+<p><strong>4.修改虚拟环境的默认目录，然后后面创建虚拟环境命令一定用（mkvirtualen，这样就可以使建立的虚拟环境存到指定文件夹。</strong></p>
+<blockquote>
+<p>打开环境变量，创建系统变量：变量名为：WORKON_HOME    D:\foreign\Python\Evns：为要存放的位置</p>
+</blockquote>
+<p><img src="images/QQ截图20180329144935.png" alt=""></p>
+<p><strong>5.用命令行进入虚拟环境的目录文件</strong></p>
+<blockquote>
+<p>Workon –查看已经安装好的虚拟环境   workon + 虚拟环境名字 可以进入相应的虚拟环境</p>
+<p>退出为deactivate.bat</p>
+<p>Mkvirtualenv +新建虚拟环境名字 会在配置后的环境中生成虚拟环境</p>
+</blockquote>
+<p><strong>6.pycharm打开目录是 file中的设置选择对应的解释器</strong><img src="images/1.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    <div>    
+     
+     
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://gofisher.github.io/2018/07/05/Python语言/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -723,213 +975,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://gofisher.github.io/2018/06/29/Python语言/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YuJianZhe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yu's-Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/Python语言/" itemprop="url">Python语言之IO文件操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-29T20:50:40+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-          
-          
-            <span class="post-updated">
-              &nbsp; | &nbsp; 更新于
-              <time itemprop="dateUpdated" datetime="2018-07-05T10:42:53+08:00" content="2018-07-05">
-                2018-07-05
-              </time>
-            </span>
-          
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python语言/" itemprop="url" rel="index">
-                    <span itemprop="name">Python语言</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/29/Python语言/" class="leancloud_visitors" data-flag-title="Python语言之IO文件操作">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  7,710字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  33 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-		
-		  <div class="out-img-topic">
-		    <img src=https://gofisher.github.io/2018/06/29/Python语言/images/home.jpg class="img-topic">
-		  </div>
-		
-        
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I/O在计算机中是指Input/Output，也就是Stream(流)的输入和输出。这里的输入和输出是相对于内存来说的，<strong>Input Stream（输入流）是指数据从外（磁盘、网络）流进内存，Output Stream是数据从内存流出到外面（磁盘、网络）</strong>。程序运行时，数据都是在内存中驻留，由CPU这个超快的计算核心来执行，涉及到数据交换的地方（通常是磁盘、网络操作）就需要IO接口。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/29/Python语言/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>    
-     
-     
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -984,7 +1029,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -995,7 +1040,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1006,7 +1051,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1073,7 +1118,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">90.3k</span>
+    <span title="Site words total count">91.0k</span>
   
 </div>
 
