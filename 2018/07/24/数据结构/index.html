@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/avatar.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法,数据结构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="算法什么是算法？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;听到”算法（Algorithm）”这个词，大部分人都觉得好像艰深晦涩。的确，这不是一个常常听到的词。事实上，在数学、计算机等理工科领域，所谓的算法，指的就是“对特定问题解决的步骤”。而这里的特定问题，通常有：  对信息进行排序 搜索目标信息  等不同问题。&amp;nbsp;&amp;nbsp;&amp;nbs">
+<meta name="keywords" content="算法,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法与数据结构之绪论">
+<meta property="og:url" content="https://gofisher.github.io/2018/07/24/数据结构/index.html">
+<meta property="og:site_name" content="Yu&#39;s-Blog">
+<meta property="og:description" content="算法什么是算法？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;听到”算法（Algorithm）”这个词，大部分人都觉得好像艰深晦涩。的确，这不是一个常常听到的词。事实上，在数学、计算机等理工科领域，所谓的算法，指的就是“对特定问题解决的步骤”。而这里的特定问题，通常有：  对信息进行排序 搜索目标信息  等不同问题。&amp;nbsp;&amp;nbsp;&amp;nbs">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://gofisher.github.io/images/算法和菜谱.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/好的菜谱正是优秀的算法.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/算法的两大支柱.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/增长率.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/数据.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/数据类型.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/变量.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/变量数据类型.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/数组.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/链表.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/堆栈.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/队列.jpg">
+<meta property="og:image" content="https://gofisher.github.io/images/树.jpg">
+<meta property="og:updated_time" content="2018-07-24T01:30:07.887Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法与数据结构之绪论">
+<meta name="twitter:description" content="算法什么是算法？&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;听到”算法（Algorithm）”这个词，大部分人都觉得好像艰深晦涩。的确，这不是一个常常听到的词。事实上，在数学、计算机等理工科领域，所谓的算法，指的就是“对特定问题解决的步骤”。而这里的特定问题，通常有：  对信息进行排序 搜索目标信息  等不同问题。&amp;nbsp;&amp;nbsp;&amp;nbs">
+<meta name="twitter:image" content="https://gofisher.github.io/images/算法和菜谱.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://gofisher.github.io/2018/07/24/数据结构/"/>
+
+
+
+
+
+<script src="https://neveryu.github.io/js/src/pace.min.js"></script>
+
+
+  <title>算法与数据结构之绪论 | Yu's-Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1682bd44752aaf16cf4a535a8ee72de9";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Yu's-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">余心所善，九死未悔！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://gofisher.github.io/2018/07/24/数据结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YuJianZhe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yu's-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法与数据结构之绪论</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-24T09:17:30+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+          
+          
+            <span class="post-updated">
+              &nbsp; | &nbsp; 更新于
+              <time itemprop="dateUpdated" datetime="2018-07-24T09:30:07+08:00" content="2018-07-24">
+                2018-07-24
+              </time>
+            </span>
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/07/24/数据结构/" class="leancloud_visitors" data-flag-title="算法与数据结构之绪论">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,651字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="什么是算法？"><a href="#什么是算法？" class="headerlink" title="什么是算法？"></a>什么是算法？</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;听到”算法（Algorithm）”这个词，大部分人都觉得好像艰深晦涩。的确，这不是一个常常听到的词。事实上，在数学、计算机等理工科领域，所谓的算法，指的就是“<strong>对特定问题解决的步骤</strong>”。而这里的特定问题，通常有：</p>
+<ul>
+<li>对信息进行排序</li>
+<li>搜索目标信息</li>
+</ul>
+<p>等不同问题。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外，如果说“算法是解决问题的步骤”，那么撇开计算机的数据处理不论，现实生活中也有很多问题的解决方法蕴含了算法的思想。这其中的代表就是菜谱。<br><a id="more"></a><br><img src="/images/算法和菜谱.jpg" alt="算法和菜谱"></p>
+<h3 id="算法的作用及意义？"><a href="#算法的作用及意义？" class="headerlink" title="算法的作用及意义？"></a>算法的作用及意义？</h3><blockquote>
+<p><strong>算法是人类智慧的结晶，寻求更加优雅的解法</strong>。</p>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在程序中应用算法。自计算机面世，在利用计算机解决各种各样的“问题”时，无数解法、步骤被人们提出来。“是不是更好地复用”、“是不是可以更高效”、“是不是可以花费更少的空间代价”等，很多研究者会从这些方面对现存的算法进行改善。而历经时间的洗练，那些优雅的算法正在被应用到各种计算机程序中去。<br><img src="/images/好的菜谱正是优秀的算法.jpg" alt="算法和菜谱"></p>
+<h3 id="算法两个必要条件"><a href="#算法两个必要条件" class="headerlink" title="算法两个必要条件"></a>算法两个必要条件</h3><blockquote>
+<p><strong>“准确性”和“可停止性”</strong></p>
+</blockquote>
+<ul>
+<li>准确性：<strong>对相应的问题，算法必须能够得出正确的结果</strong>。证明算法准确性的其中一个方法是，“对于算法中的任意一个步骤，输入当前步骤满足条件的值，看看是否能得到当前步骤产生的准确的结果，以此细分并判断。”这种方法叫<strong>断言（Assertion）</strong> 。</li>
+<li>可停止性：<strong>算法必须是最终可停止的</strong>。算法的可停止性也就是“保证无论什么样的输入，也一定可以在有限时间内正确的停止”。</li>
+</ul>
+<p><img src="/images/算法的两大支柱.jpg" alt="算法和菜谱"></p>
+<h3 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h3><blockquote>
+<p><strong>算法分析的目标是根据运行的时间及其他的一些因素（如内存、开发者的工作量等）来比较算法（或解决方案）的优劣。</strong></p>
+</blockquote>
+<p>为了比较算法，首先定义几个<strong>客观评价</strong>指标：</p>
+<ul>
+<li><strong>执行时间</strong>:它不是一个好的指标，因为执行时间与特定的计算机有关。</li>
+<li><strong>执行的语句数</strong>：它也不是一个很好的评价指标，因为执行的语句数和编程语言有关，也与程序猿个人的编程风格有关。</li>
+<li><strong>理想指标</strong>：<strong>假设用一个函数$f(n)$来表示一个算法的运行时间，该函数的输入参数就是问题的规模$n$。然后比较这些不同函数对应的运行时间</strong>。这种比较与机器时间、编程风格等无关。</li>
+</ul>
+<h4 id="常用的增长率"><a href="#常用的增长率" class="headerlink" title="常用的增长率"></a><a href="https://zh.wikipedia.org/wiki/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6" target="_blank" rel="noopener">常用的增长率</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">时间复杂度</th>
+<th style="text-align:left">名称</th>
+<th>实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">常数</td>
+<td>在链表的前端增加一个元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$logn$</td>
+<td style="text-align:left">对数</td>
+<td>在有序数组中查找一个元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$n$</td>
+<td style="text-align:left">线性</td>
+<td>在无序数组中查找一个元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$nlogn$</td>
+<td style="text-align:left">线性对数</td>
+<td>通过分治，归并排序n个元素</td>
+</tr>
+<tr>
+<td style="text-align:left">$n^2$</td>
+<td style="text-align:left">平方</td>
+<td>求图中两个顶点之间的最短距离</td>
+</tr>
+<tr>
+<td style="text-align:left">$n^3$</td>
+<td style="text-align:left">立方</td>
+<td>矩阵乘法</td>
+</tr>
+<tr>
+<td style="text-align:left">$2^n$</td>
+<td style="text-align:left">指数</td>
+<td>汉诺塔问题的求解</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/增长率.jpg" alt="增长率"></p>
+<h4 id="分析的类型"><a href="#分析的类型" class="headerlink" title="分析的类型"></a>分析的类型</h4><p>算法分析有三种类型：</p>
+<ul>
+<li>最坏情况<ul>
+<li>定义算法最长运行时间的输入。</li>
+<li>这种输入使算法运行最慢。</li>
+</ul>
+</li>
+<li>最好情况<ul>
+<li>定义算法最短运行时间的输入。</li>
+<li>这种输入使算法运行最快。</li>
+</ul>
+</li>
+<li>平均情况（期望）<ul>
+<li>提供算法运行时间的预测值。</li>
+</ul>
+</li>
+</ul>
+<p>对于一个给定的算法，可以用表达式来描述算法的最好、最坏和平均情况。例如，函数$f(n)$代表给定的算法。<br>$f(n)=n^2+500$,对应最坏情况<br>$f(n)=n+1000n+500$,对应最好情况</p>
+<h4 id="渐近表示"><a href="#渐近表示" class="headerlink" title="渐近表示"></a>渐近表示</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;有了描述算法的最好、最坏和平均情况的三种表达式后，对每种表达式还需要确定算法的上界和下界。</p>
+<ul>
+<li><p><strong>大$O$表示法：给出了算法函数的严格上限</strong>。一般来说，它可以表示为$f(n)=O(g(n))$,这表示当输入规模$n$很大时，$f(n)$的上界时$g(n)$。例如，对于给定的算法$f(n)=n^4+100^2+10n+50$，那么$g(n)=n^4$。这意味着问题规模$n$的增大，$g(n)$决定了$f(n)$的最大增长率。</p>
+</li>
+<li><p><strong>$\Omega$表示法：给出算法函数的严格的下界</strong>。它可以表示为$f(n)=\Omega(g(n))$。也就是说，当输入规模$n$增大时，$f(n)$的严格下界是$g(n)$。例如，$f(n)=1oon^2+10n+50$,$g(n)=\Omega(n^2)$</p>
+</li>
+<li><p><strong>$\Theta$表示法：给定算法的时间增长率的上界和下界是否相同</strong>。算法的平均运行时间总是介于上界和下界之间。如果上界$(O)$和下界$\Omega(n)$给出的结果是一样的，那么$\Theta$也会得出相同的增长率；如果不同，需要分析所有可能的时间复杂度，然后得出平均情况下的结论。</p>
+</li>
+</ul>
+<h4 id="重要说明"><a href="#重要说明" class="headerlink" title="重要说明"></a>重要说明</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在分析最好、最坏和平均时间，试图给出算法的上界$(O)$、下界$(\Omega)$和平均时间$(\Theta)$。对于给定算法，得到它的上界$(O)$、下界$(\Omega)$和平均时间$(\Theta)$可能并不容易。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>通常对于一个算法我们最关心的是算法时间复杂度的上界$(O)$</strong>，因为求下界$(\Omega)$没有实际意义。</p>
+<h4 id="渐近分布举例"><a href="#渐近分布举例" class="headerlink" title="渐近分布举例"></a>渐近分布举例</h4><p>有些通用的规则帮助我们确定一个算法的运行时间。</p>
+<ul>
+<li><strong>循环</strong>：一个循环体的运行时间最多为——<strong>循环体内语句的运行时间（包括循环条件判断）与迭代次数的乘积</strong>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 循环执行n次</span></span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n ;i++ ) &#123;</span><br><span class="line">    m +=<span class="number">2</span>;<span class="comment">//时间常数c</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总时间$=c×n=cn=O(n)$</p>
+<ul>
+<li><strong>嵌套循环</strong>：从内到外进行分析。<strong>总的运行时间是所有循环规模的乘积</strong>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 外层循环执行n次</span></span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n ;i++ ) &#123;</span><br><span class="line">    <span class="comment">// 内层循环执行n次</span></span><br><span class="line">    <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n ;j++ ) &#123;</span><br><span class="line">        k +=<span class="number">2</span>;<span class="comment">//时间常数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总时间=$c×n×n=cn^2=O(n^2)$</p>
+<ul>
+<li><strong>顺序执行语句：每条语句的运行时间相加</strong>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">x+=<span class="number">1</span>;<span class="comment">// 时间常熟</span></span><br><span class="line"><span class="comment">//执行n次</span></span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n ;i++ ) &#123;</span><br><span class="line">    m +=<span class="number">2</span>;<span class="comment">//时间常数c</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 外层循环执行n次</span></span><br><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n ;i++ ) &#123;</span><br><span class="line">    <span class="comment">// 内层循环执行n次</span></span><br><span class="line">    <span class="keyword">for</span> (j=<span class="number">1</span>;j&lt;=n ;j++ ) &#123;</span><br><span class="line">        k +=<span class="number">2</span>;<span class="comment">//时间常数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总时间=$c_{0}+c_{1}n+c_{2}n^2=O(n^2)$</p>
+<ul>
+<li><strong>if-then-else条件语句</strong>：最坏的清下的运行时间为——<strong>条件判断的时间+最大值（then部分的语句运行时间或else部分的语句运行时间）</strong>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 条件：常数</span></span><br><span class="line"><span class="keyword">if</span> (length()==<span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">// then部分：常数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123; <span class="comment">//else部分：（常数+常数）*n</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> n=<span class="number">0</span>;n&lt;length() ;n++ ) &#123;</span><br><span class="line">        <span class="comment">// 另一个if：常数+常数（无else部分）</span></span><br><span class="line">        <span class="keyword">if</span>(!list[n].equals(otherList.list[n]))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总时间=$c_{0}+c_{1}+(c_{2}+c_{3})×n^2=O(n^2)$</p>
+<ul>
+<li><strong>对数级时间复杂度：如果算法可以在常数时间把问题的规模按照某个分数（一般是1/2分解）</strong>，那么该算法的复杂度为$O(logn)$。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (i=<span class="number">1</span>;i&lt;=n ; ) &#123;</span><br><span class="line">    i*=<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://zh.wikipedia.org/wiki/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6" target="_blank" rel="noopener">更多计算</a></p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;对于需要输入大量数据，处理并且输出结果的算法，在输入输出数据或者处理数据的过程中，<strong>需要高效地存储和处理各种各样大量的数据</strong>。<br>&nbsp;&nbsp;&nbsp;&nbsp;在某些情况下，正式因为采用了高效的存储和管理方式，才使得某些巧妙的算法实现成为可能。</p>
+</blockquote>
+<h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><blockquote>
+<p><strong>数据就是描述各种信息的载体</strong>。</p>
+</blockquote>
+<p><img src="/images/数据.jpg" alt="数据"></p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><blockquote>
+<p>计算机编程中，算法处理的数据也可以分门别类。分出来的类别就叫做数据类型。</p>
+</blockquote>
+<ul>
+<li>整数：处理整数值（不包括小数的数值）的数据类型。</li>
+<li>浮点数：处理实数值（包括小数的数值）的数据类型。</li>
+<li>字符：处理一个字符的数据类型。</li>
+<li>字符串：处理字符串的数据类型。</li>
+<li>布尔值：处理“真”和“伪”的数据类型。</li>
+</ul>
+<p><img src="/images/数据类型.jpg" alt="数据类型"></p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><blockquote>
+<p><strong>在算法中，要对数据进行操作，就需要一个容器。而这个容器就叫做“变量”</strong>。</p>
+</blockquote>
+<p><img src="/images/变量.jpg" alt="变量"></p>
+<h3 id="变量的数据类型"><a href="#变量的数据类型" class="headerlink" title="变量的数据类型"></a>变量的数据类型</h3><blockquote>
+<p><strong>决定可以带入变量的数据类型</strong>。</p>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;就像值一样，变量也有数据类型（整数型、浮点数、字符、字符串、布尔值等）。为变量指定类型，是为了确定“这个变量可以保存什么样的数据”。也就是说，并不是所有数据都可以代入的，<strong>从指定了数据类型起，变量就只能保存这种数据类型的值</strong>。<br><img src="/images/变量数据类型.jpg" alt="变量数据类型"></p>
+<h3 id="常用的变量名"><a href="#常用的变量名" class="headerlink" title="常用的变量名"></a>常用的变量名</h3><blockquote>
+<p><strong>在描述算法的时候，变量的使用是必需的。这些变量的命名，有一些通用的惯例。记住这些惯例可以帮助更好地理解算法</strong>。</p>
+</blockquote>
+<ul>
+<li><strong>循环处理中表示循环次数的变量</strong><br>一般用i、j、k等变量名。</li>
+<li><strong>表示数组下边的变量</strong><br>一般用index、idx等变量名。</li>
+<li><strong>计数用的变量</strong><br>常用counter、count、cnt等</li>
+<li><strong>处理字符串的变量（或数组）</strong><br>常用str、string等。</li>
+</ul>
+<h3 id="常用数据结构"><a href="#常用数据结构" class="headerlink" title="常用数据结构"></a>常用数据结构</h3><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;把<strong>同类数据</strong>紧密排列就得到“数组”。数据排列成一条直线的数组叫一维数组，数据像长方体一样排列的数据叫三维数组。<br><img src="/images/数组.jpg" alt="数组"></p>
+<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“链表”和“数组”一样，在管理按顺序排列的数据的时候使用的数据结构。和数组不同的是，<strong>链表通过像结绳子一样的方式按顺序或者逆序管理前后关联的数据</strong>。<br><img src="/images/链表.jpg" alt="链表"></p>
+<h4 id="堆栈"><a href="#堆栈" class="headerlink" title="堆栈"></a>堆栈</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“堆栈”对数据的管理方式就像堆积在桌子上的书本一样的数据。<strong>这种管理方式：取数据的顺序和存数据的顺序相反（“先进后出”）</strong>。<br><img src="/images/堆栈.jpg" alt="堆栈"></p>
+<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“队列”对数据的管理方式就像是超市收银台前排的对一样，按照排队的先后顺序处理数据。也就是说，<strong>取数据和村数据的顺序是一致的（“先进先出”）</strong>。<br><img src="/images/队列.jpg" alt="队列"></p>
+<h4 id="树（树木的结构）"><a href="#树（树木的结构）" class="headerlink" title="树（树木的结构）"></a>树（树木的结构）</h4><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;树可以从树干分出两三个枝干，从某一个枝干上又可以分出两三个枝干。<strong>像树木结构一样管理数据的数据结构就叫做“树”</strong>。<br><img src="/images/树.jpg" alt="树"></p>
+
+      
+    </div>
+
+    <div>    
+     
+     
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+              <strong>本文作者：</strong>YuJianZhe
+          </li>
+          <li class="post-copyright-title">
+              <strong>本文标签：</strong>算法与数据结构之绪论
+          </li>
+          <li class="post-copyright-link">
+            <strong>本文链接：</strong>
+            <a href="/2018/07/24/数据结构/" title="算法与数据结构之绪论">2018/07/24/数据结构/</a>
+          </li>
+          </li>
+          <li class="post-copyright-link">
+            <strong>发布时间：</strong>
+            2018年7月24日 - 09时07分
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明： </strong>
+            本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议。转载请注明出处！
+          </li>
+        </ul>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="YuJianZhe 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/06/Python语言/" rel="next" title="Python语言之杂货铺">
+                <i class="fa fa-chevron-left"></i> Python语言之杂货铺
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzM4NS8xMzkxOQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="YuJianZhe" />
+            
+              <p class="site-author-name" itemprop="name">YuJianZhe</p>
+              <p class="site-description motion-element" itemprop="description">4939yujianzhe@gmail.com</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/gofisher" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/80902846/home?leftnav=1" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是算法？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是算法？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法的作用及意义？"><span class="nav-number">1.2.</span> <span class="nav-text">算法的作用及意义？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法两个必要条件"><span class="nav-number">1.3.</span> <span class="nav-text">算法两个必要条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法分析"><span class="nav-number">1.4.</span> <span class="nav-text">算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的增长率"><span class="nav-number">1.4.1.</span> <span class="nav-text">常用的增长率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析的类型"><span class="nav-number">1.4.2.</span> <span class="nav-text">分析的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#渐近表示"><span class="nav-number">1.4.3.</span> <span class="nav-text">渐近表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重要说明"><span class="nav-number">1.4.4.</span> <span class="nav-text">重要说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#渐近分布举例"><span class="nav-number">1.4.5.</span> <span class="nav-text">渐近分布举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">2.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据"><span class="nav-number">2.1.</span> <span class="nav-text">数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">2.2.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">2.3.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量的数据类型"><span class="nav-number">2.4.</span> <span class="nav-text">变量的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的变量名"><span class="nav-number">2.5.</span> <span class="nav-text">常用的变量名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用数据结构"><span class="nav-number">2.6.</span> <span class="nav-text">常用数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">2.6.1.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#链表"><span class="nav-number">2.6.2.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆栈"><span class="nav-number">2.6.3.</span> <span class="nav-text">堆栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列"><span class="nav-number">2.6.4.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#树（树木的结构）"><span class="nav-number">2.6.5.</span> <span class="nav-text">树（树木的结构）</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YuJianZhe</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">96.8k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("thLnMG4yyzyRoUseIB7W0sFD-gzGzoHsz", "i7FOQgwimm0kSQgUNB00yASj");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
